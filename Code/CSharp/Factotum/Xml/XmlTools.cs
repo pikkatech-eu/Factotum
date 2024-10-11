@@ -13,7 +13,43 @@ namespace Factotum.Xml
 {
 	public static partial class XmlTools
 	{
-		#region Public Features		
+		#region Public Features
+		/// <summary>
+		/// Shortcut for adding elements to an XElement (less to type than x.Add(new XElement("name", value));).
+		/// </summary>
+		/// <param name="x">The element to append value to.</param>
+		/// <param name="tag">The tag with which to append.</param>
+		/// <param name="value">The value to append.</param>
+		public static void AppendElement(this XElement x, string tag, object value)
+		{
+			try
+			{
+				x. Add(new XElement(tag, value));
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Shortcut for adding attributes to an XElement (less to type than x.Add(new XAttribute("key", value));).
+		/// </summary>
+		/// <param name="x">The element to append value to.</param>
+		/// <param name="key">The key with which to append.</param>
+		/// <param name="value">The value to append.</param>
+		public static void AppendAttribute(this XElement x, string key, object value)
+		{
+			try
+			{
+				x. Add(new XAttribute(key, value));
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
 		/// <summary>
 		/// Safely gets the typed value of an element within a host XML element.
 		/// </summary>
