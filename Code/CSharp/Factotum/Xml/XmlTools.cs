@@ -22,6 +22,11 @@ namespace Factotum.Xml
 		/// <param name="value">The value to append.</param>
 		public static void AppendElement(this XElement x, string tag, object value)
 		{
+			if (value == null)
+			{
+				return;
+			}
+
 			try
 			{
 				x. Add(new XElement(tag, value));
@@ -40,6 +45,11 @@ namespace Factotum.Xml
 		/// <param name="value">The value to append.</param>
 		public static void AppendAttribute(this XElement x, string key, object value)
 		{
+			if (value == null)
+			{
+				return;
+			}
+
 			try
 			{
 				x. Add(new XAttribute(key, value));
@@ -326,6 +336,12 @@ namespace Factotum.Xml
 				default:
 					return default(T);
 			}
+		}
+
+		public static XElement Rename(this XElement x, string newName)
+		{
+			x.Name = newName;
+			return x;
 		}
 		#endregion
 	}

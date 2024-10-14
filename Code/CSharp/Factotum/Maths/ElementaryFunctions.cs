@@ -72,7 +72,7 @@ namespace Factotum.Maths
 		}
 		#endregion
 
-		#region Degree Trigonometry
+		#region Trigonometry
 		/// <summary>
 		/// Sine of an argument given in degrees. (Neither math nor numpy seem to have these simple functions).
 		/// </summary>
@@ -101,6 +101,21 @@ namespace Factotum.Maths
 		public static double Tand(double x)
 		{
 			return Math.Tan(Constants.DEGREE * x);
+		}
+
+		/// <summary>
+		/// Calculates arctan with quadrant information [RDM (12.5)].
+		/// </summary>
+		/// <param name="x">The argument (Radian).</param>
+		/// <param name="quadrant">The quadrant to place to.</param>
+		/// <returns>The value of the arctan in Radian.</returns>
+		public static double Arctan(double x, int quadrant)
+		{
+			double alpha = Math.Atan(x);
+
+			double result = (quadrant == 1 || quadrant == 4) ? alpha : alpha + Constants.PI;
+
+			return result % (2 * Constants.PI);
 		}
 		#endregion
 	}

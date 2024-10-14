@@ -17,6 +17,7 @@ namespace Factotum.Maths
 	/// </summary>
 	public static class Constants
 	{
+		#region Mathematical constants
 		public const double SQRT2 				= 1.4142135623730950488;
 		public const double SQRT3 				= 1.7320508075688772935;
 		public const double SQRT5 				= 2.2360679774997896964;
@@ -42,12 +43,14 @@ namespace Factotum.Maths
 		public const double ONE_OVER_TWO_PI		= 0.159154943091895335768883;	// 1/(2*Pi)
 		public const double ONE_OVER_SQRT_PI 	= 0.5641895835477562869480795;
 		public const double ONE_OVER_SQRT_2PI	= 0.3989422804014326779399461;
-		public const double RAD					= 57.295779513082320876798155;
+		public const double RADIAN				= 57.295779513082320876798155;
 		public const double DEGREE				= 0.017453292519943295769237;
 
 		public const double E					= 2.718281828459045235360287;
 		public const double GAMMA				= 0.577215664901532860606512;
+		#endregion
 
+		#region Astronomical constants
 		/// <summary>
 		/// Earth Radius (km), Meuss, S. 90.
 		/// </summary>
@@ -67,5 +70,13 @@ namespace Factotum.Maths
 		/// Moon phase is 7.38265 days
 		/// </summary>
 		public const double MOON_PHASE			= 7.38265;
+		#endregion
+
+		#region Computation-related
+		/// <summary>
+		/// A reasonably small number to use when checking division.
+		/// </summary>
+		public const double EPSILON				= 1e-38;
+		#endregion
 	}
 }
