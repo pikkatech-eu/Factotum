@@ -117,6 +117,48 @@ namespace Factotum.Maths
 
 			return result % (2 * Constants.PI);
 		}
+
+		/// <summary>
+		/// Arcsine of a value expressed in degrees.
+		/// </summary>
+		/// <param name="x">Sine value.</param>
+		/// <returns>\f$ \arcsin(x) \f$ in degrees.</returns>
+		public static double Asind(double x)
+		{
+			return Math.Asin(x) * Constants.RADIAN;
+		}
+
+		/// <summary>
+		/// Arccosine of a value expressed in degrees.
+		/// </summary>
+		/// <param name="x">Cosine value.</param>
+		/// <returns>\f$ \arccos(x) \f$ in degrees.</returns>
+		public static double AcosD(double x)
+		{
+			return Math.Acos(x) * Constants.RADIAN;
+		}
+
+		/// <summary>
+		/// Arctan of a value expressed in degrees.
+		/// </summary>
+		/// <param name="x">Tangens value.</param>
+		/// <returns>\f$ \arctan(x) \f$ in degrees.</returns>
+		public static double Atand(double x)
+		{
+			return Math.Atan(x) * Constants.RADIAN;
+		}
+
+		/// <summary>
+		/// Atan2 for values expressed in degrees.
+		/// </summary>
+		/// <param name="y">Value of sine.</param>
+		/// <param name="x">Value of cosine.</param>
+		/// <returns>Arctan of the values expressed in degrees.</returns>
+		public static double Atan2d(double y, double x)
+		{
+			return Math.Atan2(y, x) * Constants.RADIAN;
+		}
+
 		#endregion
 	}
 }
