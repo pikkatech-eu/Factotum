@@ -133,7 +133,7 @@ namespace Factotum.Maths
 		/// </summary>
 		/// <param name="x">Cosine value.</param>
 		/// <returns>\f$ \arccos(x) \f$ in degrees.</returns>
-		public static double AcosD(double x)
+		public static double Acosd(double x)
 		{
 			return Math.Acos(x) * Constants.RADIAN;
 		}
