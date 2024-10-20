@@ -76,7 +76,10 @@ namespace Factotum.Maths
 		/// <summary>
 		/// A reasonably small number to use when checking division.
 		/// </summary>
-		public const double EPSILON				= 1e-38;
+		public const double EPSILON						= 1e-38;
+		public const int    DEFAULT_MAX_ITERATIONS      = 100;
+		public const double DEFAULT_BRACKETING_FACTOR	= 0.6180339887498948482045868343656;
+
 		#endregion
 	}
 }

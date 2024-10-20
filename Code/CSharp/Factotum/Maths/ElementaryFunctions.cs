@@ -158,7 +158,6 @@ namespace Factotum.Maths
 		{
 			return Math.Atan2(y, x) * Constants.RADIAN;
 		}
-
 		#endregion
 	}
 }
