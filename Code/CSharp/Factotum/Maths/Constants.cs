@@ -37,6 +37,7 @@ namespace Factotum.Maths
 		public const double PI_OVER4			= 0.7853981633974483096156608;  //	45°
 		public const double PI_OVER6			= 0.5235987755982988156;        // 30°
 		public const double PI_OVER12			= 0.2617993877991494078;        // 15°
+		public const double TWO_PI				= 6.283185307179586476925286;	// 360°
 
 
 		public const double ONE_OVER_PI			= 0.318309886183790671537767;	// 1/Pi

@@ -104,18 +104,53 @@ namespace Factotum.Maths
 		}
 
 		/// <summary>
-		/// Calculates arctan with quadrant information [RDM (12.5)].
+		/// Calculates the quadrant-sensitive value of arctan by both coordinates.
+		/// Notice the order of argument different from the order in Math.Atan(y, x).
 		/// </summary>
-		/// <param name="x">The argument (Radian).</param>
-		/// <param name="quadrant">The quadrant to place to.</param>
-		/// <returns>The value of the arctan in Radian.</returns>
-		public static double Arctan(double x, int quadrant)
+		/// <param name="x">The x coordinate (cos a).</param>
+		/// <param name="y">The y coordinate (sin a).</param>
+		/// <returns>The value of the angle, Radian.</returns>
+		public static double Arctan(double x, double y)
 		{
-			double alpha = Math.Atan(x);
+			double alpha0 = 0;
 
-			double result = (quadrant == 1 || quadrant == 4) ? alpha : alpha + Constants.PI;
+			if (Math.Abs(x) <= Constants.EPSILON)
+			{
+				alpha0 = Constants.PI_OVER2;
+			}
+			else
+			{
+				alpha0 = Math.Atan(Math.Abs(y) / Math.Abs(x));
+			}
 
-			return result % (2 * Constants.PI);
+			if (x >= 0 && y >= 0)
+			{
+				return alpha0;
+			}
+			else if (x <= 0 && y >= 0)
+			{
+				return Constants.PI - alpha0;
+			}
+			else if (x <= 0 && y <= 0)
+			{
+				return Constants.PI + alpha0;
+			}
+			else
+			{
+				return Constants.TWO_PI - alpha0;
+			}
+		}
+
+		/// <summary>
+		/// Calculates the quadrant-sensitive degree value of arctan by both coordinates.
+		/// Notice the order of argument different from the order in Math.Atan(y, x).
+		/// </summary>
+		/// <param name="x">The x coordinate (cos a).</param>
+		/// <param name="y">The y coordinate (sin a).</param>
+		/// <returns>The value of the angle, degrees.</returns>
+		public static double Arctand(double x, double y)
+		{
+			return Arctan(x, y) * Constants.RADIAN;
 		}
 
 		/// <summary>
