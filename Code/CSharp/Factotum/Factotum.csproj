@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dictionaries\Country.cs" />
+    <Compile Include="Dictionaries\Language.cs" />
+    <Compile Include="Dictionaries\WritingScript.cs" />
     <Compile Include="Exceptions\StopIterationException.cs" />
     <Compile Include="Maths\Constants.cs" />
     <Compile Include="Maths\ElementaryFunctions.cs" />
