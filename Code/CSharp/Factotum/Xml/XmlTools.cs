@@ -7,6 +7,11 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
+using System.Reflection.Emit;
 using System.Xml.Linq;
 
 namespace Factotum.Xml
@@ -14,6 +19,29 @@ namespace Factotum.Xml
 	public static partial class XmlTools
 	{
 		#region Public Features
+		/// <summary>
+		/// Shortcut for adding attributes to an XElement (less to type than x.Add(new XAttribute("key", value));).
+		/// </summary>
+		/// <param name="x">The element to append value to.</param>
+		/// <param name="key">The key with which to append.</param>
+		/// <param name="value">The value to append.</param>
+		public static void AppendAttribute(this XElement x, string key, object value)
+		{
+			if (value == null)
+			{
+				return;
+			}
+
+			try
+			{
+				x. Add(new XAttribute(key, value));
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
 		/// <summary>
 		/// Shortcut for adding elements to an XElement (less to type than x.Add(new XElement("name", value));).
 		/// </summary>
@@ -38,25 +66,93 @@ namespace Factotum.Xml
 		}
 
 		/// <summary>
-		/// Shortcut for adding attributes to an XElement (less to type than x.Add(new XAttribute("key", value));).
+		/// Appends a collection of items by creating a collection node in the XML structure and adding all individual elements to it.
 		/// </summary>
-		/// <param name="x">The element to append value to.</param>
-		/// <param name="key">The key with which to append.</param>
-		/// <param name="value">The value to append.</param>
-		public static void AppendAttribute(this XElement x, string key, object value)
+		/// <typeparam name="T">The type of the items to add.</typeparam>
+		/// <param name="x">The element to append the collection value to.</param>
+		/// <param name="items">
+		///		The collection of items to append. The items are supposed to be all of the same type T (no polymorphic collections).
+		///	</param>
+		/// <param name="tagItem">The tag with which each item will be represented in the XML structure.</param>
+		/// <param name="tagItems">
+		///		The tag of the collection item. 
+		///		If set to null (default), the collection tag will be created from the item tag by adding an "s" to it.
+		/// </param>
+		/// <example>
+		///		XElement x = new XElement("main");
+		///		double[] prices = {2.87, 3.62, 4.12};
+		///		x.AppendElements<double>(prices, "price");
+		///		
+		/// The resulting XML will be
+		///		<main>
+		///			<prices>
+		///				<price>2.87</price>
+		///				<price>3.62</price>
+		///				<price>4.12</price>
+		///			</prices>
+		///		</main>
+		/// </example>
+		public static void AppendElements<T>(this XElement x, IEnumerable<T> items, string tagItem, string tagItems = null) 
 		{
-			if (value == null)
-			{
-				return;
-			}
+			string tagItemsWork = String.IsNullOrEmpty(tagItems) ? $"{tagItem}s" : tagItems;
 
-			try
+			XElement xItems	= new XElement(tagItemsWork);
+			x.Add(xItems);
+
+			foreach (T item in items)
 			{
-				x. Add(new XAttribute(key, value));
+				try
+				{
+					xItems.Add(new XElement(tagItem, item));
+				}
+				catch {}				
 			}
-			catch (Exception)
+		}
+
+		/// <summary>
+		/// Appends a dictionary of items by creating a collection node in the XML structure and adding all individual elements to it.
+		/// </summary>
+		/// <typeparam name="K">The type of the key.</typeparam>
+		/// <typeparam name="T">The type of the item values.</typeparam>
+		/// <param name="x">The element to append the collection value to.</param>
+		/// <param name="dictionary">The dictionary to append. The values are supposed to be all of the same type T (no polymorphism of values).</param>
+		/// <param name="tagItem">The tag with which each item will be represented in the XML structure.</param>
+		/// <param name="tagItems">
+		/// 	The tag of the collection item. 
+		///		If set to null (default), the collection tag will be created from the item tag by adding an "s" to it.
+		/// </param>
+		/// <param name="tagKey">The name for the key attribute in the XML structure. Default: "Key".</param>
+		/// <example>
+		///		Dictionary<int, double> dictionary = new Dictionary<int, double>();
+		///		dictionary.Add(42, 2.87);
+		///		dictionary.Add(69, 3.62);
+		///		x.AppendDictionary<int, double>(dictionary, "price");
+		/// 
+		/// Produces the following XML:
+		///		<main>
+		///			<prices>
+		///				<price Key="42">2.87</price>
+		///				<price Key="69">3.62</price>
+		///			</prices>
+		///		</main>
+		/// </example>
+		public static void AppendDictionary<K, T>(this XElement x, Dictionary<K, T> dictionary, string tagItem, string tagItems = null, string tagKey = "Key")
+		{
+			string tagItemsWork = String.IsNullOrEmpty(tagItems) ? $"{tagItem}s" : tagItems;
+
+			XElement xItems	= new XElement(tagItemsWork);
+
+			x.Add(xItems);
+
+			foreach (K key in dictionary.Keys)
 			{
-				throw;
+				T item = dictionary[key];
+
+				if (item != null)
+				{
+					XElement xItem	= new XElement(tagItem, new XAttribute(tagKey, key), item);
+					xItems.Add(xItem);
+				}
 			}
 		}
 
@@ -336,6 +432,73 @@ namespace Factotum.Xml
 				default:
 					return default(T);
 			}
+		}
+
+		/// <summary>
+		/// Gets a collection value from an XML element (as a list).
+		/// </summary>
+		/// <typeparam name="T">The type of the list values.</typeparam>
+		/// <param name="x">The host XElement.</param>
+		/// <param name="tagItem">The tag with which each item is represented in the XML structure.</param>
+		/// <param name="tagItems">
+		/// 	The tag of the collection item. 
+		///		If set to null (default), the collection tag will be created from the item tag by adding an "s" to the item tag.
+		/// </param>
+		/// <returns>List of values of type T.</returns>
+		public static List<T> ListValue<T>(this XElement x, string tagItem, string tagItems = null) 
+		{
+			string tagItemsWork = String.IsNullOrEmpty(tagItems) ? $"{tagItem}s" : tagItems;
+
+			XElement xItems	= x.Element(tagItemsWork);
+
+			List<T> result = new List<T>();
+
+			if (xItems != null)
+			{
+				foreach (XElement xItem in xItems.Elements(tagItem))
+				{
+					T item	= (T)Convert.ChangeType(xItem.Value, typeof(T));
+
+					result.Add(item);
+				}
+			}
+
+			return result;
+		}
+
+		/// <summary>
+		///		Gets a dictionary value from an XML element.
+		/// </summary>
+		/// <typeparam name="K">The type of the key.</typeparam>
+		/// <typeparam name="T">The type of the dictionary values.</typeparam>
+		/// <param name="x">The host XElement.</param>
+		/// <param name="tagItem">The tag with which each item is represented in the XML structure.</param>
+		/// <param name="tagItems">
+		/// 	The tag of the collection item. 
+		///		If set to null (default), the collection tag will be created from the item tag by adding an "s" to the item tag.
+		/// </param>
+		/// <param name="tagKey">The name for the key attribute in the XML structure. Default: "Key".</param>
+		/// <returns>Dictionary of defined type.</returns>
+		public static Dictionary<K, T> DictionaryValue<K, T> (this XElement x, string tagItem, string tagItems = null, string tagKey = "Key") where T : struct
+		{
+			string tagItemsWork = String.IsNullOrEmpty(tagItems) ? $"{tagItem}s" : tagItems;
+
+			XElement xItems	= x.Element(tagItemsWork);
+
+			Dictionary<K, T> result = new Dictionary<K, T>();
+
+			if (xItems != null)
+			{
+				foreach (XElement xItem in xItems.Elements(tagItem))
+				{
+					K key = xItem.AttributeValue<K>(tagKey);
+					T value = (T)Convert.ChangeType(xItem.Value, typeof(T));
+
+					result.Add(key, value);
+				}
+			}
+
+			return result;
 		}
 
 		public static XElement Rename(this XElement x, string newName)

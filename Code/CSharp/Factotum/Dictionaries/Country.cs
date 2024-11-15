@@ -306,6 +306,11 @@ namespace Factotum.Dictionaries
 		/// <returns></returns>
 		public static Country GetCountry(string alpha)
 		{
+			if (String.IsNullOrEmpty(alpha))
+			{
+				return null;
+			}
+
 			Country country	= Countries.FirstOrDefault(co => co.Alpha2 == alpha.ToLower());
 
 			if (country != null)
@@ -318,6 +323,12 @@ namespace Factotum.Dictionaries
 
 		public static Country[] GetCountries(string nameToken)
 		{
+			if(String.IsNullOrEmpty(nameToken))
+			{
+				return new Country[0];
+			}
+
+			Console.WriteLine(nameToken);
 			return Countries.Where(c => c.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
 		}
 

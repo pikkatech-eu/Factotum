@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Xml.Linq;
 using Factotum.Xml;
-using FMC = Factotum.Maths.Constants;
 
 namespace Factotum.Tests
 {
@@ -15,15 +10,19 @@ namespace Factotum.Tests
 		{
 			XElement x = new XElement("main");
 
-			x.AppendElement("int", 42);
-			x.AppendElement("int", 43);
+			//double[] prices = {2.87, 3.62, 4.12};
 
-			x.AppendElement("bool", true);
+			//x.AppendElements<double>(prices, "price");
 
-			x.AppendElement("dateTime", DateTime.Now);
+			//var result = x.ListValue<double>("price");
 
-			var p = FMC.PI;
+			Dictionary<int, double> dictionary = new Dictionary<int, double>();
+			dictionary.Add(42, 2.87);
+			dictionary.Add(69, 3.62);
 
+			x.AppendDictionary<int, double>(dictionary, "price");
+
+			var result = x.DictionaryValue<int, double>("price");
 		}
 	}
 }
