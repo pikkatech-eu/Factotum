@@ -455,9 +455,9 @@ namespace Factotum.Xml
 		#endregion
 
 		#region Float Types
-		private static double? GetAttributeDoubleNullable(this XElement x, string elementName)
+		private static double? GetAttributeDoubleNullable(this XElement x, string key)
 		{
-			XAttribute xAttribute = x.Attribute(elementName);
+			XAttribute xAttribute = x.Attribute(key);
 
 			if (xAttribute == null)
 			{
@@ -476,9 +476,9 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static double GetAttributeDouble(this XElement x, string elementName, double defaultValue = default(double))
+		private static double GetAttributeDouble(this XElement x, string attributeName, double defaultValue = default(double))
 		{
-			XAttribute xAttribute = x.Attribute(elementName);
+			XAttribute xAttribute = x.Attribute(attributeName);
 
 			if (xAttribute == null)
 			{
