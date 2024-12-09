@@ -47,6 +47,7 @@
     <Compile Include="Exceptions\StopIterationException.cs" />
     <Compile Include="Maths\Constants.cs" />
     <Compile Include="Maths\ElementaryFunctions.cs" />
+    <Compile Include="Maths\Fouble.cs" />
     <Compile Include="Maths\Polynomial.cs" />
     <Compile Include="Maths\RootFinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
