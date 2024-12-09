@@ -7,6 +7,8 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
+using System;
+
 namespace Factotum.Maths
 {
 	/// <summary>
@@ -65,6 +67,49 @@ namespace Factotum.Maths
 		/// </summary>
 		/// <param name="pair">The pair of double and Boolean to convert.</param>
 		public static implicit operator Fouble((double value, bool isExact) pair)	=> new Fouble(pair.value, pair.isExact);
+		#endregion
+
+		#region String representation
+		public override string ToString()
+		{
+			string suffix = this.IsExact ? "" : "F";
+			return $"{this.Value}{suffix}";
+		}
+
+		public static Fouble Parse(string text)
+		{
+			try
+			{
+				Fouble f = new Fouble();
+
+				if (text.Trim().EndsWith("F"))
+				{
+					f.IsExact = false;
+				}
+
+				f.Value	= Double.Parse(text.Trim().TrimEnd('F'));
+
+				return f;
+			}
+			catch (ArgumentException)
+			{
+				throw;
+			}
+		}
+
+		public static bool TryParse(string text, out Fouble f)
+		{
+			try
+			{
+				f = Fouble.Parse(text);
+				return true;
+			}
+			catch (Exception)
+			{
+				f = null;
+				return false;
+			}
+		}
 		#endregion
 	}
 }
