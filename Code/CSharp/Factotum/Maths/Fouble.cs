@@ -55,12 +55,16 @@ namespace Factotum.Maths
 		/// <param name="value">The defined double.</param>
 		public static implicit operator Fouble(double value)						=> new Fouble(value);
 
+		
+
 		/// <summary>
 		/// Implicit conversion of a Fouble into double.
 		/// Creates a double value equal to that in the Fouble.
 		/// </summary>
 		/// <param name="f"></param>
 		public static implicit operator double(Fouble f)							=> f.Value;
+
+		
 
 		/// <summary>
 		/// Implicit conversion of a pair of a double and a Boolean to Fouble.
