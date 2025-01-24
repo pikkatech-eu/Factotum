@@ -4,7 +4,7 @@ Name "Factotum"
 Icon "C:\pikkatech.eu\Resources\Images\ICO\tools.ico"
 
 ; The file to write
-OutFile "Factotum-Core-Install-${MyTIMESTAMP}.exe"
+OutFile "Factotum-Install-${MyTIMESTAMP}.exe"
 
 ; The default installation directory
 InstallDir "$DESKTOP\Factotum"
