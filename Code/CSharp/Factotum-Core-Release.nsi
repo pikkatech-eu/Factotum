@@ -1,6 +1,7 @@
 !define /date MyTIMESTAMP "%Y-%m-%d@%H_%M"
 
 Name "Factotum"
+Icon "C:\pikkatech.eu\Resources\Images\ICO\tools.ico"
 
 ; The file to write
 OutFile "Factotum-Core-Install-${MyTIMESTAMP}.exe"
