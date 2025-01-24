@@ -7,7 +7,6 @@
 * Copyright:    PikkaTech Development and Consulting (www.pikkatech.eu)                       *
 **********************************************************************************************/
 using System;
-using System.IO;
 using System.Linq;
 
 namespace Factotum.Dictionaries
@@ -41,6 +40,11 @@ namespace Factotum.Dictionaries
 		/// </summary>
 		public string				Name	{get; set;}
 
+		/// <summary>
+		/// Dictionary of countires according to http://de.wikipedia.org/wiki/ISO_3166 .
+		/// Key: the code of the country
+		/// Value: the instance of country.
+		/// </summary>
 		public static	Country[]	Countries	= new Country[]
 		{
 			new Country{Alpha2="af",	Alpha3="afg",	Index=4,	Name="Afghanistan"},
@@ -321,6 +325,11 @@ namespace Factotum.Dictionaries
 			return Countries.FirstOrDefault(co => co.Alpha3 == alpha.ToLower());
 		}
 
+		/// <summary>
+		/// Selects countires by a name token.
+		/// </summary>
+		/// <param name="nameToken">The name token to be contained in a country's name to include (case-insensitive).</param>
+		/// <returns>Array of countries containing the name token.</returns>
 		public static Country[] GetCountries(string nameToken)
 		{
 			if(String.IsNullOrEmpty(nameToken))
@@ -328,7 +337,6 @@ namespace Factotum.Dictionaries
 				return new Country[0];
 			}
 
-			Console.WriteLine(nameToken);
 			return Countries.Where(c => c.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
 		}
 

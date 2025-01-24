@@ -12,6 +12,9 @@ using System.Collections.Generic;
 
 namespace Factotum.Text
 {
+	/// <summary>
+	/// Extensions for the String class.
+	/// </summary>
 	public static class StringExtensions
 	{
 		#region Private Data

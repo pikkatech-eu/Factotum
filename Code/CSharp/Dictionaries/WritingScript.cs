@@ -35,6 +35,12 @@ namespace Factotum.Dictionaries
 		#endregion
 
 		#region Construction
+		/// <summary>
+		/// Value constructor. Creates an instance of WritingScript from provided values.
+		/// </summary>
+		/// <param name="code">The code of the writing system.</param>
+		/// <param name="index">The index of the writing system.</param>
+		/// <param name="name">The name of the writing system.</param>
 		public WritingScript(string code, int index, string name)
 		{
 			this.Code	= code;
@@ -43,6 +49,11 @@ namespace Factotum.Dictionaries
 		}
 		#endregion
 
+		/// <summary>
+		/// Dictionary of writing systems according to https://en.wikipedia.org/wiki/ISO_15924 .
+		/// Key: the code of the wriring system.
+		/// Value: the instance of WritingScript.
+		/// </summary>
 		public static readonly Dictionary<string, WritingScript> WritingScripts = new Dictionary<string, WritingScript>()
 		{
 			{"Adlm", 	new WritingScript("Adlm",	166, 	"Adlam")},

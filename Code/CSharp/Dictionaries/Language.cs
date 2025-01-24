@@ -34,8 +34,11 @@ namespace Factotum.Dictionaries
 		/// </summary>
 		public string Name {get;set;}
 
-        public static char Separator		{get;set;}	= '|';
-
+		/// <summary>
+		/// Dictionary of languages according to http://de.wikipedia.org/wiki/ISO_639 .
+		/// Key: the code of the language
+		/// Value: the instance of Language.
+		/// </summary>
 		public readonly static Language[] Languages = new Language[]
 		{
 			new Language{Alpha3="eng",	Alpha2="en",	Name="English"},
@@ -554,14 +557,24 @@ namespace Factotum.Dictionaries
 		}
 		#endregion
 
-		public static Language ByName(string strName)
+		/// <summary>
+		/// Find the language by its exact name.
+		/// </summary>
+		/// <param name="name">The name of the language to find by (case-sensitive).</param>
+		/// <returns>The language foung, if successful, otherwise null.</returns>
+		public static Language ByName(string name)
 		{
-			return Languages.FirstOrDefault(l=>l.Name == strName);
+			return Languages.FirstOrDefault(l=>l.Name == name);
 		}
 
-		public static string AlphaByName(string strName)
+		/// <summary>
+		/// Find the alpha code (2- or 3-character) by the language's exact name.
+		/// </summary>
+		/// <param name="name">The name of the language to find by (case-sensitive).</param>
+		/// <returns>The 2-character alpha code of the language, if found, otherwise its 3-character code, it it exists; othersiwe null.</returns>
+		public static string AlphaByName(string name)
 		{
-			Language lg = Languages.FirstOrDefault(l=>l.Name == strName);
+			Language lg = Languages.FirstOrDefault(l=>l.Name == name);
 
 			if (lg != null)
 			{
@@ -581,7 +594,7 @@ namespace Factotum.Dictionaries
 		}
 
 		/// <summary>
-		/// Selects the language ba tha alpha code. First the alpha2 code is tried, if it delivers no result, then the alpha3 code.
+		/// Selects the language by tha alpha code. First the alpha2 code is tried, if it delivers no result, then the alpha3 code.
 		/// </summary>
 		/// <param name="alpha">The alpha.</param>
 		/// <returns></returns>

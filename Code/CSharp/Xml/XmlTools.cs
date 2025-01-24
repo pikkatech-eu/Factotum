@@ -12,6 +12,9 @@ using System.Xml.Linq;
 
 namespace Factotum.Xml
 {
+	/// <summary>
+	/// Extension methods for XElement to append elements and attributres and to safely access their values.
+	/// </summary>
 	public static partial class XmlTools
 	{
 		#region Public Features
@@ -497,6 +500,12 @@ namespace Factotum.Xml
 			return result;
 		}
 
+		/// <summary>
+		/// Renames an XML tag.
+		/// </summary>
+		/// <param name="x">The instance of XElement to rename.</param>
+		/// <param name="newName">The new name of the element.</param>
+		/// <returns>XElement instance with the new name.</returns>
 		public static XElement Rename(this XElement x, string newName)
 		{
 			x.Name = newName;
