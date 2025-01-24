@@ -1,0 +1,108 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{tabularx}
+\usepackage{xspace}
+\usepackage{dirtree}
+\usepackage{url}
+\usepackage{color}
+\usepackage[toc,page]{appendix}
+\usepackage[colorlinks=false, pdfborder={0 0 0}]{hyperref}
+\usepackage[left=2.30cm, right=1.50cm, top=2.00cm, bottom=1.80cm]{geometry}
+
+% USAGE DIRTREE
+%==============
+%\dirtree{%
+%	.1 Root.
+%	.2 Level 2 \DTcomment{Level 2 comment}.
+%	.3 Level 3 \DTcomment{Level 3 comment}.
+%}
+
+% USAGE TABULARX
+%================
+%\begin{tabularx}{0.95\textwidth}{|l|X|}
+%	\hline
+%	Header 1	& Header 2		\\
+%	\hline
+%	Line 1 Left	& Line 1 Right 	\\
+%	Line 2 Left	& Line 2 Right 	\\
+%	\hline
+%\end{tabularx}
+
+%USAGE ITEMIZE WITH ITEMSEP
+%==========================
+%\begin{itemize}\itemsep-4pt
+%\item First Item
+%\item Second Item
+%\item ...
+%\item Last Item
+%\end{itemize}
+
+% USAGE APPENDICES
+%=================
+%\appendices
+%\section{Important Equations}
+
+% MATRICES
+%=========
+% matrix		no borders
+% pmatrix		()
+% bmatrix		[]
+% vmatrix		||
+% Vmatrix		|| ||
+% BMatrix		{}
+
+% ALIGNMENT
+% =========
+% \begin{equation}\label{key}
+% 	\begin{aligned}
+% 		a   &= x_{ij} \\
+% 		b_j &= y_j 
+% 	\end{aligned}
+% \end{equation}
+
+% AUTO COUNTER (the prefix here being "Requirement")
+%===================================================
+\newcounter{ReqCounter}
+\newcommand{\req}{\protect\stepcounter{ReqCounter}\textbf{RQ} \textbf{\theReqCounter.}~}
+
+%\input{../../../../Documents/macros}
+
+\newcommand{\pal}{\texttt{palipali}\xspace}
+
+\author{Stanislav Koncebovski}
+\title{Factotum - Project structure}
+
+
+
+\begin{document}
+	\maketitle
+	\dirtree{%
+		.1 [Factotum] \DTcomment{Solution folder}.
+		.2 [Code] \DTcomment{Code folder}.
+		.3 [CSharp] \DTcomment{C\# code folder}.
+		.4 Factotum.sln.
+		.4 [Factotum] \DTcomment{Domain project folder}.
+		.5 Factotum-FW.csproj.
+		.5 Factotum-Core.csproj.
+		.6 [Dictionaries] \DTcomment{Begin of code files and folders}.
+		.6 ....
+		.6 [Xml] \DTcomment{End of code files and folders}.
+		.4 [Binary].
+		.5 [Framework].
+		.6 [Debug].
+		.7 Factotum.dll \DTcomment{Framework version of the debug dll}.
+		.6 [Release].
+		.7 Factotum.dll \DTcomment{Framework version of the release dll}.
+		.5 [Core].
+		.6 [Debug] \DTcomment{Folder for .NET Core versions of the debug dlls}.
+		.6 [Release] \DTcomment{Folder for .NET Core versions of the release dlls}.
+	}
+	
+\end{document}
