@@ -173,6 +173,27 @@ namespace Factotum.Text
 
 			return result;
 		}
+
+		/// <summary>
+		/// Capitalization of a word.
+		/// </summary>
+		/// <param name="word">The word to capitalize.</param>
+		/// <returns>The word capitalized.</returns>
+		public static string Capitalize(this string word)
+		{
+			if (String.IsNullOrEmpty(word))
+			{
+				return word;
+			}
+			else if (word.Length == 1)
+			{
+				return word.ToUpper();
+			}
+			else
+			{
+				return $"{word.Substring(0, 1).ToUpper()}{word.Substring(1)}";
+			}
+		}
 		#endregion
 	}
 }
