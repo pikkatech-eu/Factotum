@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Factotum.Maths
+namespace Factotum.Maths.Fuzzy
 {
 	/// <summary>
 	/// Fouble == "Fuzzy Double".
@@ -53,31 +53,38 @@ namespace Factotum.Maths
 		/// Creates an instance of Fouble with the defined double value and isExact = true.
 		/// </summary>
 		/// <param name="value">The defined double.</param>
-		public static implicit operator Fouble(double value)						=> new Fouble(value);
-
-		
+		public static implicit operator Fouble(double value)	=> new Fouble(value);
 
 		/// <summary>
 		/// Implicit conversion of a Fouble into double.
 		/// Creates a double value equal to that in the Fouble.
 		/// </summary>
 		/// <param name="f"></param>
-		public static implicit operator double(Fouble f)							=> f.Value;
-
-		
+		public static implicit operator double(Fouble f)		=> f.Value;
 
 		/// <summary>
 		/// Implicit conversion of a pair of a double and a Boolean to Fouble.
 		/// </summary>
 		/// <param name="pair">The pair of double and Boolean to convert.</param>
 		public static implicit operator Fouble((double value, bool isExact) pair)	=> new Fouble(pair.value, pair.isExact);
+
+		/// <summary>
+		/// Implicit conversion of a fuzzy integer to fuzzy double.
+		/// </summary>
+		/// <param name="fint"></param>
+		public static implicit operator Fouble(Fint fint)	=> new Fouble(fint.Value, fint.IsExact);
+
+		/// <summary>
+		/// Explicit conversion of a fuzzy double to fuzzy integer.
+		/// </summary>
+		/// <param name="f"></param>
+		public static explicit operator Fint(Fouble f)	=> new Fint((int)f.Value, f.IsExact);
 		#endregion
 
 		#region String representation
 		public override string ToString()
 		{
-			string suffix = this.IsExact ? "" : "F";
-			return $"{this.Value}{suffix}";
+			return this.IsExact ? this.Value.ToString() : $"~{this.Value}";
 		}
 
 		public static Fouble Parse(string text)
@@ -86,12 +93,12 @@ namespace Factotum.Maths
 			{
 				Fouble f = new Fouble();
 
-				if (text.Trim().EndsWith("F"))
+				if (text.Trim().StartsWith("~"))
 				{
 					f.IsExact = false;
 				}
 
-				f.Value	= Double.Parse(text.Trim().TrimEnd('F'));
+				f.Value	= double.Parse(text.Trim().TrimStart('~'));
 
 				return f;
 			}
@@ -105,7 +112,7 @@ namespace Factotum.Maths
 		{
 			try
 			{
-				f = Fouble.Parse(text);
+				f = Parse(text);
 				return true;
 			}
 			catch (Exception)
@@ -113,6 +120,57 @@ namespace Factotum.Maths
 				f = null;
 				return false;
 			}
+		}
+		#endregion
+
+		#region Arithmetics
+		/// <summary>
+		/// Addition of foubles.
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <returns>Fuzzy sum; exact only if both opwerands are exact.</returns>
+		public static Fouble operator + (Fouble x, Fouble y)
+		{
+			return new Fouble(x.Value + y.Value, x.IsExact && y.IsExact);
+		}
+
+		/// <summary>
+		/// Subtraction of foubles.
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <returns>Fuzzy difference; exact only if both opwerands are exact.</returns>
+		public static Fouble operator - (Fouble x, Fouble y)
+		{
+			return new Fouble(x.Value - y.Value, x.IsExact && y.IsExact);
+		}
+
+		/// <summary>
+		/// Multiplication of foubles.
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <returns>Fuzzy product; exact only if both opwerands are exact.</returns>
+		public static Fouble operator * (Fouble x, Fouble y)
+		{
+			return new Fouble(x.Value * y.Value, x.IsExact && y.IsExact);
+		}
+
+		/// <summary>
+		/// Division of foubles.
+		/// </summary>
+		/// <param name="x"></param>
+		/// <param name="y"></param>
+		/// <returns>Fuzzy ratio; exact only if both opwerands are exact.</returns>
+		public static Fouble operator / (Fouble x, Fouble y)
+		{
+			return new Fouble(x.Value / y.Value, x.IsExact && y.IsExact);
+		}
+
+		public static Fouble operator - (Fouble x)
+		{
+			return new Fouble(-x.Value, x.IsExact);
 		}
 		#endregion
 	}
