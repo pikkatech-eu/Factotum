@@ -8,6 +8,8 @@
 ***********************************************************************************/
 
 using System;
+using System.Xml.Linq;
+using Factotum.Xml;
 
 namespace Factotum.Maths.Fuzzy
 {
@@ -189,6 +191,23 @@ namespace Factotum.Maths.Fuzzy
 		public static Fouble NaN				{get {return _nan;}}
 		public static Fouble PositiveInfinity	{get {return _positiveInfinity;}}
 		public static Fouble NegativeInfinity	{get {return _negativeInfinity;}}
+		#endregion
+
+		#region XML
+		public XElement ToXElement()
+		{
+			return new XElement("Fouble", new XAttribute("Value", this.Value), new XAttribute("IsExact", this.IsExact));
+		}
+
+		public static Fouble FromXElement(XElement x)
+		{
+			Fouble f	= new Fouble();
+
+			f.Value		= x.AttributeValue<double>("Value");
+			f.IsExact	= x.AttributeValue<bool>("IsExact");
+
+			return f;
+		}
 		#endregion
 	}
 }
