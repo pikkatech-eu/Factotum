@@ -16,6 +16,16 @@ namespace Factotum.Maths.Fuzzy
 	/// </summary>
 	public class Fouble
 	{
+		#region Private Pseudoconstants
+		/// <summary>
+		/// All pseudoconstants are defined as exact.
+		/// </summary>
+		private static readonly Fouble _zero				= 0;
+		private static readonly Fouble _nan					= Double.NaN;
+		private static readonly Fouble _positiveInfinity	= Double.PositiveInfinity;
+		private static readonly Fouble _negativeInfinity	= Double.NegativeInfinity;
+		#endregion
+
 		#region Properties
 		/// <summary>
 		/// The double value.
@@ -172,6 +182,13 @@ namespace Factotum.Maths.Fuzzy
 		{
 			return new Fouble(-x.Value, x.IsExact);
 		}
+		#endregion
+
+		#region Pseudoconstants
+		public static Fouble Zero				{get {return _zero;}}
+		public static Fouble NaN				{get {return _nan;}}
+		public static Fouble PositiveInfinity	{get {return _positiveInfinity;}}
+		public static Fouble NegativeInfinity	{get {return _negativeInfinity;}}
 		#endregion
 	}
 }
