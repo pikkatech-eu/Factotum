@@ -96,7 +96,7 @@ namespace Factotum.Chrono
 		/// </summary>
 		/// <param name="format">
 		/// Supported values:
-		///		"ISO"	: output in ISO format, e.g. "1990-12-05", "1990-12", "1990"
+		///		"ISO"			: output in ISO format, e.g. "1990-12-05", "1990-12", "1990"
 		///		"DD.MM.YYYY"	: output in continental format, e.g. "1990.12.05", , "1990.12"
 		///		"DD.MMMM.YYYY"	: output with month names, e.g. "05 December 1990", "December 1990"
 		///		"MM/DD/YYYY"	: output in US format, e.g. "12/05/1990", "12/1990".
@@ -115,67 +115,84 @@ namespace Factotum.Chrono
 			string monthString	= this.Month != null ? $"{this.Month:00}" : null;
 			string dayString	= this.Day != null   ? $"{(int)this.Day:00}" : null;
 
+			string result = null;
+
 			switch (format.ToUpper())
 			{
 				case "ISO":
 					if (monthString != null && dayString != null)
 					{
-						return $"{yearString}-{monthString}-{dayString}";
+						result = $"{yearString}-{monthString}-{dayString}";
 					}
 					else if (monthString != null)
 					{
-						return $"{yearString}-{monthString}";
+						result = $"{yearString}-{monthString}";
 					}
 					else
 					{
-						return $"{yearString}";
+						result = $"{yearString}";
 					}
+
+					break;
 
 				case "DD.MM.YYYY":
 					if (monthString != null && dayString != null)
 					{
-						return $"{dayString}.{monthString}.{yearString}";
+						result = $"{dayString}.{monthString}.{yearString}";
 					}
 					else if (monthString != null)
 					{
-						return $"{monthString}.{yearString}";
+						result = $"{monthString}.{yearString}";
 					}
 					else
 					{
-						return $"{yearString}";
+						result = $"{yearString}";
 					}
+
+					break;
 
 				case "DD.MMMM.YYYY":
 					if (monthString != null && dayString != null)
 					{
-						return $"{dayString} {GREGORIAN_MONTHS[(int)this.Month]} {yearString}";
+						result = $"{dayString} {GREGORIAN_MONTHS[(int)this.Month]} {yearString}";
 					}
 					else if (monthString != null)
 					{
-						return $"{GREGORIAN_MONTHS[(int)this.Month]} {yearString}";
+						result = $"{GREGORIAN_MONTHS[(int)this.Month]} {yearString}";
 					}
 					else
 					{
-						return $"{yearString}";
+						result = $"{yearString}";
 					}
+
+					break;
 
 				case "MM/DD/YYYY":
 					if (monthString != null && dayString != null)
 					{
-						return $"{monthString}/{dayString}/{yearString}";
+						result = $"{monthString}/{dayString}/{yearString}";
 					}
 					else if (monthString != null)
 					{
-						return $"{monthString}/{yearString}";
+						result = $"{monthString}/{yearString}";
 					}
 					else
 					{
-						return $"{yearString}";
+						result = $"{yearString}";
 					}
 
+					break;
+
 				default:
-					return null;
+					break;
 			}
+
+			if (!this.IsExact && result != null)
+			{
+				result = $"~{result}";
+			}
+
+			return result;
 		}
 
 		public override string ToString()
@@ -184,9 +201,17 @@ namespace Factotum.Chrono
 		}
 
 		/// <summary>
-		/// 
+		/// Parses a string to a GregorianDate.
 		/// </summary>
-		/// <param name="dateString"></param>
+		/// <param name="dateString">
+		///		In current version, only English month names are supported.
+		///		The string must be in one of the following formats: 
+		///			"ISO"				
+		/// 		"DD.MM.YYYY"	
+		/// 		"DD.MMMM.YYYY"	
+		/// 		"MM/DD/YYYY"
+		///		(see description with ToString()).
+		/// </param>
 		/// <returns></returns>
 		public static GregorianDate Parse(string dateString)
 		{
@@ -235,6 +260,12 @@ namespace Factotum.Chrono
 			}
 		}
 
+		/// <summary>
+		/// Tries to parse a string to a Gregogian date.
+		/// </summary>
+		/// <param name="dateString"></param>
+		/// <param name="gregorian"></param>
+		/// <returns></returns>
 		public bool TryParse(string dateString, out GregorianDate gregorian)
 		{
 			try
