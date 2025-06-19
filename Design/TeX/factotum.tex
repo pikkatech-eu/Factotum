@@ -87,22 +87,40 @@
 		.1 [Factotum] \DTcomment{Solution folder}.
 		.2 [Code] \DTcomment{Code folder}.
 		.3 [CSharp] \DTcomment{C\# code folder}.
-		.4 Factotum.sln.
-		.4 [Factotum] \DTcomment{Domain project folder}.
-		.5 Factotum-FW.csproj.
-		.5 Factotum-Core.csproj.
-		.6 [Dictionaries] \DTcomment{Begin of code files and folders}.
-		.6 ....
-		.6 [Xml] \DTcomment{End of code files and folders}.
-		.4 [Binary].
-		.5 [Framework].
+		.4 [Framework].
+		.5 Factotum.sln	\DTcomment{Solution file for the Framework version}.
+		.5 Factotum.csproj \DTcomment{Project file for the shared-code based Framework version}.
+		.5 [Factotum.Gui] \DTcomment{Project folder for the Framework version GUI}.
+		.6 Factotum.Gui.csproj \DTcomment{Project file for the Framework version GUI}.
+		.6 [Factotum.Gui.Code] \DTcomment{Code folder for the Framework version GUI}.
+		.7 [Chrono] \DTcomment{Code folder for the Chrono package}.
+		.8 [Interfaces].
+		.9 IGregorianDateDevice.cs.
+		.8 [Controls].
+		.9 GregorianDateControl.cs.
+		.7 ....
+		.5 [Binary].
 		.6 [Debug].
-		.7 Factotum.dll \DTcomment{Framework version of the debug dll}.
 		.6 [Release].
-		.7 Factotum.dll \DTcomment{Framework version of the release dll}.
-		.5 [Core].
-		.6 [Debug] \DTcomment{Folder for .NET Core versions of the debug dlls}.
-		.6 [Release] \DTcomment{Folder for .NET Core versions of the release dlls}.
+		.4 [Core].
+		.5 Factotum.sln	\DTcomment{Solution file for the .NET Core version}.
+		.5 Factotum.csproj \DTcomment{Project file for the shared-code based .NET Core version}.
+		.5 [Factotum.Gui] \DTcomment{Project folder for the .NET Core version GUI}.
+		.6 Factotum.Gui.csproj \DTcomment{Project file for the .NET Core version GUI}.
+		.6 [Factotum.Gui.Code] \DTcomment{Code folder for the .NET Core version GUI}.
+		.7 [Chrono] \DTcomment{Code folder for the Chrono package}.
+		.8 [Interfaces].
+		.9 IGregorianDateDevice.cs.
+		.8 [Controls].
+		.9 GregorianDateControl.cs.
+		.7 ....
+		.5 [Binary].
+		.6 [Debug].
+		.6 [Release].
+		.4 [SharedCode] \DTcomment{Code folder shared for both versions}.
+		.5 [Dictionaries].
+		.5 ....
+		.5 [Xml] .
 	}
 	
 \end{document}
