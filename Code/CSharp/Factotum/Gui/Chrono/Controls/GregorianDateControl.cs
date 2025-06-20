@@ -27,6 +27,8 @@ namespace Factotum.Gui.Chrono.Controls
 		{
 			string text = this.GregorianDate.ToString();
 			this._txDateString.Text	= text;
+
+			this.ValueChanged?.Invoke(this.GregorianDate);
 		}
 
 		private void OnParse(object sender, EventArgs e)
@@ -34,6 +36,8 @@ namespace Factotum.Gui.Chrono.Controls
 			if (GregorianDate.TryParse(this._txDateString.Text, out GregorianDate gregorian))
 			{
 				this.GregorianDate	= gregorian;
+
+				this.ValueChanged?.Invoke(gregorian);
 			}
 		}
 
@@ -58,5 +62,7 @@ namespace Factotum.Gui.Chrono.Controls
 				this._cbIsExact.Checked	= value.IsExact;
 			}
 		}
+
+		public event Action<GregorianDate>	ValueChanged;
 	}
 }

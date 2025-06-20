@@ -1,21 +1,18 @@
 ﻿/***********************************************************************************
-* File:         IGregorianDateDevice.cs                                            *
-* Contents:     Interface IGregorianDateDevice                                     *
+* File:         ITemporalDevice.cs                                                 *
+* Contents:     Interface ITemporalDevice                                          *
 * Author:       Stanislav "Bav" Koncebovski (stanislav@pikkatech.eu)               *
-* Date:         2025-06-19 16:54                                                   *
+* Date:         2025-06-20 20:22                                                   *
 * Version:      1.0                                                                *
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System;
 using Factotum.Chrono;
 
 namespace Factotum.Gui.Chrono.Interfaces
 {
-	public interface IGregorianDateDevice
+	public interface ITemporalDevice
 	{
-		GregorianDate GregorianDate	{get;set;}
-
-		event Action<GregorianDate>	ValueChanged;
+		Temporal	Temporal	{get;set;}
 	}
 }

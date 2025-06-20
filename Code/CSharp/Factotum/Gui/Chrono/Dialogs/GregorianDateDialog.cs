@@ -50,5 +50,7 @@ namespace Factotum.Gui.Chrono.Dialogs
 				this._ctrlGregorianDate.GregorianDate = value;
 			}
 		}
+
+		public event Action<GregorianDate> ValueChanged;
 	}
 }

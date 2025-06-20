@@ -59,13 +59,26 @@
     <Compile Include="Gui\Chrono\Controls\GregorianDateControl.Designer.cs">
       <DependentUpon>GregorianDateControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gui\Chrono\Controls\TemporalControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\Chrono\Controls\TemporalControl.Designer.cs">
+      <DependentUpon>TemporalControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Chrono\Dialogs\GregorianDateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Gui\Chrono\Dialogs\GregorianDateDialog.Designer.cs">
       <DependentUpon>GregorianDateDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Gui\Chrono\Dialogs\TemporalDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gui\Chrono\Dialogs\TemporalDialog.Designer.cs">
+      <DependentUpon>TemporalDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Chrono\Interfaces\IGregorianDateDevice.cs" />
+    <Compile Include="Gui\Chrono\Interfaces\ITemporalDevice.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Maths\Constants.cs" />
     <Compile Include="Maths\ElementaryFunctions.cs" />
@@ -88,8 +101,14 @@
     <EmbeddedResource Include="Gui\Chrono\Controls\GregorianDateControl.resx">
       <DependentUpon>GregorianDateControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Chrono\Controls\TemporalControl.resx">
+      <DependentUpon>TemporalControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\Chrono\Dialogs\GregorianDateDialog.resx">
       <DependentUpon>GregorianDateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Chrono\Dialogs\TemporalDialog.resx">
+      <DependentUpon>TemporalDialog.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

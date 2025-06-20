@@ -210,41 +210,6 @@ namespace Factotum.Chrono
 		public static GregorianDate Parse(string dateString)
 		{
 			return GregorianDateParser.Parse(dateString);
-
-			//string[] cells = new string[0];
-
-			//if (dateString.Contains("-"))
-			//{
-			//	cells = dateString.Split('-');
-			//}
-			//else if (dateString.Contains("/"))
-			//{
-			//	cells = dateString.Split('/');
-			//}
-			//else
-			//{
-			//	cells = new string[]{dateString};
-			//}
-
-			//for (int i = 0; i < cells.Length; i++)
-			//{
-			//	cells[i]	= cells[i].Trim();
-			//}
-
-			//switch (cells.Length)
-			//{
-			//	case 1:	// year only
-			//		return new GregorianDate(Int32.Parse(cells[0]));
-
-			//	case 2:	// year and month
-			//		return new GregorianDate(Int32.Parse(cells[0]), Int32.Parse(cells[1]));
-
-			//	case 3:	// year, month, day
-			//		return new GregorianDate(Int32.Parse(cells[0]), Int32.Parse(cells[1]), Int32.Parse(cells[2]));
-
-			//	default:
-			//		return GregorianDate.Unknown;
-			//}
 		}
 
 		/// <summary>
