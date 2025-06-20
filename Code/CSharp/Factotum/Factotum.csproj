@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Chrono\Enumerations\GregorianDateFormat.cs" />
     <Compile Include="Chrono\GregorianDate.cs" />
+    <Compile Include="Chrono\GregorianDateParser.cs" />
     <Compile Include="Chrono\IFuzzyDate.cs" />
+    <Compile Include="Chrono\Temporal.cs" />
     <Compile Include="Chrono\TriadicDate.cs" />
     <Compile Include="Dictionaries\Country.cs" />
     <Compile Include="Dictionaries\Language.cs" />

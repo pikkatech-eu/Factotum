@@ -204,60 +204,47 @@ namespace Factotum.Chrono
 		/// Parses a string to a GregorianDate.
 		/// </summary>
 		/// <param name="dateString">
-		///		In current version, only English month names are supported.
-		///		The string must be in one of the following formats: 
-		///			"ISO"				
-		/// 		"DD.MM.YYYY"	
-		/// 		"DD.MMMM.YYYY"	
-		/// 		"MM/DD/YYYY"
-		///		(see description with ToString()).
+		///		In current version, only the ISO format is supported.
 		/// </param>
 		/// <returns></returns>
 		public static GregorianDate Parse(string dateString)
 		{
-			try
-			{
-				DateTime dateTime = DateTime.Parse(dateString);
-				return new GregorianDate(dateTime);
-			}
-			catch (Exception)
-			{
-				string[] items = new string[0];
+			return GregorianDateParser.Parse(dateString);
 
-				if (dateString.Contains("-"))
-				{
-					items = dateString.Split('-');
-				}
-				else if (dateString.Contains("/"))
-				{
-					items = dateString.Split('/');
-				}
-				else
-				{
-					items = new string[]{ dateString.Trim() };
-				}
+			//string[] cells = new string[0];
 
-				if (items.Length == 1)
-				{
-					// year only
-					return new GregorianDate(Int32.Parse(items[0]));
-				}
-				else if (items.Length == 2)
-				{
-					if (items[0].Length > items[1].Length)
-					{
-						return new GregorianDate(Int32.Parse(items[0]), Int32.Parse(items[1]));
-					}
-					else
-					{
-						return new GregorianDate(Int32.Parse(items[1]), Int32.Parse(items[0]));
-					}
-				}
-				else
-				{
-					return GregorianDate.Unknown;
-				}
-			}
+			//if (dateString.Contains("-"))
+			//{
+			//	cells = dateString.Split('-');
+			//}
+			//else if (dateString.Contains("/"))
+			//{
+			//	cells = dateString.Split('/');
+			//}
+			//else
+			//{
+			//	cells = new string[]{dateString};
+			//}
+
+			//for (int i = 0; i < cells.Length; i++)
+			//{
+			//	cells[i]	= cells[i].Trim();
+			//}
+
+			//switch (cells.Length)
+			//{
+			//	case 1:	// year only
+			//		return new GregorianDate(Int32.Parse(cells[0]));
+
+			//	case 2:	// year and month
+			//		return new GregorianDate(Int32.Parse(cells[0]), Int32.Parse(cells[1]));
+
+			//	case 3:	// year, month, day
+			//		return new GregorianDate(Int32.Parse(cells[0]), Int32.Parse(cells[1]), Int32.Parse(cells[2]));
+
+			//	default:
+			//		return GregorianDate.Unknown;
+			//}
 		}
 
 		/// <summary>
@@ -278,6 +265,33 @@ namespace Factotum.Chrono
 			{
 				gregorian = GregorianDate.Unknown;
 				return false;
+			}
+		}
+		#endregion
+
+		#region Private Auxiliary
+		private static GregorianDate ParseIso(string dateString)
+		{
+			string[] cells = dateString.Split('-');
+
+			for (int i = 0; i < cells.Length; i++)
+			{
+				cells[i]	= cells[i].Trim();
+			}
+
+			switch (cells.Length)
+			{
+				case 1:	// year only
+					return new GregorianDate(Int32.Parse(cells[0]));
+
+				case 2:	// year and month
+					return new GregorianDate(Int32.Parse(cells[0]), Int32.Parse(cells[1]));
+
+				case 3:	// year, month, day
+					return new GregorianDate(Int32.Parse(cells[0]), Int32.Parse(cells[1]), Int32.Parse(cells[2]));
+
+				default:
+					return GregorianDate.Unknown;
 			}
 		}
 		#endregion
