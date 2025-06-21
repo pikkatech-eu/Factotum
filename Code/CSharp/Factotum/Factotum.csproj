@@ -53,11 +53,23 @@
     <Compile Include="Dictionaries\Language.cs" />
     <Compile Include="Dictionaries\WritingScript.cs" />
     <Compile Include="Exceptions\StopIterationException.cs" />
+    <Compile Include="Gui\Chrono\Controls\SimpleGregorianDateControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\Chrono\Controls\SimpleGregorianDateControl.Designer.cs">
+      <DependentUpon>SimpleGregorianDateControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gui\Chrono\Controls\GregorianDateControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="Gui\Chrono\Controls\GregorianDateControl.Designer.cs">
       <DependentUpon>GregorianDateControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\Chrono\Controls\SimpleTemporalControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\Chrono\Controls\SimpleTemporalControl.Designer.cs">
+      <DependentUpon>SimpleTemporalControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Gui\Chrono\Controls\TemporalControl.cs">
       <SubType>UserControl</SubType>
@@ -98,8 +110,14 @@
     <Content Include="Comments.txt" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Gui\Chrono\Controls\SimpleGregorianDateControl.resx">
+      <DependentUpon>SimpleGregorianDateControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gui\Chrono\Controls\GregorianDateControl.resx">
       <DependentUpon>GregorianDateControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\Chrono\Controls\SimpleTemporalControl.resx">
+      <DependentUpon>SimpleTemporalControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gui\Chrono\Controls\TemporalControl.resx">
       <DependentUpon>TemporalControl.cs</DependentUpon>
