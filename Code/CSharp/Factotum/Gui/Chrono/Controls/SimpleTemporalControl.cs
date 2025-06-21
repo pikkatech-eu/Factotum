@@ -8,6 +8,7 @@
 ***********************************************************************************/
 
 using System;
+using System.Drawing;
 using System.Windows.Forms;
 using Factotum.Chrono;
 using Factotum.Gui.Chrono.Interfaces;
@@ -22,6 +23,13 @@ namespace Factotum.Gui.Chrono.Controls
 		private const string AFTER				= "After";
 
 		private static readonly string[] TYPES	= {SINGLE_DATE, CLOSED_INTERVAL, BEFORE, AFTER};
+
+		public static Color	DarkThemeBackground		= Color.FromArgb(24, 16, 16);
+		public static Color	DarkThemeForeground		= Color.White;
+
+		public static Color	LightThemeBackground	= SystemColors.Control;
+		public static Color	LightThemeForeground	= SystemColors.WindowText;
+
 		public SimpleTemporalControl()
 		{
 			InitializeComponent();
@@ -111,6 +119,24 @@ namespace Factotum.Gui.Chrono.Controls
 			{
 				this._ctrlStart.GregorianDate	= value.Start;
 				this._ctrlEnd.GregorianDate		= value.End;
+			}
+		}
+
+		public void SetDarkTheme()
+		{
+			foreach (Control control in this.Controls)
+			{
+				control.BackColor	= DarkThemeBackground;
+				control.ForeColor	= DarkThemeForeground;
+			}
+		}
+
+		public void SetLightTheme()
+		{
+			foreach (Control control in this.Controls)
+			{
+				control.BackColor	= LightThemeBackground;
+				control.ForeColor	= LightThemeForeground;
 			}
 		}
 	}

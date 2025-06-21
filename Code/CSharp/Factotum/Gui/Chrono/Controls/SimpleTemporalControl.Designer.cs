@@ -28,8 +28,8 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			Factotum.Chrono.GregorianDate gregorianDate3 = new Factotum.Chrono.GregorianDate();
-			Factotum.Chrono.GregorianDate gregorianDate4 = new Factotum.Chrono.GregorianDate();
+			Factotum.Chrono.GregorianDate gregorianDate1 = new Factotum.Chrono.GregorianDate();
+			Factotum.Chrono.GregorianDate gregorianDate2 = new Factotum.Chrono.GregorianDate();
 			this._tlpTemporal = new System.Windows.Forms.TableLayoutPanel();
 			this.label2 = new System.Windows.Forms.Label();
 			this._lblEnd = new System.Windows.Forms.Label();
@@ -137,11 +137,11 @@
 			// _ctrlStart
 			// 
 			this._ctrlStart.Font = new System.Drawing.Font("Consolas", 10F);
-			gregorianDate3.Day = 1;
-			gregorianDate3.IsExact = true;
-			gregorianDate3.Month = 1;
-			gregorianDate3.Year = 1;
-			this._ctrlStart.GregorianDate = gregorianDate3;
+			gregorianDate1.Day = 1;
+			gregorianDate1.IsExact = true;
+			gregorianDate1.Month = 1;
+			gregorianDate1.Year = 1;
+			this._ctrlStart.GregorianDate = gregorianDate1;
 			this._ctrlStart.Location = new System.Drawing.Point(128, 40);
 			this._ctrlStart.Margin = new System.Windows.Forms.Padding(0);
 			this._ctrlStart.Name = "_ctrlStart";
@@ -151,11 +151,11 @@
 			// _ctrlEnd
 			// 
 			this._ctrlEnd.Font = new System.Drawing.Font("Consolas", 10F);
-			gregorianDate4.Day = 1;
-			gregorianDate4.IsExact = true;
-			gregorianDate4.Month = 1;
-			gregorianDate4.Year = 1;
-			this._ctrlEnd.GregorianDate = gregorianDate4;
+			gregorianDate2.Day = 1;
+			gregorianDate2.IsExact = true;
+			gregorianDate2.Month = 1;
+			gregorianDate2.Year = 1;
+			this._ctrlEnd.GregorianDate = gregorianDate2;
 			this._ctrlEnd.Location = new System.Drawing.Point(128, 120);
 			this._ctrlEnd.Margin = new System.Windows.Forms.Padding(0);
 			this._ctrlEnd.Name = "_ctrlEnd";

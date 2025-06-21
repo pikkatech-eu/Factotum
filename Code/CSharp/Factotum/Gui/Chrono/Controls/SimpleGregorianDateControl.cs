@@ -56,5 +56,23 @@ namespace Factotum.Gui.Chrono.Controls
 		}
 
 		public event Action<GregorianDate>	ValueChanged;
+
+		public void SetDarkTheme()
+		{
+			foreach (Control control in this.Controls)
+			{
+				control.BackColor	= SimpleTemporalControl.DarkThemeBackground;
+				control.ForeColor	= SimpleTemporalControl.DarkThemeForeground;
+			}
+		}
+
+		public void SetLightTheme()
+		{
+			foreach (Control control in this.Controls)
+			{
+				control.BackColor	= SimpleTemporalControl.LightThemeBackground;
+				control.ForeColor	= SimpleTemporalControl.LightThemeForeground;
+			}
+		}
 	}
 }
