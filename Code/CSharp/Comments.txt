@@ -1,4 +1,0 @@
-﻿2025-06-19@19.56
-================
-Converted Factotum into a pure .NET Framework project, for the difficulties to combine Core code and Framework applications.
-When needed, a separate .NET Core project must be cloned from the code base, possible by GIT branch or SharedProject.

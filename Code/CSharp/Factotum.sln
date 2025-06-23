@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factotum", "Factotum\Factotum.csproj", "{5435FC56-F097-44EB-A2BB-A1C67AC1EA33}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factotum.Tests", "Factotum.Tests\Factotum.Tests.csproj", "{9F9A7EBC-B52C-433F-8846-244DD4169AE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factotum", "Factotum\Factotum\Factotum.csproj", "{F7426927-8F14-48DC-8422-6658B4E07D07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5435FC56-F097-44EB-A2BB-A1C67AC1EA33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5435FC56-F097-44EB-A2BB-A1C67AC1EA33}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5435FC56-F097-44EB-A2BB-A1C67AC1EA33}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5435FC56-F097-44EB-A2BB-A1C67AC1EA33}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9F9A7EBC-B52C-433F-8846-244DD4169AE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9F9A7EBC-B52C-433F-8846-244DD4169AE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9F9A7EBC-B52C-433F-8846-244DD4169AE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9F9A7EBC-B52C-433F-8846-244DD4169AE4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F7426927-8F14-48DC-8422-6658B4E07D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7426927-8F14-48DC-8422-6658B4E07D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7426927-8F14-48DC-8422-6658B4E07D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7426927-8F14-48DC-8422-6658B4E07D07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
