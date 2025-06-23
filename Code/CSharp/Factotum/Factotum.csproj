@@ -43,54 +43,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chrono\Enumerations\GregorianDateFormat.cs" />
-    <Compile Include="Chrono\GregorianDate.cs" />
-    <Compile Include="Chrono\GregorianDateParser.cs" />
-    <Compile Include="Chrono\IFuzzyDate.cs" />
-    <Compile Include="Chrono\Temporal.cs" />
-    <Compile Include="Chrono\TriadicDate.cs" />
     <Compile Include="Dictionaries\Country.cs" />
     <Compile Include="Dictionaries\Language.cs" />
     <Compile Include="Dictionaries\WritingScript.cs" />
     <Compile Include="Exceptions\StopIterationException.cs" />
-    <Compile Include="Gui\Chrono\Controls\SimpleGregorianDateControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Gui\Chrono\Controls\SimpleGregorianDateControl.Designer.cs">
-      <DependentUpon>SimpleGregorianDateControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Chrono\Controls\GregorianDateControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Gui\Chrono\Controls\GregorianDateControl.Designer.cs">
-      <DependentUpon>GregorianDateControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Chrono\Controls\SimpleTemporalControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Gui\Chrono\Controls\SimpleTemporalControl.Designer.cs">
-      <DependentUpon>SimpleTemporalControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Chrono\Controls\TemporalControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Gui\Chrono\Controls\TemporalControl.Designer.cs">
-      <DependentUpon>TemporalControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Chrono\Dialogs\GregorianDateDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\Chrono\Dialogs\GregorianDateDialog.Designer.cs">
-      <DependentUpon>GregorianDateDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Chrono\Dialogs\TemporalDialog.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Gui\Chrono\Dialogs\TemporalDialog.Designer.cs">
-      <DependentUpon>TemporalDialog.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Gui\Chrono\Interfaces\IGregorianDateDevice.cs" />
-    <Compile Include="Gui\Chrono\Interfaces\ITemporalDevice.cs" />
     <Compile Include="Logging\Logger.cs" />
     <Compile Include="Maths\Constants.cs" />
     <Compile Include="Maths\ElementaryFunctions.cs" />
@@ -105,29 +61,6 @@
     <Compile Include="Xml\XmlTools.AttributeValues.cs" />
     <Compile Include="Xml\XmlTools.cs" />
     <Compile Include="Xml\XmlTools.ElementValues.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Comments.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Gui\Chrono\Controls\SimpleGregorianDateControl.resx">
-      <DependentUpon>SimpleGregorianDateControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\Chrono\Controls\GregorianDateControl.resx">
-      <DependentUpon>GregorianDateControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\Chrono\Controls\SimpleTemporalControl.resx">
-      <DependentUpon>SimpleTemporalControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\Chrono\Controls\TemporalControl.resx">
-      <DependentUpon>TemporalControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\Chrono\Dialogs\GregorianDateDialog.resx">
-      <DependentUpon>GregorianDateDialog.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Gui\Chrono\Dialogs\TemporalDialog.resx">
-      <DependentUpon>TemporalDialog.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
