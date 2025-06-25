@@ -153,7 +153,9 @@ namespace Factotum.Structures
 				{
 					try
 					{
+						int sizeToRemove = this._values.Values.First().Cost;
 						this._values.Remove(this._values.Keys.First());
+						this._currentSize -= sizeToRemove;
 					}
 					catch	{}
 				}
