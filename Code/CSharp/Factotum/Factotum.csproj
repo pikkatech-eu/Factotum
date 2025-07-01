@@ -7,4 +7,10 @@
     <BaseOutputPath>C:\pikkatech.eu\Projects\Factotum\Code\CSharp\Binary</BaseOutputPath>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Chrono\**" />
+    <EmbeddedResource Remove="Chrono\**" />
+    <None Remove="Chrono\**" />
+  </ItemGroup>
+
 </Project>
