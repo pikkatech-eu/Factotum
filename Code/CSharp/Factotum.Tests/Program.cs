@@ -33,6 +33,8 @@ namespace Factotum.Tests
 			Tomler tomler1 = new Tomler();
 
 			tomler1.Load(fileName);
+
+			double weight = tomler1.GetDouble("Cats", "Weight");
 		}
 	}
 }

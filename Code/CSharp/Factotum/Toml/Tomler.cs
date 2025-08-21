@@ -162,7 +162,7 @@ namespace Factotum.Toml
 		/// <param name="section">The section name.</param>
 		/// <param name="key">The key.</param>
 		/// <returns>The value, if the key exists in the section.</returns>
-		public object GetValue(string section, string key)
+		public string GetValue(string section, string key)
 		{
 			if (this.Sections.ContainsKey(section))
 			{
@@ -196,7 +196,7 @@ namespace Factotum.Toml
 			{
 				TomlSection tomlSection = this.Sections[section];
 
-				tomlSection.Items[key] = value;
+				tomlSection.Items[key] = value.ToString();
 			}
 		}
 
@@ -216,6 +216,88 @@ namespace Factotum.Toml
 				{
 					tomlSection.Items.Remove(key);
 				}
+			}
+		}
+		#endregion
+
+		#region Extended Gets
+		/// <summary>
+		/// Added for convenience.
+		/// Tries to get an integer value.
+		/// </summary>
+		/// <param name="section">The section name.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>The integer value, if the entry is of an integer type.</returns>
+		/// <exception cref="ArgumentException">Thrown if the string value cannot be converted to an integer.</exception>
+		public int GetInteger(string section, string key)
+		{
+			try
+			{
+				return Int32.Parse(this.GetValue(section, key));
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Added for convenience.
+		/// Tries to get a double value.
+		/// </summary>
+		/// <param name="section">The section name.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>The double value, if the entry is of a real type.</returns>
+		/// <exception cref="ArgumentException">Thrown if the string value cannot be converted to a double.</exception>
+		public double GetDouble(string section, string key)
+		{
+			try
+			{
+				return Double.Parse(this.GetValue(section, key));
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Added for convenience.
+		/// Tries to get a Boolean value.
+		/// </summary>
+		/// <param name="section">The section name.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>The Boolean value, if the entry is of Boolean type.</returns>
+		/// <exception cref="ArgumentException">Thrown if the string value cannot be converted to a Boolean.</exception>
+		public bool GetBoolean(string section, string key)
+		{
+			try
+			{
+				return Boolean.Parse(this.GetValue(section, key));
+			}
+			catch (Exception)
+			{
+				throw;
+			}
+		}
+
+		/// <summary>
+		/// Added for convenience.
+		/// Tries to get a DateTime value.
+		/// </summary>
+		/// <param name="section">The section name.</param>
+		/// <param name="key">The key.</param>
+		/// <returns>The DateTime value, if the entry is of DateTime type.</returns>
+		/// <exception cref="ArgumentException">Thrown if the string value cannot be converted to a DateTime.</exception>
+		public DateTime GetDateTime(string section, string key)
+		{
+			try
+			{
+				return DateTime.Parse(this.GetValue(section, key));
+			}
+			catch (Exception)
+			{
+				throw;
 			}
 		}
 		#endregion

@@ -19,7 +19,7 @@ namespace Factotum.Toml
 	{
 		#region Properties
 		public string						Name	{get;set;} = "";
-		public Dictionary<string, object>	Items	= new Dictionary<string, object>();
+		public Dictionary<string, string>	Items	= new Dictionary<string, string>();
 		#endregion
 
 		public override string ToString()

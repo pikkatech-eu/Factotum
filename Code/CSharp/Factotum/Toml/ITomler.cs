@@ -69,7 +69,7 @@ namespace Factotum.Toml
 		/// <param name="section">The section name.</param>
 		/// <param name="key">The key.</param>
 		/// <returns>The value, if the key exists in the section.</returns>
-		object GetValue(string section, string key);
+		string GetValue(string section, string key);
 
 		/// <summary>
 		/// Sets a value to a section and a key.
