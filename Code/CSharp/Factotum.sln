@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36202.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factotum", "Factotum\Factotum.csproj", "{DF31030A-3E55-CC7F-9EC6-524721C0CB2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Factotum.Tests", "Factotum.Tests\Factotum.Tests.csproj", "{470A94FE-8B95-492B-A60B-EADAFDA2D1FA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{DF31030A-3E55-CC7F-9EC6-524721C0CB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF31030A-3E55-CC7F-9EC6-524721C0CB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DF31030A-3E55-CC7F-9EC6-524721C0CB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{470A94FE-8B95-492B-A60B-EADAFDA2D1FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{470A94FE-8B95-492B-A60B-EADAFDA2D1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{470A94FE-8B95-492B-A60B-EADAFDA2D1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{470A94FE-8B95-492B-A60B-EADAFDA2D1FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

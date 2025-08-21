@@ -20,7 +20,8 @@ namespace Factotum.Structures
 	/// </summary>
 	/// <typeparam name="K">The key type, e.g. int or string.</typeparam>
 	/// <typeparam name="T">The value type.</typeparam>
-	public class Cache<K, T> where T : ICacheable
+	public class Cache<K, T> where K : notnull 
+							 where T : ICacheable
 	{
 		#region Constants
 		/// <summary>

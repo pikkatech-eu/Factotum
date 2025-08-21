@@ -7,6 +7,14 @@
     <BaseOutputPath>C:\pikkatech.eu\Projects\Factotum\Code\CSharp\Binary</BaseOutputPath>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>CS8625, CS8714, CS8601, CS8600, CS8602, CS8603, CS8618, CS8604</NoWarn>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>CS8625, CS8714, CS8601, CS8600, CS8602, CS8603, CS8618, CS8604</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <Compile Remove="Chrono\**" />
     <EmbeddedResource Remove="Chrono\**" />
