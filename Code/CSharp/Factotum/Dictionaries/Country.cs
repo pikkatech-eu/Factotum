@@ -307,7 +307,7 @@ namespace Factotum.Dictionaries
 		/// Selects the country by the alpha code. First the alpha2 code is tried, if it delivers no result, then the alpha3 code.
 		/// </summary>
 		/// <param name="alpha">The alpha.</param>
-		/// <returns></returns>
+		/// <returns>The country, if found, otherwise null.</returns>
 		public static Country GetCountry(string alpha)
 		{
 			if (String.IsNullOrEmpty(alpha))
@@ -323,6 +323,16 @@ namespace Factotum.Dictionaries
 			}
 
 			return Countries.FirstOrDefault(co => co.Alpha3 == alpha.ToLower());
+		}
+
+		/// <summary>
+		/// Selects a country by its name (case-insensitive).
+		/// </summary>
+		/// <param name="name">The name to search.</param>
+		/// <returns>The country, if found, otherwise null.</returns>
+		public static Country GetCountryByName(string name)
+		{
+			return Countries.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
 		}
 
 		/// <summary>
