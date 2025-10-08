@@ -21,4 +21,8 @@
     <None Remove="Chrono\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Remove="Dictionaries\Stopwords.cs" />
+  </ItemGroup>
+
 </Project>

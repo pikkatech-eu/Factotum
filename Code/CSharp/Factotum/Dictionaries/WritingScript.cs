@@ -7,8 +7,6 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System.Collections.Generic;
-
 namespace Factotum.Dictionaries
 {
 	///	Provides an abstraction of a writing system classification (script system)
