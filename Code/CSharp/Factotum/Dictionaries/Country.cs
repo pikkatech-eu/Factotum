@@ -6,15 +6,12 @@
 * Version:      1.0                                                                           *
 * Copyright:    PikkaTech Development and Consulting (www.pikkatech.eu)                       *
 **********************************************************************************************/
-using System;
-using System.Linq;
-
 namespace Factotum.Dictionaries
 {
 	/// <summary>
 	///	Provides an abstraction of a country classification 
 	///	according to ISO-3166 (http://en.wikipedia.org/wiki/ISO_3166),
-	///	including alpha-2, alpha-3 and numerical representation.
+	///	including code-2, code-3 and numerical representation.
 	///	Stand: 2009
 	/// </summary>
 	public class Country
@@ -39,7 +36,20 @@ namespace Factotum.Dictionaries
 		/// The country's representative name.
 		/// </summary>
 		public string				Name	{get; set;}
+		#endregion
 
+		#region String representation
+		/// <summary>
+		/// String representation.
+		/// </summary>
+		/// <returns>The country's name.</returns>
+		public override string ToString()
+		{
+			return this.Name;
+		}
+		#endregion
+
+		#region Static Data
 		/// <summary>
 		/// Dictionary of countires according to http://de.wikipedia.org/wiki/ISO_3166 .
 		/// Key: the code of the country
@@ -303,44 +313,60 @@ namespace Factotum.Dictionaries
 		};
 		#endregion
 
+		#region Search
 		/// <summary>
-		/// Selects the country by the alpha code. First the alpha2 code is tried, if it delivers no result, then the alpha3 code.
+		/// Selects the country by the ISO-3166 code, two- or three-characters.
 		/// </summary>
-		/// <param name="alpha">The alpha.</param>
+		/// <param name="code">The ISO code.</param>
 		/// <returns>The country, if found, otherwise null.</returns>
-		public static Country GetCountry(string alpha)
+		public static Country ByCode(string code)
 		{
-			if (String.IsNullOrEmpty(alpha))
+			if (String.IsNullOrEmpty(code))
 			{
 				return null;
 			}
 
-			Country country	= Countries.FirstOrDefault(co => co.Alpha2 == alpha.ToLower());
+			code = code.ToLower().Trim();
 
-			if (country != null)
+			switch (code.Length)
 			{
-				return country;
-			}
+				case 2:
+					return Countries.FirstOrDefault(co => co.Alpha2 == code.ToLower());
 
-			return Countries.FirstOrDefault(co => co.Alpha3 == alpha.ToLower());
+				case 3:
+					return Countries.FirstOrDefault(co => co.Alpha3 == code.ToLower());
+
+				default:
+					return null;
+			}
 		}
 
 		/// <summary>
-		/// Selects a country by its name (case-insensitive).
+		/// Selects the country by the ISO-3166 index.
 		/// </summary>
-		/// <param name="name">The name to search.</param>
+		/// <param name="index">The index to match.</param>
 		/// <returns>The country, if found, otherwise null.</returns>
-		public static Country GetCountryByName(string name)
+		public static Country ByIndex(int index)
+		{
+			return Countries.FirstOrDefault(c => c.Index == index);
+		}
+
+		/// <summary>
+		/// Selects a country by its complete name (case-insensitive, exact match).
+		/// </summary>
+		/// <param name="name">The name to match.</param>
+		/// <returns>The country, if found, otherwise null.</returns>
+		public static Country ByName(string name)
 		{
 			return Countries.FirstOrDefault(c => c.Name.ToLower() == name.ToLower());
 		}
 
 		/// <summary>
-		/// Selects countires by a name token.
+		/// Selects countries by a name token.
 		/// </summary>
 		/// <param name="nameToken">The name token to be contained in a country's name to include (case-insensitive).</param>
 		/// <returns>Array of countries containing the name token.</returns>
-		public static Country[] GetCountries(string nameToken)
+		public static Country[] ByNameToken(string nameToken)
 		{
 			if(String.IsNullOrEmpty(nameToken))
 			{
@@ -348,16 +374,6 @@ namespace Factotum.Dictionaries
 			}
 
 			return Countries.Where(c => c.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
-		}
-
-		#region Overridden common
-		/// <summary>
-		/// String representation.
-		/// </summary>
-		/// <returns>The country's name.</returns>
-		public override string ToString()
-		{
-			return this.Name;
 		}
 		#endregion
 	}

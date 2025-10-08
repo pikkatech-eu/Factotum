@@ -47,6 +47,7 @@ namespace Factotum.Dictionaries
 		}
 		#endregion
 
+		#region Static Data
 		/// <summary>
 		/// Dictionary of writing systems according to https://en.wikipedia.org/wiki/ISO_15924 .
 		/// Key: the code of the wriring system.
@@ -277,5 +278,59 @@ namespace Factotum.Dictionaries
 			{"Zyyy", 	new WritingScript("Zyyy",	998, 	"Code for undetermined script")},
 			{"Zzzz", 	new WritingScript("Zzzz",	999, 	"Code for uncoded script")},
 		};
+		#endregion
+
+		#region Search
+		/// <summary>
+		/// Selects the writing script by the ISO-15924 code.
+		/// </summary>
+		/// <param name="code">The ISO code.</param>
+		/// <returns>The writing script, if found, otherwise null.</returns>
+		public static WritingScript ByCode(string code)
+		{
+			if (String.IsNullOrEmpty(code))
+			{
+				return null;
+			}
+
+			code = code.ToLower().Trim();
+
+			if (WritingScripts.ContainsKey(code))
+			{
+				return WritingScripts[code];
+			}
+			else
+			{
+				return null;
+			}
+		}
+
+		/// <summary>
+		/// Selects the writing script by the ISO-15924 index.
+		/// </summary>
+		/// <param name="index">The index to match.</param>
+		/// <returns>The writing script, if found, otherwise null.</returns>
+		public static WritingScript ByIndex(int index)
+		{
+			return WritingScripts.Values.FirstOrDefault(writingScript => writingScript.Index == index);
+		}
+
+		/// <summary>
+		/// Selects writing scripts by a name token.
+		/// </summary>
+		/// <param name="nameToken">
+		///		The name token to be contained in a writing script's name to include (case-insensitive).
+		///	</param>
+		/// <returns>Array of writing scripts containing the name token.</returns>
+		public static WritingScript[] ByNameToken(string nameToken)
+		{
+			if(String.IsNullOrEmpty(nameToken))
+			{
+				return new WritingScript[0];
+			}
+
+			return WritingScripts.Values.Where(v => v.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
+		}
+		#endregion
 	}
 }

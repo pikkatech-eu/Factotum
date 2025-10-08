@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Factotum.Dictionaries.Country">
+    <Position X="0.75" Y="0.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAAAAIAAAEAAAAAQQAAAAAABAAAAEAABAAAAA=</HashCode>
+      <FileName>Dictionaries\Country.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Factotum.Dictionaries.Language">
+    <Position X="3" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAACAAAAAAEAAAAAgQAAAAAABAAAAAAAAAAACg=</HashCode>
+      <FileName>Dictionaries\Language.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Factotum.Dictionaries.PhoneAreaCode">
+    <Position X="5" Y="0.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAEAAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Dictionaries\PhoneAreaCode.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Factotum.Dictionaries.WritingScript">
+    <Position X="0.75" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAgAAQAAAQAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Dictionaries\WritingScript.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Factotum.Dictionaries.ReligiousAffiliation">
+    <Position X="3" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>BIAAAAAAAAAgAAAAAAAgAAAAAAAAAAAgAAAAAAAAAAA=</HashCode>
+      <FileName>Dictionaries\ReligiousAffiliation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Consolas" Size="10" />
+</ClassDiagram>

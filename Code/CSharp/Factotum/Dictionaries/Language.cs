@@ -6,9 +6,6 @@
 * Version:      1.0                                                                           *
 * Copyright:    PikkaTech Development and Consulting (www.pikkatech.eu)                       *
 **********************************************************************************************/
-using System;
-using System.Linq;
-
 namespace Factotum.Dictionaries
 {
 	///	Provides an abstraction of a language classification 
@@ -33,7 +30,20 @@ namespace Factotum.Dictionaries
 		/// Representative name of the language
 		/// </summary>
 		public string Name {get;set;}
+		#endregion
 
+		#region String representation
+		/// <summary>
+		/// String representation.
+		/// </summary>
+		/// <returns>The name of the language.</returns>
+		public override string ToString()
+		{
+			return this.Name;
+		}
+		#endregion
+
+		#region Static Data
 		/// <summary>
 		/// Dictionary of languages according to http://de.wikipedia.org/wiki/ISO_639 .
 		/// Key: the code of the language
@@ -303,7 +313,7 @@ namespace Factotum.Dictionaries
 			new Language{Alpha3="lah",	Alpha2="",		Name="Lahnda"},
 			new Language{Alpha3="lam",	Alpha2="",		Name="Lamba"},
 			new Language{Alpha3="lao",	Alpha2="lo",	Name="Lao"},
-			new Language{Alpha3="lat",	Alpha2="la",	Name="Latin"},
+			new Language{Alpha3="lat",	Alpha2="language",	Name="Latin"},
 			new Language{Alpha3="lav",	Alpha2="lv",	Name="Latvian"},
 			new Language{Alpha3="lez",	Alpha2="",		Name="Lezghian"},
 			new Language{Alpha3="lim",	Alpha2="li",	Name="Limburgan; Limburger; Limburgish"},
@@ -546,68 +556,49 @@ namespace Factotum.Dictionaries
 		};
 		#endregion
 
-		#region Overridden common
+		#region Search
 		/// <summary>
-		/// String representation.
-		/// </summary>
-		/// <returns>The name of the language.</returns>
-		public override string ToString()
-		{
-			return this.Name;
-		}
-		#endregion
-
-		/// <summary>
-		/// Find the language by its exact name.
-		/// </summary>
-		/// <param name="name">The name of the language to find by (case-sensitive).</param>
-		/// <returns>The language foung, if successful, otherwise null.</returns>
-		public static Language ByName(string name)
-		{
-			return Languages.FirstOrDefault(l=>l.Name == name);
-		}
-
-		/// <summary>
-		/// Find the alpha code (2- or 3-character) by the language's exact name.
-		/// </summary>
-		/// <param name="name">The name of the language to find by (case-sensitive).</param>
-		/// <returns>The 2-character alpha code of the language, if found, otherwise its 3-character code, it it exists; othersiwe null.</returns>
-		public static string AlphaByName(string name)
-		{
-			Language lg = Languages.FirstOrDefault(l=>l.Name == name);
-
-			if (lg != null)
-			{
-				if (!String.IsNullOrEmpty(lg.Alpha2))
-				{
-					return lg.Alpha2;
-				}
-				else
-				{
-					return lg.Alpha3;
-				}
-			}
-			else
-			{
-				return null;
-			}
-		}
-
-		/// <summary>
-		/// Selects the language by tha alpha code. First the alpha2 code is tried, if it delivers no result, then the alpha3 code.
+		/// Selects the language by the alpha code. First the alpha2 code is tried, 
+		/// if it delivers no result, then the alpha3 code.
 		/// </summary>
 		/// <param name="alpha">The alpha.</param>
-		/// <returns></returns>
-		public static Language GetLanguage(string alpha)
+		/// <returns>Instance of Language, if found, otherwise null.</returns>
+		public static Language ByCode(string alpha)
 		{
-			Language language	= Languages.FirstOrDefault(la => la.Alpha2 == alpha.ToLower());
+			Language language	= Languages.FirstOrDefault(language => language.Alpha2 == alpha.ToLower());
 
 			if (language != null)
 			{
 				return language;
 			}
 
-			return Languages.FirstOrDefault(la => la.Alpha3 == alpha.ToLower());
+			return Languages.FirstOrDefault(language => language.Alpha3 == alpha.ToLower());
 		}
+
+		/// <summary>
+		/// Find the language by its exact name.
+		/// </summary>
+		/// <param name="name">The name of the language to find by (case-insensitive).</param>
+		/// <returns>The language foung, if successful, otherwise null.</returns>
+		public static Language ByName(string name)
+		{
+			return Languages.FirstOrDefault(language => language.Name.ToLower() == name.ToLower());
+		}
+
+		/// <summary>
+		/// Selects languages by a name token.
+		/// </summary>
+		/// <param name="nameToken">The name token to be contained in a language's name to include (case-insensitive).</param>
+		/// <returns>Array of languages containing the name token.</returns>
+		public static Language[] ByNameToken(string nameToken)
+		{
+			if(String.IsNullOrEmpty(nameToken))
+			{
+				return new Language[0];
+			}
+
+			return Languages.Where(language => language.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
+		}
+		#endregion
 	}
 }
