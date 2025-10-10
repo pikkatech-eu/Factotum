@@ -1,0 +1,20 @@
+{
+  "Name": "Factotum",
+  "Description": "",
+  "SubmittedOn": "2025-10-10T11:35:22.0779854+02:00",
+  "Issues": {
+    "1": {
+      "IssueId": 1,
+      "Title": "Sort language and country dictionaries",
+      "Details": "It would be good to have them sorted by popularity, e.g. Countries all first in Europe by population, then all in Asia by population, etc.\r\nLanguages: by number of native speakers (to manually correct afterwards)",
+      "SubmittedOn": "2025-10-10T11:37:43.1987328+02:00",
+      "Status": 0,
+      "Severity": 2,
+      "Priority": 2,
+      "LastUpdated": "2025-10-10T11:37:43.1991074+02:00",
+      "StepsToReproduce": "",
+      "AdditionalInformation": "",
+      "Notes": []
+    }
+  }
+}
