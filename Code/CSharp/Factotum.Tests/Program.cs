@@ -7,6 +7,8 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
+
+using Factotum.Idiophonus;
 using Factotum.Maths;
 using Factotum.Toml;
 
@@ -16,20 +18,18 @@ namespace Factotum.Tests
 	{
 		public static void Main()
 		{
-			Maths.DiscreteRandomizer r = new Maths.DiscreteRandomizer([2, 3, 5]);
+			Language language = new Language();
+
+			string text = language.Phrases(20);
+
+			Console.WriteLine(text);
 
 			//for (int i = 0; i < 10; i++)
 			//{
-			//	int randomIndex = r.RandomIndex();
+			//	string phrase = language.Phrase();
+
+			//	Console.WriteLine(phrase);
 			//}
-			
-			string[] strings = {"miau", "hru", "ia"};
-
-			string random = r.RandomObject<string>(strings);
-
-			object[] objects = [42, 2.87, DateTime.Now];
-
-			object randomObject = r.RandomObject(objects);
 		}
 	}
 }
