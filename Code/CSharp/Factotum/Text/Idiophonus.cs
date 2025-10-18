@@ -7,16 +7,22 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System.IO;
 using System.Text.Json;
 using Factotum.Maths;
 
 namespace Factotum.Text
 {
+	/// <summary>
+	/// Tool to generate random text.
+	/// </summary>
 	public class Idiophonus
 	{
 		#region Constants
 		private const string DEFAULT_NAME = "Defaultese";
+
+		/// <summary>
+		/// Default vowels and their distributiion.
+		/// </summary>
 		private readonly Dictionary<string, double> DEFAULT_VOWELS = new Dictionary<string, double>()
 		{ 
 			{"a",	0.2483},
@@ -26,6 +32,9 @@ namespace Factotum.Text
 			{"u",	0.1272},			
 		};
 
+		/// <summary>
+		/// Default consonants and their distributiion.
+		/// </summary>
 		private readonly Dictionary<string, double> DEFAULT_CONSONANTS = new Dictionary<string, double>()
 		{ 
 			{"b",	0.017200},
@@ -53,6 +62,9 @@ namespace Factotum.Text
 			{"str",	0.000031}
 		};
 			
+		/// <summary>
+		/// Default syllable types and their distributiion.
+		/// </summary>
 		private readonly Dictionary<SyllableType, double> DEFAULT_SYLLABLES = new Dictionary<SyllableType, double>()
 		{
 			{SyllableType.V,	0.1000},
@@ -61,6 +73,9 @@ namespace Factotum.Text
 			{SyllableType.CVC,	0.2000}
 		};
 
+		/// <summary>
+		/// Default distributiion of word lengths.
+		/// </summary>
 		private readonly Dictionary<int, double> DEFAULT_WORD_LENGTHS = new Dictionary<int, double>()
 		{
 			{1, 0.0294},
@@ -73,6 +88,9 @@ namespace Factotum.Text
 			{8, 0.0294}
 		};
 
+		/// <summary>
+		/// Default distributiion of number od words in a phrase.
+		/// </summary>
 		private readonly Dictionary<int, double> DEFAULT_PHRASE_WORD_NUMBERS = new Dictionary<int, double>()
 		{
 			{1, 0.0028},
@@ -87,6 +105,9 @@ namespace Factotum.Text
 			{10, 0.0028}
 		};
 
+		/// <summary>
+		/// Default inner punctuation signs and their distributiion.
+		/// </summary>
 		private readonly Dictionary<string, double> DEFAULT_INNER_PUNCTUATION = new Dictionary<string, double>()
 		{ 
 			{" ",	0.9320},
@@ -97,6 +118,9 @@ namespace Factotum.Text
 			{": ",	0.0047}
 		};
 
+		/// <summary>
+		/// Default final punctuation signs and their distributiion.
+		/// </summary>
 		private readonly Dictionary<string, double> DEFAULT_FINAL_PUNCTUATION = new Dictionary<string, double>()
 		{ 
 			{".", 0.9090},
@@ -106,12 +130,39 @@ namespace Factotum.Text
 		#endregion
 
 		#region Private members
+		/// <summary>
+		/// Randomizer of vowels.
+		/// </summary>
 		private DiscreteRandomizer	_vowelRandomizer;
+
+		/// <summary>
+		/// Randomizer of consonants.
+		/// </summary>
 		private DiscreteRandomizer	_consonantRandomizer;
+
+		/// <summary>
+		/// Randomizer of syllable types.
+		/// </summary>
 		private DiscreteRandomizer	_syllableTypeRandomizer;
+
+		/// <summary>
+		/// Randomizer of inner punctuation signs.
+		/// </summary>
 		private DiscreteRandomizer	_innerPunctuationRandomizer;
+
+		/// <summary>
+		/// Randomizer of final punctuation signs.
+		/// </summary>
 		private DiscreteRandomizer	_finalPunctuationRandomizer;
+
+		/// <summary>
+		/// Randomizer of word lengths.
+		/// </summary>
 		private DiscreteRandomizer	_wordLengthRandomizer;
+
+		/// <summary>
+		/// Randomizer of word numbers in a phrase.
+		/// </summary>
 		private DiscreteRandomizer	_phraseWordNumberRandomizer;
 		#endregion
 
@@ -167,6 +218,18 @@ namespace Factotum.Text
 		#endregion
 
 		#region Construction
+		/// <summary>
+		/// Creates an instance of Idiophonus using a defined name and dictionaries.
+		/// The dictionaries need not to be normalized.
+		/// </summary>
+		/// <param name="name"></param>
+		/// <param name="vowels"></param>
+		/// <param name="consonants"></param>
+		/// <param name="syllables"></param>
+		/// <param name="innerPunctuation"></param>
+		/// <param name="finalPunctuation"></param>
+		/// <param name="wordLengths"></param>
+		/// <param name="phraseWordNumbers"></param>
 		public Idiophonus
 						(
 							string name	= DEFAULT_NAME,
