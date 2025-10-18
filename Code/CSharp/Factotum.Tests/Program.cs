@@ -8,8 +8,8 @@
 ***********************************************************************************/
 
 
-using Factotum.Idiophonus;
 using Factotum.Maths;
+using Factotum.Text;
 using Factotum.Toml;
 
 namespace Factotum.Tests
@@ -18,12 +18,13 @@ namespace Factotum.Tests
 	{
 		public static void Main()
 		{
-			Language language = new Language();
+			Idiophonus language = new Idiophonus();
 
 			string text = language.Phrases(20);
 
 			Console.WriteLine(text);
 
+			string json = language.ToJson();
 			//for (int i = 0; i < 10; i++)
 			//{
 			//	string phrase = language.Phrase();
