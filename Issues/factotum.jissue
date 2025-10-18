@@ -7,13 +7,26 @@
       "IssueId": 1,
       "Title": "Sort language and country dictionaries",
       "Details": "It would be good to have them sorted by popularity, e.g. Countries all first in Europe by population, then all in Asia by population, etc.\r\nLanguages: by number of native speakers (to manually correct afterwards)",
-      "SubmittedOn": "2025-10-10T11:37:43.1987328+02:00",
+      "SubmittedOn": "2025-10-18T10:58:06.9434428+02:00",
       "Status": 0,
       "Severity": 2,
       "Priority": 2,
-      "LastUpdated": "2025-10-10T11:37:43.1991074+02:00",
+      "LastUpdated": "2025-10-18T10:58:06.9439906+02:00",
       "StepsToReproduce": "",
       "AdditionalInformation": "",
+      "Notes": []
+    },
+    "2": {
+      "IssueId": 2,
+      "Title": "Add Alea functionality to Factotum.Text",
+      "Details": "As a static tool class?\r\nSee additional information.",
+      "SubmittedOn": "2025-10-18T11:16:06.7449975+02:00",
+      "Status": 0,
+      "Severity": 0,
+      "Priority": 1,
+      "LastUpdated": "2025-10-18T11:16:06.7450228+02:00",
+      "StepsToReproduce": "",
+      "AdditionalInformation": "F:\\Archive\\Backup 2025-09-25\\Laboratory\\Idioponus",
       "Notes": []
     }
   }

@@ -7,6 +7,7 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
+using Factotum.Maths;
 using Factotum.Toml;
 
 namespace Factotum.Tests
@@ -15,26 +16,20 @@ namespace Factotum.Tests
 	{
 		public static void Main()
 		{
-			Tomler tomler = new Tomler();
+			Maths.DiscreteRandomizer r = new Maths.DiscreteRandomizer([2, 3, 5]);
 
-			tomler.AddSection("Cats");
-			tomler.SetValue("Cats", "Name", "Gregory");
-			tomler.SetValue("Cats", "Age", "3");
-			tomler.SetValue("Cats", "Weight", "2.87");
+			//for (int i = 0; i < 10; i++)
+			//{
+			//	int randomIndex = r.RandomIndex();
+			//}
+			
+			string[] strings = {"miau", "hru", "ia"};
 
-			tomler.AddSection("Dogs");
-			tomler.SetValue("Dogs", "Name", "Ferenc");
-			tomler.SetValue("Dogs", "BirthDate", DateTime.Now);
+			string random = r.RandomObject<string>(strings);
 
-			string fileName = "test.toml";
+			object[] objects = [42, 2.87, DateTime.Now];
 
-			tomler.Save(fileName);
-
-			Tomler tomler1 = new Tomler();
-
-			tomler1.Load(fileName);
-
-			double weight = tomler1.GetDouble("Cats", "Weight");
+			object randomObject = r.RandomObject(objects);
 		}
 	}
 }
