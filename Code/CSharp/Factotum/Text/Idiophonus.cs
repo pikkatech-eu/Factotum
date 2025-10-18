@@ -1,23 +1,19 @@
 ﻿/***********************************************************************************
-* File:         Language.cs                                                        *
-* Contents:     Class Language                                                     *
+* File:         Idiophonus.cs                                                      *
+* Contents:     Class Idiophonus                                                   *
 * Author:       Stanislav "Bav" Koncebovski (stanislav@pikkatech.eu)               *
 * Date:         2025-10-18 23:35                                                   *
 * Version:      1.0                                                                *
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
+using System.Text.Json;
 using Factotum.Maths;
-using Factotum.Text;
 
-namespace Factotum.Idiophonus
+namespace Factotum.Text
 {
-	public class Language
+	public class Idiophonus
 	{
 		#region Constants
 		private const string DEFAULT_NAME = "Defaultese";
@@ -123,55 +119,55 @@ namespace Factotum.Idiophonus
 		/// <summary>
 		/// The name of the language.
 		/// </summary>
-		string Name {get;set;}
+		public string Name {get;set;}
 
 		/// <summary>
 		/// Vowels and all vowel-like atomic items of the language:
 		/// vowels properly, dipthongs, triphtongs.
 		/// The key is the atomic text element, the value its relative frequency in the texts.
 		/// </summary>
-		Dictionary<string, double> Vowels {get;set;}
+		public Dictionary<string, double> Vowels {get;set;}
 
 		/// <summary>
 		/// Consonants and all consonant-like atomic items of the language:
 		/// consonants properly, double and triple consonants.
 		/// The key is the atomic text element, the value its relative frequency in the texts.
 		/// </summary>
-		Dictionary<string, double> Consonants {get;set;}
+		public Dictionary<string, double> Consonants {get;set;}
 
 		/// <summary>
 		/// Syllable types and their distribution in the language.
 		/// Key: syllabic type; value: its relative frequency.
 		/// </summary>
-		Dictionary<SyllableType, double> Syllables {get;set;}
+		public Dictionary<SyllableType, double> Syllables {get;set;}
 
 		/// <summary>
 		/// Inner punctuation signs of the language:
 		/// The key is the atomic text element, the value its relative frequency in the texts.
 		/// </summary>
-		Dictionary<string, double> InnerPunctuation {get;set;}
+		public Dictionary<string, double> InnerPunctuation {get;set;}
 
 		/// <summary>
 		/// Final punctuation signs of the language:
 		/// The key is the atomic text element, the value its relative frequency in the texts.
 		/// </summary>
-		Dictionary<string, double> FinalPunctuation {get;set;}
+		public Dictionary<string, double> FinalPunctuation {get;set;}
 		
 		/// <summary>
 		/// Distribution of word lengths.
 		/// Key: length of a word; value: its relative frequency.
 		/// </summary>
-		Dictionary<int, double> WordLengthDistribution {get;set;}
+		public Dictionary<int, double> WordLengthDistribution {get;set;}
 
 		/// <summary>
 		/// Distribution of phrase word numbers.
 		/// Key: number of words in a phrase; value: its relative frequency.
 		/// </summary>
-		Dictionary<int, double> PhraseWordNumberDistribution {get;set;}
+		public Dictionary<int, double> PhraseWordNumberDistribution {get;set;}
 		#endregion
 
 		#region Construction
-		public Language
+		public Idiophonus
 						(
 							string name	= DEFAULT_NAME,
 							Dictionary<string, double> vowels = null,
@@ -183,6 +179,7 @@ namespace Factotum.Idiophonus
 							Dictionary<int, double> phraseWordNumbers = null
 						)
 		{
+			this.Name							= name;
 			this.Vowels							= vowels ?? DEFAULT_VOWELS;
 			this.Consonants						= vowels ?? DEFAULT_CONSONANTS;
 			this.Syllables						= syllables ?? DEFAULT_SYLLABLES;
@@ -207,7 +204,7 @@ namespace Factotum.Idiophonus
 		{
 			if (length == 0)
 			{
-				length = this._wordLengthRandomizer.RandomObject<int>(this.WordLengthDistribution.Keys);
+				length = this._wordLengthRandomizer.RandomObject(this.WordLengthDistribution.Keys);
 			}
 
 			string result = "";
@@ -224,7 +221,7 @@ namespace Factotum.Idiophonus
 		{
 			if (numberOfWords == 0)
 			{
-				numberOfWords = this._phraseWordNumberRandomizer.RandomObject<int>(this.PhraseWordNumberDistribution.Keys);
+				numberOfWords = this._phraseWordNumberRandomizer.RandomObject(this.PhraseWordNumberDistribution.Keys);
 			}
 
 			string result = "";
@@ -234,7 +231,7 @@ namespace Factotum.Idiophonus
 				string word = this.Word();
 				result += word;
 
-				string innerPunctuation = this._innerPunctuationRandomizer.RandomObject<string>(this.InnerPunctuation.Keys);
+				string innerPunctuation = this._innerPunctuationRandomizer.RandomObject(this.InnerPunctuation.Keys);
 				result += innerPunctuation;
 			}
 
@@ -246,7 +243,7 @@ namespace Factotum.Idiophonus
 				}
 			}
 
-			string finalPunctuation = this._finalPunctuationRandomizer.RandomObject<string>(this.FinalPunctuation.Keys);
+			string finalPunctuation = this._finalPunctuationRandomizer.RandomObject(this.FinalPunctuation.Keys);
 
 			result += finalPunctuation;
 
@@ -268,6 +265,32 @@ namespace Factotum.Idiophonus
 		}
 		#endregion
 
+		#region Json
+		public string ToJson()
+		{
+			string json = JsonSerializer.Serialize<Idiophonus>(this, new JsonSerializerOptions{WriteIndented=true});
+
+			return json;
+		}
+
+		public static Idiophonus FromJson(string json)
+		{
+			return JsonSerializer.Deserialize<Idiophonus>(json);
+		}
+		#endregion
+
+		#region I/O
+		public void Save(string path)
+		{
+			File.WriteAllText(path, this.ToJson());
+		}
+
+		public static Idiophonus Load(string path)
+		{
+			return FromJson(File.ReadAllText(path));
+		}
+		#endregion
+
 		#region Private Creation
 		private string Vowel()
 		{
@@ -281,7 +304,7 @@ namespace Factotum.Idiophonus
 
 		private string Syllable(int length = 0)
 		{
-			SyllableType syllableType = this._syllableTypeRandomizer.RandomObject<SyllableType>(Enum.GetValues<SyllableType>());
+			SyllableType syllableType = this._syllableTypeRandomizer.RandomObject(Enum.GetValues<SyllableType>());
 
 			switch (syllableType)
 			{
@@ -336,5 +359,33 @@ namespace Factotum.Idiophonus
 			}
 		}
 		#endregion
+	}
+
+	public enum SyllableType
+	{
+		/// <summary>
+		/// Unknown syllable type.
+		/// </summary>
+		Unknown	= -1,
+
+		/// <summary>
+		/// Vowel syllable
+		/// </summary>
+		V	= 0,
+
+		/// <summary>
+		/// "CV" syllable, e.g. 'cu'
+		/// </summary>
+		CV	= 1,
+
+		/// <summary>
+		/// "VC" syllable
+		/// </summary>
+		VC	= 2,
+
+		/// <summary>
+		/// "CVC" syllable.
+		/// </summary>
+		CVC	= 3
 	}
 }
