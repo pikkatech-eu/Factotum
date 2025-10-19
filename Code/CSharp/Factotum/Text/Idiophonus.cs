@@ -13,7 +13,7 @@ using Factotum.Maths;
 namespace Factotum.Text
 {
 	/// <summary>
-	/// Tool to generate random text.
+	/// Simple mock language, a tool to generate random text.
 	/// </summary>
 	public class Idiophonus
 	{
@@ -221,15 +221,16 @@ namespace Factotum.Text
 		/// <summary>
 		/// Creates an instance of Idiophonus using a defined name and dictionaries.
 		/// The dictionaries need not to be normalized.
+		/// The default version of the constructor used a built-in model (mock Latin).
 		/// </summary>
-		/// <param name="name"></param>
-		/// <param name="vowels"></param>
-		/// <param name="consonants"></param>
-		/// <param name="syllables"></param>
-		/// <param name="innerPunctuation"></param>
-		/// <param name="finalPunctuation"></param>
-		/// <param name="wordLengths"></param>
-		/// <param name="phraseWordNumbers"></param>
+		/// <param name="name">The name of the mock language.</param>
+		/// <param name="vowels">Distribution of vowels.</param>
+		/// <param name="consonants">Distribution of consonants.</param>
+		/// <param name="syllables">Distribution of syllable types.</param>
+		/// <param name="innerPunctuation">Distribution of inner punctuation signs.</param>
+		/// <param name="finalPunctuation">Distribution of final punctuation signs.</param>
+		/// <param name="wordLengths">Distribution of word lengths.</param>
+		/// <param name="phraseWordNumbers">Distribution of word numbers in a phrase.</param>
 		public Idiophonus
 						(
 							string name	= DEFAULT_NAME,
@@ -263,6 +264,14 @@ namespace Factotum.Text
 		#endregion
 
 		#region Public Creation
+		/// <summary>
+		/// Creates a random word of given or auto length.
+		/// </summary>
+		/// <param name="length">
+		///		The length of the word to create. If set to 0 (default), random word length will be used 
+		///		(according to the word length distribution).
+		///	</param>
+		/// <returns>Random word thus created.</returns>
 		public string Word(int length = 0)
 		{
 			if (length == 0)
@@ -274,12 +283,20 @@ namespace Factotum.Text
 			
 			while (result.Length != length)
 			{
-				result = this.CreateWord(length);
+				result = this.CreateRandomWord(length);
 			}
 
 			return result;
 		}
 
+		/// <summary>
+		/// Creates a random phrase with given or auto number of random words.
+		/// </summary>
+		/// <param name="numberOfWords">
+		///		The number of words in the phrase to create. If set to 0 (default), 
+		///		random number of words will be used (according to the word length distribution).
+		///	</param>
+		/// <returns>Random phrase thus created.</returns>
 		public string Phrase(int numberOfWords = 0)
 		{
 			if (numberOfWords == 0)
@@ -315,6 +332,11 @@ namespace Factotum.Text
 			return result;
 		}
 
+		/// <summary>
+		/// Creates a text with a given number of random phrases.
+		/// </summary>
+		/// <param name="numberOfPhrases">The number of phrases to create.</param>
+		/// <returns>Random text thus created.</returns>
 		public string Phrases(int numberOfPhrases)
 		{
 			string result = "";
@@ -329,6 +351,10 @@ namespace Factotum.Text
 		#endregion
 
 		#region Json
+		/// <summary>
+		/// Converts the mock language to a Json string.
+		/// </summary>
+		/// <returns>Json string representing the mock language.</returns>
 		public string ToJson()
 		{
 			string json = JsonSerializer.Serialize<Idiophonus>(this, new JsonSerializerOptions{WriteIndented=true});
@@ -336,6 +362,11 @@ namespace Factotum.Text
 			return json;
 		}
 
+		/// <summary>
+		/// Recreates a mock language from a Json string.
+		/// </summary>
+		/// <param name="json">The Json string to recreate the mock language from.</param>
+		/// <returns>The mock language created.</returns>
 		public static Idiophonus FromJson(string json)
 		{
 			return JsonSerializer.Deserialize<Idiophonus>(json);
@@ -343,11 +374,20 @@ namespace Factotum.Text
 		#endregion
 
 		#region I/O
+		/// <summary>
+		/// Saves the mock language to a Json file.
+		/// </summary>
+		/// <param name="path">File name to save under.</param>
 		public void Save(string path)
 		{
 			File.WriteAllText(path, this.ToJson());
 		}
 
+		/// <summary>
+		/// Loads a mock language from a Json file.
+		/// </summary>
+		/// <param name="path">File name to load from.</param>
+		/// <returns>The mock language loaded.</returns>
 		public static Idiophonus Load(string path)
 		{
 			return FromJson(File.ReadAllText(path));
@@ -355,16 +395,28 @@ namespace Factotum.Text
 		#endregion
 
 		#region Private Creation
+		/// <summary>
+		/// Creates a random vowel.
+		/// </summary>
+		/// <returns>Random vowel created.</returns>
 		private string Vowel()
 		{
 			return this._vowelRandomizer.RandomObject(this.Vowels.Keys);
 		}
 
+		/// <summary>
+		/// Creates a random consonant.
+		/// </summary>
+		/// <returns>Random consonant created.</returns>
 		private string Consonant()
 		{
 			return this._consonantRandomizer.RandomObject(this.Consonants.Keys);
 		}
 
+		/// <summary>
+		/// Creates a random syllable.
+		/// </summary>
+		/// <returns>Random syllable created.</returns>
 		private string Syllable(int length = 0)
 		{
 			SyllableType syllableType = this._syllableTypeRandomizer.RandomObject(Enum.GetValues<SyllableType>());
@@ -389,7 +441,12 @@ namespace Factotum.Text
 			}
 		}
 
-		private string CreateWord(int length)
+		/// <summary>
+		/// Creates a random word of defined length.
+		/// </summary>
+		/// <param name="length">The length of the word to create.</param>
+		/// <returns>Random word created.</returns>
+		private string CreateRandomWord(int length)
 		{
 			int averageSyllableLength = 2;
 
@@ -410,20 +467,12 @@ namespace Factotum.Text
 			return result;
 		}
 		#endregion
-
-		#region Private Auxiliary
-		private void NormalizeDictionary<T>(Dictionary<T, double> source)
-		{
-			double sum = source.Values.Sum();
-
-			foreach (T key in source.Keys)
-			{
-				source[key] = source[key] / sum;
-			}
-		}
-		#endregion
 	}
 
+	#region Enums
+	/// <summary>
+	/// Internal enumeration of syllable types.
+	/// </summary>
 	public enum SyllableType
 	{
 		/// <summary>
@@ -451,4 +500,5 @@ namespace Factotum.Text
 		/// </summary>
 		CVC	= 3
 	}
+	#endregion
 }

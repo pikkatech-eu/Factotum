@@ -28,6 +28,54 @@
       "StepsToReproduce": "",
       "AdditionalInformation": "F:\\Archive\\Backup 2025-09-25\\Laboratory\\Idioponus",
       "Notes": []
+    },
+    "3": {
+      "IssueId": 3,
+      "Title": "Complete  documentation of Idioiphonus",
+      "Details": "",
+      "SubmittedOn": "2025-10-19T08:43:03.0879587+02:00",
+      "Status": 0,
+      "Severity": 0,
+      "Priority": 0,
+      "LastUpdated": "2025-10-19T08:43:03.0883349+02:00",
+      "StepsToReproduce": "",
+      "AdditionalInformation": "",
+      "Notes": []
+    },
+    "4": {
+      "IssueId": 4,
+      "Title": "Idiophonus: mock language based upon di- and trigrams",
+      "Details": "Creation of a mock language using not only isolated vowel and consonants, but di- and trigrams, or their combination.",
+      "SubmittedOn": "2025-10-19T08:46:17.0320371+02:00",
+      "Status": 0,
+      "Severity": 2,
+      "Priority": 2,
+      "LastUpdated": "2025-10-19T08:46:17.0320517+02:00",
+      "StepsToReproduce": "",
+      "AdditionalInformation": "",
+      "Notes": []
+    },
+    "5": {
+      "IssueId": 5,
+      "Title": "Idiophonus: creation of a mock lnguage based upon a text.",
+      "Details": "Given a text (in a LTR language) the tool shall statistically discover the stock of vowels, consonants, punctuation, and their occurrences. -\u003E",
+      "SubmittedOn": "2025-10-19T09:17:52.5407825+02:00",
+      "Status": 0,
+      "Severity": 2,
+      "Priority": 2,
+      "LastUpdated": "2025-10-19T09:17:52.5411702+02:00",
+      "StepsToReproduce": "",
+      "AdditionalInformation": "It shal also assess the statistics of word lengths and that of word numbers in sentences. After that, it shall produce a mock language.\r\nAll of that is good to make with Python / NLP, but probably with some C# tool, too. There are a few approaches for NLP with C# (see notes)",
+      "Notes": [
+        {
+          "Created": "2025-10-19T09:00:47.2156198+02:00",
+          "Text": "https://medium.com/@thomasmatlockbba/exploring-natural-language-processing-with-c-from-basics-to-advanced-techniques-9114f7da802a"
+        },
+        {
+          "Created": "2025-10-19T09:02:58.8863408+02:00",
+          "Text": "https://github.com/curiosity-ai/catalyst"
+        }
+      ]
     }
   }
 }
