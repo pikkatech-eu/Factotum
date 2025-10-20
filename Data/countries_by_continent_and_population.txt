@@ -1,0 +1,244 @@
+SQL: select continent, iso2, iso3, name, population from country_info order by continent, population desc
+(data was not actual in 2025, find new)
+
+continent	iso2	iso3	name	population
+AF	NG	NGA	Nigeria	154000000
+AF	ET	ETH	Ethiopia	88013491
+AF	EG	EGY	Egypt	80471869
+AF	CD	COD	Democratic Republic of the Congo	70916439
+AF	ZA	ZAF	South Africa	49000000
+AF	TZ	TZA	Tanzania	41892895
+AF	KE	KEN	Kenya	40046566
+AF	SD	SDN	Sudan	35000000
+AF	DZ	DZA	Algeria	34586184
+AF	UG	UGA	Uganda	33398682
+AF	MA	MAR	Morocco	31627428
+AF	GH	GHA	Ghana	24339838
+AF	MZ	MOZ	Mozambique	22061451
+AF	MG	MDG	Madagascar	21281844
+AF	CI	CIV	Ivory Coast	21058798
+AF	CM	CMR	Cameroon	19294149
+AF	BF	BFA	Burkina Faso	16241811
+AF	NE	NER	Niger	15878271
+AF	MW	MWI	Malawi	15447500
+AF	ML	MLI	Mali	13796354
+AF	ZM	ZMB	Zambia	13460305
+AF	AO	AGO	Angola	13068161
+AF	SN	SEN	Senegal	12323252
+AF	ZW	ZWE	Zimbabwe	11651858
+AF	RW	RWA	Rwanda	11055976
+AF	TN	TUN	Tunisia	10589025
+AF	GN	GIN	Guinea	10324025
+AF	SO	SOM	Somalia	10112453
+AF	BI	BDI	Burundi	9863117
+AF	BJ	BEN	Benin	9056010
+AF	SS	SSD	South Sudan	8260490
+AF	TG	TGO	Togo	6587239
+AF	LY	LBY	Libya	6461454
+AF	ER	ERI	Eritrea	5792984
+AF	SL	SLE	Sierra Leone	5245695
+AF	CF	CAF	Central African Republic	4844927
+AF	LR	LBR	Liberia	3685076
+AF	MR	MRT	Mauritania	3205060
+AF	CG	COG	Republic of the Congo	3039126
+AF	NA	NAM	Namibia	2128471
+AF	BW	BWA	Botswana	2029307
+AF	LS	LSO	Lesotho	1919552
+AF	GM	GMB	Gambia	1593256
+AF	GW	GNB	Guinea-Bissau	1565126
+AF	GA	GAB	Gabon	1545255
+AF	SZ	SWZ	Swaziland	1354051
+AF	MU	MUS	Mauritius	1294104
+AF	GQ	GNQ	Equatorial Guinea	1014999
+AF	RE	REU	Reunion	776948
+AF	KM	COM	Comoros	773407
+AF	DJ	DJI	Djibouti	740528
+AF	CV	CPV	Cape Verde	508659
+AF	EH	ESH	Western Sahara	273008
+AF	ST	STP	Sao Tome and Principe	175808
+AF	YT	MYT	Mayotte	159042
+AF	SC	SYC	Seychelles	88340
+AF	SH	SHN	Saint Helena	7460
+AN	TF	ATF	French Southern Territories	140
+AN	GS	SGS	South Georgia and the South Sandwich Islands	30
+AN	HM	HMD	Heard Island and McDonald Islands	0
+AN	BV	BVT	Bouvet Island	0
+AN	AQ	ATA	Antarctica	0
+AS	CN	CHN	China	1330044000
+AS	IN	IND	India	1173108018
+AS	ID	IDN	Indonesia	242968342
+AS	PK	PAK	Pakistan	184404791
+AS	BD	BGD	Bangladesh	156118464
+AS	JP	JPN	Japan	127288000
+AS	PH	PHL	Philippines	99900177
+AS	VN	VNM	Vietnam	89571130
+AS	TR	TUR	Turkey	77804122
+AS	IR	IRN	Iran	76923300
+AS	TH	THA	Thailand	67089500
+AS	MM	MMR	Myanmar	53414374
+AS	KR	KOR	South Korea	48422644
+AS	IQ	IRQ	Iraq	29671605
+AS	AF	AFG	Afghanistan	29121286
+AS	NP	NPL	Nepal	28951852
+AS	MY	MYS	Malaysia	28274729
+AS	UZ	UZB	Uzbekistan	27865738
+AS	SA	SAU	Saudi Arabia	25731776
+AS	YE	YEM	Yemen	23495361
+AS	KP	PRK	North Korea	22912177
+AS	TW	TWN	Taiwan	22894384
+AS	SY	SYR	Syria	22198110
+AS	LK	LKA	Sri Lanka	21513990
+AS	KZ	KAZ	Kazakhstan	15340000
+AS	KH	KHM	Cambodia	14453680
+AS	AZ	AZE	Azerbaijan	8303512
+AS	TJ	TJK	Tajikistan	7487489
+AS	IL	ISR	Israel	7353985
+AS	HK	HKG	Hong Kong	6898686
+AS	JO	JOR	Jordan	6407085
+AS	LA	LAO	Laos	6368162
+AS	KG	KGZ	Kyrgyzstan	5776500
+AS	AE	ARE	United Arab Emirates	4975593
+AS	TM	TKM	Turkmenistan	4940916
+AS	GE	GEO	Georgia	4630000
+AS	LB	LBN	Lebanon	4125247
+AS	PS	PSE	Palestinian Territory	380000
+AS	MN	MNG	Mongolia	3086918
+AS	AM	ARM	Armenia	2968000
+AS	OM	OMN	Oman	2967717
+AS	KW	KWT	Kuwait	2789132
+AS	QA	QAT	Qatar	840926
+AS	BH	BHR	Bahrain	738004
+AS	BT	BTN	Bhutan	699847
+AS	MO	MAC	Macao	449198
+AS	MV	MDV	Maldives	395650
+AS	BN	BRN	Brunei	395027
+AS	IO	IOT	British Indian Ocean Territory	4000
+AS	CX	CXR	Christmas Island	1500
+AS	CC	CCK	Cocos Islands	628
+EU	RU	RUS	Russia	140702000
+EU	DE	DEU	Germany	81802257
+EU	FR	FRA	France	64768389EU	GB	GBR	United Kingdom	62348447
+EU	IT	ITA	Italy	60340328
+EU	ES	ESP	Spain	46505963
+EU	UA	UKR	Ukraine	45415596
+EU	PL	POL	Poland	38500000
+EU	RO	ROU	Romania	21959278
+EU	NL	NLD	Netherlands	16645000
+EU	GR	GRC	Greece	11000000
+EU	CS	SCG	Serbia and Montenegro	10829175
+EU	PT	PRT	Portugal	10676000
+EU	CZ	CZE	Czech Republic	10476000
+EU	BE	BEL	Belgium	10403000
+EU	HU	HUN	Hungary	9982000
+EU	SE	SWE	Sweden	9828655
+EU	BY	BLR	Belarus	9685000
+EU	AT	AUT	Austria	8205000
+EU	CH	CHE	Switzerland	7581000
+EU	RS	SRB	Serbia	7344847
+EU	BG	BGR	Bulgaria	7148785
+EU	DK	DNK	Denmark	5484000
+EU	SK	SVK	Slovakia	5455000
+EU	FI	FIN	Finland	5244000
+EU	NO	NOR	Norway	5009150
+EU	IE	IRL	Ireland	4622917
+EU	BA	BIH	Bosnia and Herzegovina	4590000
+EU	HR	HRV	Croatia	4491000
+EU	MD	MDA	Moldova	4324000
+EU	AL	ALB	Albania	2986952
+EU	LT	LTU	Lithuania	2944459
+EU	LV	LVA	Latvia	2217969
+EU	MK	MKD	Macedonia	2062294
+EU	SI	SVN	Slovenia	2007000
+EU	XK	XKX	Kosovo	1800000
+EU	EE	EST	Estonia	1291170
+EU	CY	CYP	Cyprus	1102677
+EU	ME	MNE	Montenegro	666730
+EU	LU	LUX	Luxembourg	497538
+EU	MT	MLT	Malta	403000
+EU	IS	ISL	Iceland	308910
+EU	JE	JEY	Jersey	90812
+EU	AD	AND	Andorra	84000
+EU	IM	IMN	Isle of Man	75049
+EU	GG	GGY	Guernsey	65228
+EU	FO	FRO	Faroe Islands	48228
+EU	LI	LIE	Liechtenstein	35000
+EU	AX	ALA	Aland Islands	26711
+EU	SJ	SJM	Svalbard and Jan Mayen	2550
+NA	US	USA	United States	310232863
+NA	MX	MEX	Mexico	112468855
+NA	CA	CAN	Canada	33679000
+NA	GT	GTM	Guatemala	13550440
+NA	CU	CUB	Cuba	11423000
+NA	DO	DOM	Dominican Republic	9823821
+NA	HT	HTI	Haiti	9648924
+NA	HN	HND	Honduras	7989415
+NA	SV	SLV	El Salvador	6052064
+NA	NI	NIC	Nicaragua	5995928
+NA	CR	CRI	Costa Rica	4516220
+NA	PR	PRI	Puerto Rico	3916632
+NA	PA	PAN	Panama	3410676
+NA	JM	JAM	Jamaica	2847232
+NA	TT	TTO	Trinidad and Tobago	1228691
+NA	GP	GLP	Guadeloupe	443000
+NA	MQ	MTQ	Martinique	432900
+NA	BZ	BLZ	Belize	314522
+NA	BS	BHS	Bahamas	301790
+NA	AN	ANT	Netherlands Antilles	300000
+NA	BB	BRB	Barbados	285653
+NA	LC	LCA	Saint Lucia	160922
+NA	CW	CUW	Curacao	141766
+NA	VI	VIR	U.S. Virgin Islands	108708
+NA	VC	VCT	Saint Vincent and the Grenadines	104217
+NA	DM	DMA	Dominica	72813
+NA	AW	ABW	Aruba	71566
+NA	BM	BMU	Bermuda	65365
+NA	GL	GRL	Greenland	56375
+NA	KN	KNA	Saint Kitts and Nevis	51134
+NA	KY	CYM	Cayman Islands	44270
+NA	SX	SXM	Sint Maarten	37429
+NA	MF	MAF	Saint Martin	35925
+NA	VG	VGB	British Virgin Islands	21730
+NA	TC	TCA	Turks and Caicos Islands	20556
+NA	BQ	BES	Bonaire, Saint Eustatius and Saba	18012
+NA	AI	AIA	Anguilla	13254
+NA	MS	MSR	Montserrat	9341
+NA	BL	BLM	Saint Barthelemy	8450
+NA	PM	SPM	Saint Pierre and Miquelon	7012
+OC	AU	AUS	Australia	21515754
+OC	PG	PNG	Papua New Guinea	6064515
+OC	NZ	NZL	New Zealand	4252277
+OC	TL	TLS	East Timor	1154625
+OC	FJ	FJI	Fiji	875983
+OC	SB	SLB	Solomon Islands	559198
+OC	PF	PYF	French Polynesia	270485
+OC	VU	VUT	Vanuatu	221552
+OC	NC	NCL	New Caledonia	216494
+OC	WS	WSM	Samoa	192001
+OC	GU	GUM	Guam	159358
+OC	FM	FSM	Micronesia	107708
+OC	KI	KIR	Kiribati	92533
+OC	AS	ASM	American Samoa	57881
+OC	MP	MNP	Northern Mariana Islands	53883
+OC	CK	COK	Cook Islands	21388
+OC	PW	PLW	Palau	19907
+OC	WF	WLF	Wallis and Futuna	16025
+OC	TV	TUV	Tuvalu	10472
+OC	NR	NRU	Nauru	10065
+OC	NU	NIU	Niue	2166
+OC	TK	TKL	Tokelau	1466
+OC	PN	PCN	Pitcairn	46
+OC	UM	UMI	United States Minor Outlying Islands	0
+SA	BR	BRA	Brazil	201103330
+SA	CO	COL	Colombia	47790000
+SA	AR	ARG	Argentina	41343201
+SA	PE	PER	Peru	29907003
+SA	VE	VEN	Venezuela	27223228
+SA	CL	CHL	Chile	16746491
+SA	EC	ECU	Ecuador	14790608
+SA	BO	BOL	Bolivia	9947418
+SA	PY	PRY	Paraguay	6375830
+SA	UY	URY	Uruguay	3477000
+SA	GY	GUY	Guyana	748486
+SA	SR	SUR	Suriname	492829
+SA	GF	GUF	French Guiana	195506
+SA	FK	FLK	Falkland Islands	2638
