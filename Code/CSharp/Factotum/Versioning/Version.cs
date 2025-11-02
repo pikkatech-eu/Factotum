@@ -55,7 +55,7 @@ namespace Factotum.Versioning
 
 				this.Major		= tomler.GetValue("Version", "Major").ToNumber<int>();
 				this.Minor		= tomler.GetValue("Version", "Minor").ToNumber<int>();
-				this.Build		= tomler.GetValue("Version", "Minor").ToNumber<int>();
+				this.Build		= tomler.GetValue("Version", "Build").ToNumber<int>();
 				this.Revision	= tomler.GetValue("Version", "Revision").ToNumber<int>();
 			}
 		}
