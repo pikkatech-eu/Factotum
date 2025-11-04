@@ -332,5 +332,18 @@ namespace Factotum.Dictionaries
 			return WritingScripts.Values.Where(v => v.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
 		}
 		#endregion
+
+		#region Codes
+		/// <summary>
+		/// Gets all codes of writing systems.
+		/// </summary>
+		public static string[] AllCodes
+		{
+			get
+			{
+				return WritingScripts.Keys.ToArray();
+			}
+		}
+		#endregion
 	}
 }

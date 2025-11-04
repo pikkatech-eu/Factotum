@@ -600,5 +600,25 @@ namespace Factotum.Dictionaries
 			return Languages.Where(language => language.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
 		}
 		#endregion
+
+		#region Codes
+		/// <summary>
+		/// Gets all language codes: Alpha2 for those languages where Alpha2 exists, otherwise Alpha3.
+		/// </summary>
+		public static string[] AllCodes
+		{
+			get
+			{
+				List<string> codes = new List<string>();
+
+				foreach (Language language in Languages)
+				{
+					codes.Add(language.Alpha2.Length > 0 ? language.Alpha2 : language.Alpha3);
+				}
+
+				return codes.ToArray();
+			}
+		}
+		#endregion
 	}
 }
