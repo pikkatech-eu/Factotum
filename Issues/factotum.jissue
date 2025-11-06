@@ -76,6 +76,19 @@
           "Text": "https://github.com/curiosity-ai/catalyst"
         }
       ]
+    },
+    "6": {
+      "IssueId": 6,
+      "Title": "Database of ISO entities",
+      "Details": "* at least, 3166, 639, 1594\r\n* SQLite databases",
+      "SubmittedOn": "2025-11-06T10:20:44.1820739+01:00",
+      "Status": 0,
+      "Severity": 2,
+      "Priority": 2,
+      "LastUpdated": "2025-11-06T10:20:44.1824478+01:00",
+      "StepsToReproduce": "",
+      "AdditionalInformation": "",
+      "Notes": []
     }
   }
 }
