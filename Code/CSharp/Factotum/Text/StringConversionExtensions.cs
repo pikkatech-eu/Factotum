@@ -59,7 +59,6 @@ namespace Factotum.Tools
 				case Type _ when type == typeof(DateTime):
 					return (T)Convert.ChangeType(DateTime.TryParse(x, out DateTime dateTimeValue) ? dateTimeValue : default(DateTime), typeof(T));
 
-
 				default:
 					return default(T);
 			}

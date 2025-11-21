@@ -7,8 +7,6 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System;
-
 namespace Factotum.Maths
 {
 	public static class ElementaryFunctions
@@ -192,6 +190,34 @@ namespace Factotum.Maths
 		public static double Atan2d(double y, double x)
 		{
 			return Math.Atan2(y, x) * Constants.RADIAN;
+		}
+		#endregion
+
+		#region HourMeasure
+		/// <summary>
+		/// Converts the value of time expressed as day fraction into hour measure.
+		/// </summary>
+		/// <param name="t">The value of day fraction.</param>
+		/// <returns>Tuple (Hours, Minutes, Seconds).</returns>
+		public static (int Hours, int Minutes, double Seconds) ToHourMeasure(double t)
+		{
+			double hours	= 24 * t;
+			double minutes	= hours - (int)hours; 
+			minutes			*= 60;
+			double seconds	= minutes - (int)minutes;
+			seconds			*= 60;
+
+			return ((int)hours, (int)minutes, seconds);
+		}
+
+		/// <summary>
+		/// Converts time expressed in hour measure into day fraction.
+		/// </summary>
+		/// <param name="hm">Time expressed in hour measure (tuple).</param>
+		/// <returns>Value of time expressed as day fraction.</returns>
+		public static double FromHourMeasure((int Hours, int Minutes, double Seconds) hm)
+		{
+			return (hm.Hours + (double)hm.Minutes / 60 + hm.Seconds / 3600) / 24;
 		}
 		#endregion
 	}

@@ -278,6 +278,97 @@ namespace Factotum.Dictionaries
 			{"Zyyy", 	new WritingScript("Zyyy",	998, 	"Code for undetermined script")},
 			{"Zzzz", 	new WritingScript("Zzzz",	999, 	"Code for uncoded script")},
 		};
+
+		/// <summary>
+		/// Most widely used Writing Script codes and labels (to be used in GUI etc.)
+		/// </summary>
+		public static readonly Dictionary<string, string> MostOftenUsedscripts = new Dictionary<string, string>()
+		{
+			{"Latn", 	"Latin"},
+			{"Cyrl", 	"Cyrillic"},
+			{"Arab", 	"Arabic"},
+			{"Deva", 	"Devanagari"},
+
+			// Chinese and Japanese
+			{"Hani", 	"Han (Hanzi, Kanji, Hanja)"},
+			{"Hans", 	"Han (Simplified)"},
+			{"Hant", 	"Han (Traditional)"},
+			{"Hira", 	"Hiragana"},
+			{"Hrkt", 	"Japanese syllabaries (Hiragana + Katakana)"},
+			{"Jpan", 	"Japanese (Kanji + Hiragana + Katakana)"},
+			{"Kana", 	"Katakana"},
+
+			// Indic
+			{"Beng", 	"Bengali (Bangla)"},
+			{"Gujr", 	"Gujarati"},
+			{"Guru", 	"Gurmukhi"},
+			{"Knda", 	"Kannada"},
+			{"Maka", 	"Makasar"},
+			{"Mlym", 	"Malayalam"},
+			{"Orya", 	"Oriya (Odia)"},
+			{"Taml", 	"Tamil"},
+			{"Telu", 	"Telugu"},
+
+			// Important one-nation scripts
+			{"Armn", 	"Armenian"},
+			{"Copt", 	"Coptic"},
+			{"Ethi", 	"Ethiopic (Geʻez)"},
+			{"Geor", 	"Georgian"},
+			{"Grek", 	"Greek"},
+			{"Hang", 	"Hangul"},
+			{"Hebr", 	"Hebrew"},
+			{"Kore", 	"Korean"},
+			{"Mong", 	"Mongolian"},
+
+			// Southeast Asian
+			{"Khmr", 	"Khmer"},
+			{"Laoo", 	"Lao"},
+			{"Mymr", 	"Myanmar (Burmese)"},
+			{"Thai", 	"Thai"},
+			{"Tibt", 	"Tibetan"},
+
+			// Local exotic
+			{"Cans", 	"Unified Canadian Aboriginal Syllabics"},
+			{"Tfng", 	"Tifinagh (Berber)"},
+
+			// Antiquated etc.
+			{"Bopo", 	"Bopomofo"},
+			{"Cher", 	"Cherokee"},
+			{"Cyrs", 	"Cyrillic (Old Church Slavonic)"},
+			{"Egyd", 	"Egyptian demotic"},
+			{"Egyh", 	"Egyptian hieratic"},
+			{"Egyp", 	"Egyptian hieroglyphs"},
+			{"Glag", 	"Glagolitic"},
+			{"Goth", 	"Gothic"},
+		};
+
+		/// <summary>
+		/// Mapping from ISO-15294 to Windows keboard layout HKL codes (inconsistent regarding languages and incomplete).
+		/// </summary>
+		public static readonly Dictionary<string, string?> ScriptToHkl = new()
+		{
+			{ "Latn", "00000409" }, // English US
+			{ "Cyrl", "00000419" }, // Russian
+			{ "Arab", "00000401" }, // Arabic Saudi
+			{ "Deva", "00000439" }, // Hindi
+			{ "Hani", "00000804" }, // Chinese Simplified (fallback)
+			{ "Hans", "00000804" }, // Chinese Simplified
+			{ "Hant", "00000404" }, // Chinese Traditional
+			{ "Hira", "00000411" }, // Japanese IME
+			{ "Hrkt", "00000411" }, // Japanese IME
+			{ "Kana", "00000411" }, // Japanese IME
+			{ "Armn", "0000042B" }, // Armenian Eastern
+			{ "Copt", null },       // No keyboard layout exists
+			{ "Ethi", "0000040E" }, // Amharic
+			{ "Geor", "00000437" }, // Georgian
+			{ "Grek", "00000408" }, // Greek
+			{ "Hang", "00000412" }, // Korean IME
+			{ "Hebr", "0000040D" }, // Hebrew
+			{ "Kore", "00000412" }, // Korean IME
+			{ "Khmr", "00000453" }, // Khmer
+			{ "Thai", "0000041E" }, // Thai
+		};
+
 		#endregion
 
 		#region Search
