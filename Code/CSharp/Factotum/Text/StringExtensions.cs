@@ -111,6 +111,20 @@ namespace Factotum.Text
 			{ "Я", "Ya" },
 			{ "я", "ya" },
 		};
+
+		private static Dictionary<char, char> EASTERN_ARABIC_NUMERALS = new Dictionary<char, char>
+		{
+			['0'] =	'٠',
+			['1'] =	'١',
+			['2'] =	'٢',
+			['3'] =	'٣',
+			['4'] =	'٤',
+			['5'] =	'٥',
+			['6'] =	'٦',
+			['7'] =	'٧',
+			['8'] =	'٨',
+			['9'] =	'٩'
+		};
 		#endregion
 
 		#region Public Features
@@ -193,6 +207,26 @@ namespace Factotum.Text
 			{
 				return $"{word.Substring(0, 1).ToUpper()}{word.Substring(1)}";
 			}
+		}
+
+		/// <summary>
+		/// Converts a string containing Western Arabic numerals (0..9) to Eastern Arabis numerals (٠..٩).
+		/// </summary>
+		/// <param name="word">The word to perform conversion on.</param>
+		/// <returns>Resulting word with Arabic numerals converted.</returns>
+		public static string ToEasternArabicNumerals(this string word)
+		{
+			char[] result = word.ToCharArray();
+
+			for (int i = 0; i < result.Length; i++)
+			{
+				if (EASTERN_ARABIC_NUMERALS.ContainsKey(result[i]))
+				{
+					result[i]	= EASTERN_ARABIC_NUMERALS[result[i]];
+				}
+			}
+
+			return new string(result);
 		}
 		#endregion
 	}

@@ -43,7 +43,7 @@ namespace Factotum.Maths
 
 			double middle = 0.5 * (left + right);
 			int iterations = 0;
-			double accuracy = Math.Abs(f(middle));
+			double accuracy = Math.Abs(right - left);
 
 			while (accuracy > precision && iterations < maxIterations)
 			{
@@ -59,7 +59,7 @@ namespace Factotum.Maths
 				}
 
 				middle = 0.5 * (left + right);
-				accuracy = Math.Abs(f(middle));
+				accuracy = Math.Abs(right - left);
 				iterations++;
 
 				if (iterations > maxIterations)

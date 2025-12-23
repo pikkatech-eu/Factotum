@@ -554,6 +554,11 @@ namespace Factotum.Dictionaries
 			new Language{Alpha3="#zx",	Alpha2="",		Name="No linguistic content; Not applicable"},
 			new Language{Alpha3="#zz",	Alpha2="",		Name="Zaza; Dimili; Dimli; Kirdki; Kirmanjki; Zazaki"}
 		};
+
+		/// <summary>
+		/// List (incomplete) of languages using Arabic graphic.
+		/// </summary>
+		public readonly static string[] UsesArabicGraphic = ["ar", "fa", "ug", "ur"];
 		#endregion
 
 		#region Search
