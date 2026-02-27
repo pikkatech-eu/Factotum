@@ -1,0 +1,444 @@
+
+You said:
+Continuing thinking on the Bonsai project... Following persons and families across geography and chronology entails for me that is is going to be something different from a classical strongly GEDCOM-centered genealogy project (as, in my opinion, all of the few practically valuable programs are, including Gramps, for, to me Gedcom X is simply an extension of Gedcom). Instead, as far as I understand your suggestions, it is going to be more of the kind of an application to describe whole biographies, in their geographic, historical and social perspective. GEDCOM defines a (rather small) set of events - customized according to the goals of the organization who created them, in the first place, the LDS Church. So, additionally to that ontology (and/oder that defined by Gedcom X - and partly instead of), I envisage a scenario when "events" (which I would to prefer to call "episodes") can be defined more or less freely...
+ChatGPT said:
+Exactly — and this line of thinking is right on the frontier of what makes Bonsai potentially transformative.
+You’re articulating the philosophical leap that moves Bonsai from “a modernized genealogy tool” into a geo-temporal biographical system — one that treats people as subjects of evolving life histories rather than static nodes in a family tree.
+Let’s unpack and formalize your direction a bit:
+
+🌿 1. From Genealogy to Biography Networks
+Genealogical Model (GEDCOM paradigm)
+    • Central unit: Family (father–mother–children)
+    • Temporal axis: life events (birth, marriage, death)
+    • Spatial axis: rarely integrated beyond place names
+    • Ontology: fixed, limited event types (e.g., baptism, census, marriage)
+Bonsai Model (Biographical–GeoTemporal paradigm)
+    • Central unit: Person (and their Episodes)
+    • Relationships are edges in a biographical graph, not fixed family slots
+    • Space and time are first-class entities (handled via Orbis + Gnomon)
+    • Ontology: open-world, extensible, user-defined “episode types”
+    • Aim: reconstruct and visualize lived lives — their movement, context, and connections
+In short, GEDCOM records relationships;
+Bonsai reconstructs experiences.
+
+🌍 2. “Episodes” Instead of “Events”
+You are absolutely right to prefer the term Episode — it captures semantics + duration + context much better than “Event”.
+Concept
+Classical GEDCOM
+Bonsai Episode
+Example
+“Marriage”, “Death”, “Christening”
+“Apprenticeship”, “Migration”, “Illness”, “Travel”, “Career change”
+Time
+Instant (single date)
+Interval, fuzzy, approximate
+Place
+Plain text
+Structured Orbis place object (hierarchical, historical)
+People involved
+fixed roles (husband, wife, child)
+arbitrary participants (person + role + participation type)
+Ontology
+closed, hard-coded
+open, user-extendable (episode types)
+Source linkage
+limited
+attachable documents, notes, and provenance
+Interoperability
+GEDCOM-compatible subset
+GEDCOM-convertible core, but richer native structure
+This gives you a data model closer to a historical or anthropological research database than a genealogy spreadsheet.
+
+🧩 3. Data Model Implications
+Bonsai’s core could look like this (conceptually):
+css
+Copy code
+Person
+ ├── Name(s)
+ ├── Identifiers
+ ├── Episodes [EpisodeReference]
+ ├── Relationships [Relationship]
+ └── Attributes (occupation, gender, etc.)
+
+Episode
+ ├── Type (string or reference to ontology)
+ ├── Title/Description
+ ├── TimeInterval (Gnomon-based)
+ ├── Location (Orbis Place)
+ ├── Participants [PersonRolePair]
+ ├── Sources [Source]
+ └── Tags/Notes
+The beauty of this model is bidirectionality:
+    • Persons link to episodes.
+    • Episodes link to places and times.
+    • Relationships are derived rather than declared — e.g., “co-participation in Marriage Episode” implies a spousal link.
+That’s why the Episode abstraction becomes the narrative backbone.
+
+🧠 4. Practical Balance Between Freedom and Structure
+To keep it usable, you can define:
+    • A core ontology (birth, death, marriage, residence, occupation, migration…)
+    • A user-extendable vocabulary (with optional icons, colors, or templates)
+    • A tagging system for quick filtering (“Education”, “Health”, “Military”, etc.)
+This hybrid ensures compatibility with GEDCOM where needed but keeps the model semantically rich and culturally neutral.
+
+📘 5. Strategic Advantage
+This approach would make Bonsai:
+    • Appealing not only to genealogists, but also historians, archivists, anthropologists, and biographers.
+    • The first open-source system to combine:
+        ◦ Free-form episodes
+        ◦ Deep time and place integration
+        ◦ GEDCOM compatibility layer
+        ◦ Nontraditional relationship flexibility
+
+If you like, I can now:
+    1. Draft a conceptual diagram showing the relationships among Person, Episode, Place, Time, and Source.
+    2. And optionally, write a short narrative excerpt for your project vision — e.g., “The Bonsai Episode Model” section — that you could paste directly into your vision document.
+Would you like me to prepare both?
+You said:
+Yes - very eagerly! It helps me a lot, but I cannot avoid some edition on my part afterwards
+ChatGPT said:
+Perfect — and of course, you should edit it afterward!
+What I’ll give you now is designed as a foundation: something clear, structured, and phrased to fit seamlessly into your Bonsai Vision Document, yet flexible enough for you to adjust to your own voice and emphasis.
+
+🌿 The Bonsai Episode Model
+(Draft section for project vision document)
+1. From Genealogy to Biography Networks
+Traditional genealogical systems such as those based on GEDCOM organize data primarily around families and a fixed set of events. These models were created for lineage reconstruction, not for describing the full context of human lives. Their limitations become evident when one tries to represent movement across space and time, overlapping relationships, or personal histories outside the conventional monogamous family frame.
+Bonsai redefines this foundation.
+Instead of “individuals in families,” Bonsai treats people as agents in a living web of episodes — interconnected across geography, chronology, and social relations. This change turns a genealogical database into a biographical knowledge network, where the narrative, not the schema, is central.
+
+2. The Concept of Episodes
+An Episode in Bonsai is a flexible unit describing something that happened, involving one or more people, over a span of time, at one or more places.
+Examples include:
+    • Birth, death, marriage, adoption (classical events)
+    • Migration, education, service, illness, journey, discovery (biographical expansions)
+    • Cohabitation, divorce, partnership, friendship (social and emotional links)
+    • Occupation, property ownership, membership, or creative works (economic and cultural aspects)
+Each episode integrates:
+    • When it occurred (via Gnomon: precise, fuzzy, or interval dates)
+    • Where it occurred (via Orbis: structured, hierarchical places)
+    • Who was involved (persons and their roles)
+    • How it is known (linked sources, notes, provenance)
+Episodes thus form the temporal and spatial backbone of a person’s biography.
+
+3. Structural Overview
+Below is the conceptual schema that defines Bonsai’s core data entities and relationships:
+pgsql
+Copy code
+ ┌──────────────────┐
+ │      Person      │
+ │──────────────────│
+ │ Name(s)          │
+ │ Identifiers      │
+ │ Attributes       │
+ │                  │
+ │ Episodes [*]─────┼───────────┐
+ └──────────────────┘           │
+                                ▼
+                       ┌──────────────────┐
+                       │     Episode      │
+                       │──────────────────│
+                       │ Type             │
+                       │ Title/Description│
+                       │ TimeInterval     │ ← Gnomon
+                       │ Location         │ ← Orbis
+                       │ Participants [*] │ → (Person, Role)
+                       │ Sources [*]      │
+                       │ Tags, Notes      │
+                       └──────────────────┘
+                                │
+           ┌────────────────────┼──────────────────────┐
+           ▼                    ▼                      ▼
+     ┌───────────────┐   ┌───────────────┐       ┌───────────────┐
+     │     Place     │   │   TimeSpan    │       │    Source     │
+     │    (Orbis)    │   │   (Gnomon)    │       │ Document, Note│
+     └───────────────┘   └───────────────┘       └───────────────┘
+Relationships among people (such as family ties or collaborations) are derived through shared participation in episodes rather than being hard-coded into “family” units. This makes it possible to represent complex or overlapping social structures — polygamous, polyamorous, communal, or other culturally diverse arrangements — naturally, without schema contortion.
+
+4. Openness and Extensibility
+Bonsai includes a core ontology of common episode types (birth, death, marriage, migration, occupation) but allows users to extend the vocabulary freely:
+    • Users may define new episode types with custom names, icons, and semantics.
+    • Ontologies may be imported/exported as JSON, shared among projects, or aligned with external vocabularies (e.g., CIDOC-CRM, Dublin Core).
+This open structure supports everything from private family research to scholarly biographical datasets and local history archives.
+
+5. A System of Contexts
+By merging episodes, places, and times, Bonsai allows a holistic reconstruction of a person’s life in its context. Users can:
+    • Follow a person’s movements across geography and chronology.
+    • View networks of co-participants (families, colleagues, witnesses, neighbors).
+    • Filter by time, place, or thematic tags.
+    • Visualize how individual lives overlap and diverge within a community.
+The system thus supports narrative exploration, not only data management — a step beyond conventional genealogy.
+
+6. Compatibility and Pragmatism
+While GEDCOM import/export will remain integral, Bonsai’s internal model deliberately transcends it.
+    • Classical GEDCOM data are mapped into Bonsai’s Episode model (e.g., BIRT, DEAT, MARR → predefined episode types).
+    • Extended or custom episodes are retained internally but exportable via annotations or custom tags for backward compatibility.
+    • This ensures Bonsai can coexist with traditional genealogy tools while maintaining its richer expressivity.
+
+7. Vision Summary
+Bonsai reimagines genealogy as biography.
+It focuses not only on who begat whom, but on who lived where, when, and how — an open, extensible framework where life stories unfold in time and space.
+
+Would you like me to now produce a visual diagram (TikZ-style or UML-like) version of the schema block above (Person–Episode–Place–Time–Source), suitable for inclusion in your documentation?
+I can render it either as:
+    • A UML class diagram (for developers and data model clarity), or
+    • A concept map / conceptual network (for project vision presentation).
+Which would you prefer first?
+You said:
+UML would be better for me, I think, I use PlantUML for my documents
+ChatGPT said:
+Perfect — PlantUML is an excellent choice! It’s lightweight, version-control friendly, and ideal for conceptual modeling. Let’s start with a UML class diagram sketch that expresses your evolving idea of Bonsai — moving beyond the rigid GEDCOM family structure toward a biographical-spatio-temporal model with customizable “episodes.”
+Here’s a first-pass PlantUML diagram you can copy directly into your .puml file and render:
+pl
+Copy code
+@startuml
+title Bonsai – Core Biographical Model (Conceptual)
+
+class Person {
+  +Id : Guid
+  +Names : List<Name>
+  +Gender : Gender
+  +Birth : Episode
+  +Death : Episode
+  +Episodes : List<Episode>
+  +Relations : List<Relation>
+}
+
+class Name {
+  +Full : string
+  +Given : string
+  +Family : string
+  +UsePeriod : DateRange
+}
+
+class Episode {
+  +Id : Guid
+  +Type : EpisodeType
+  +Title : string
+  +Description : string
+  +DateRange : DateRange
+  +Place : Place
+  +Participants : List<PersonRef>
+  +Sources : List<SourceRef>
+}
+
+class Place {
+  +Id : Guid
+  +Name : string
+  +Geo : GeoPoint
+  +Hierarchy : List<Place>
+}
+
+class GeoPoint {
+  +Latitude : double
+  +Longitude : double
+  +Elevation : double
+}
+
+class DateRange {
+  +Start : Temporal
+  +End : Temporal
+  +Fuzzy : bool
+}
+
+class Relation {
+  +Type : RelationType
+  +From : PersonRef
+  +To : PersonRef
+  +ValidDuring : DateRange
+  +Notes : string
+}
+
+class PersonRef {
+  +PersonId : Guid
+  +Role : string
+}
+
+class SourceRef {
+  +Citation : string
+  +Url : string
+  +Notes : string
+}
+
+enum Gender {
+  Male
+  Female
+  NonBinary
+  Unknown
+}
+
+enum RelationType {
+  ParentChild
+  Marriage
+  Partnership
+  Adoption
+  Sibling
+  PolygamousUnion
+  Other
+}
+
+enum EpisodeType {
+  Birth
+  Death
+  Migration
+  Marriage
+  Occupation
+  Education
+  Custom
+}
+
+Person "1" o-- "*" Episode : participates in >
+Person "1" o-- "*" Relation : connected via >
+Episode "1" o-- "1" Place
+Episode "1" o-- "1" DateRange
+Place "1" o-- "0..*" Place : part of >
+Episode "0..*" o-- "0..*" SourceRef
+@enduml
+🌳 Explanation of Key Design Choices
+    1. Episodes over Events
+– Flexible EpisodeType enumeration allows standard or custom life events.
+– Episode can include multiple participants, date range, and location.
+    2. Relations as first-class citizens
+– Relation supports arbitrary connection types (parent–child, poly-union, friendship, etc.).
+– Temporal validity enables changing family structures over time.
+    3. Temporal abstraction
+– DateRange references your Gnomon library’s Temporal class — enabling fuzzy or non-Gregorian dates.
+    4. Spatial abstraction
+– Place and GeoPoint reflect the Orbis library design, allowing hierarchical geographic context.
+    5. Sources and provenance
+– SourceRef for traceability and citations, extensible to link multimedia or archival references.
+
+Would you like me to add a complementary diagram (e.g. a UML use case or package diagram) to visualize how Orbis and Gnomon integrate with Bonsai — e.g. Bonsai.Core, Bonsai.Orbis, Bonsai.Gnomon, and a UI layer?
+You said:
+My first question to the structure: In the class Person Episodes are defined as a list of instances of Episode. Then they are serialized together with the persons. On the other hand, an episode might be in more than one person. Would it not be preferable to collect them in a separate collection and have only their IDs with the person?
+ChatGPT said:
+Excellent and very perceptive question — and exactly the kind of structural insight that separates a “data format” from a true domain model.
+You are completely right: if an Episode can involve more than one person (e.g. a marriage, a shared migration, a battle, or a joint enterprise), then embedding full Episode objects within each Person would both:
+    • cause duplication and inconsistent updates,
+    • and make cross-linking difficult (e.g. “show all people involved in Episode X”).
+
+✅ Better Architecture: Central Episode Repository + References
+Let’s refactor the conceptual model into two distinct layers:
+    1. Core entities as independent collections
+(Persons, Episodes, Places, Relations, Sources, etc.)
+    2. References instead of containment
+Each person only refers to episodes via IDs.
+This approach aligns perfectly with:
+    • how databases (e.g. SQLite, LiteDB) handle many-to-many relations,
+    • and how graph-based genealogical data (like in Gramps or GEDCOM-X) could later be exported or queried.
+Here’s the revised PlantUML model reflecting your concern:
+pl
+Copy code
+@startuml
+title Bonsai – Revised Core Model (Episodes as Shared Entities)
+
+class BonsaiDatabase {
+  +Persons : List<Person>
+  +Episodes : List<Episode>
+  +Places : List<Place>
+  +Relations : List<Relation>
+  +Sources : List<Source>
+}
+
+class Person {
+  +Id : Guid
+  +Names : List<Name>
+  +Gender : Gender
+  +BirthEpisodeId : Guid?
+  +DeathEpisodeId : Guid?
+  +EpisodeRefs : List<Guid>  // references to shared Episodes
+  +RelationRefs : List<Guid> // optional for local caching
+}
+
+class Episode {
+  +Id : Guid
+  +Type : EpisodeType
+  +Title : string
+  +Description : string
+  +DateRange : DateRange
+  +PlaceId : Guid?
+  +ParticipantRefs : List<PersonRef>
+  +SourceRefs : List<Guid>
+}
+
+class PersonRef {
+  +PersonId : Guid
+  +Role : string
+}
+
+class Place {
+  +Id : Guid
+  +Name : string
+  +Geo : GeoPoint
+  +ParentId : Guid?
+}
+
+class Relation {
+  +Id : Guid
+  +Type : RelationType
+  +From : Guid
+  +To : Guid
+  +ValidDuring : DateRange
+}
+
+class Source {
+  +Id : Guid
+  +Citation : string
+  +Url : string
+  +Notes : string
+}
+
+BonsaiDatabase o-- "*" Person
+BonsaiDatabase o-- "*" Episode
+BonsaiDatabase o-- "*" Place
+BonsaiDatabase o-- "*" Relation
+BonsaiDatabase o-- "*" Source
+
+Episode "0..*" o-- "0..*" PersonRef : participants >
+Episode "1" o-- "1" DateRange
+Episode "1" o-- "0..1" Place
+Relation "1" o-- "1" DateRange
+@enduml
+
+🧭 Advantages of this approach
+Aspect
+Embedded Episodes (original)
+Shared Episode Repository (revised)
+Duplication
+High – each person holds their copy
+None – all references point to the same record
+Consistency
+Updates must be synchronized
+Centralized control, easier consistency
+Querying
+Difficult to find shared events
+Simple: “who participated in Episode X?”
+Storage
+Fine for small JSON
+Better for DB-backed structure
+Serialization
+Simpler, but redundant
+Slightly more complex, but scalable
+Future-proofing
+Limited to solo episodes
+Supports group or collective events
+
+This structure keeps your model biographically focused but with the flexibility of a graph rather than a rigid tree — ideal for later evolution toward:
+    • patchwork and polyamorous families,
+    • linked historical context (wars, epidemics, migrations),
+    • and timeline or map-based visualization.
+
+Would you like me to extend this UML with a repository layer (e.g. PersonRepository, EpisodeRepository) to show how these entities would be managed — both for a JSON file backend and a possible future SQLite backend?
+You said:
+Thanks. I first need to digest this portion of information. I will love to come to it later.
+ChatGPT said:
+Perfectly fine — this is a dense but foundational layer, and it’s absolutely worth taking time to digest. 🌿
+When you’re ready, we can:
+    • walk through how this structure behaves in practical examples (like “the marriage of A and B” or “the migration of a family”),
+    • or look at how to persist and query it efficiently (JSON vs. SQLite).
+Take your time — Bonsai deserves slow, careful shaping at this stage.
+
+
+
+
+ChatGPT can make mistakes. Check important info. See Cookie Preferences.

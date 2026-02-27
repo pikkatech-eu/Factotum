@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>NLPUtils Morphological Parser - Irregular Forms XML Specification</title>
+<style>
+body {
+	font-family: Georgia, 'DejaVu Serif', 'Bitstream Vera Serif', "Times New Roman", Times, serif;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+h1 {
+	font-family: 'Trebuchet MS', Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', Arial, Helvetica, sans-serif;
+}
+code, tt {
+	font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Lucida Console', 'Monaco', "Courier New", Courier, mono;
+}
+</style>
+</head>
+
+<body>
+ <h1>NLPUtils Morphological Parser<br />
+ Irregular Forms XML Specification</h1>
+ <p>Cody Boisclair, November&ndash;December 2007</p>
+ <hr>
+ <p>One feature of the NLPUtils Morphological Parser is that it allows one to define additional irregular forms via an XML file specified by <code>MorphParser.IrregularsFilePath</code>.</p>
+ <p>Here is a brief summary of the format expected in that XML file:</p>
+ <ul>
+ <li>The root element is named <code>&lt;IrregularForms&gt;</code>. It contains a collection of <code>&lt;token&gt;</code> elements representing tokens whose forms are irregular.</li>
+ <li>Each <code>&lt;token&gt;</code> element has one required attribute, <code>spell</code>, which identifies the spelling of the token.  Each <code>&lt;token&gt;</code> element may contain any number of <code>&lt;parse&gt;</code> elements representing a particular morphological parsing. A <code>&lt;token&gt;</code> element may also be empty, identifying that the token is only to be parsed as a regular form (this may be used to negate irregular forms in the built-in lexicon).</li>
+ <li>Each <code>&lt;parse&gt;</code> element contains any number of <code>&lt;morph&gt;</code> elements, each of which specifies a morph in that particular parsing.</li>
+ <li>Each <code>&lt;morph&gt;</code> element has one required attribute, <code>spell</code>, identifying the spelling of the morph.  It also contains the following two optional attributes, which take one of the values specified below:
+ <ul>
+ <li><strong><code>type</code></strong> = <code>&quot;stem&quot;</code>, <code>&quot;feature&quot;</code></li>
+ <li><strong><code>cat</code></strong> = <code>&quot;noun&quot;</code>, <code>&quot;verb&quot;</code>, <code>&quot;adj&quot;</code>, <code>&quot;adv&quot;</code>, <code>&quot;unknown&quot;</code></li>
+ </ul>
+ For morphs where <code>type</code> is unspecified, the first morph will be assumed to be the stem and remaining morphs will be assumed to be features in the morphological analysis.  For morphs where <code>cat</code> is unspecified, the 'unknown' category is assumed.
+ </li>
+ </ul>
+ 
+ <hr>
+ 
+ <p>An example XML document that defines the irregular noun plurals "otaku" and "paparazzi":</p>
+ 
+<pre style="margin-left:2em">
+&lt;IrregularForms&gt;
+    &lt;token spell=&quot;otaku&quot;&gt;
+        &lt;parse&gt;
+            &lt;morph spell=&quot;otaku&quot; cat=&quot;noun&quot; type=&quot;stem&quot; /&gt;
+        &lt;/parse&gt;
+        &lt;parse&gt;
+            &lt;morph spell=&quot;otaku&quot; cat=&quot;noun&quot; type=&quot;stem&quot; /&gt;
+            &lt;morph spell=&quot;s&quot; cat=&quot;noun&quot; type=&quot;feature&quot; /&gt;
+        &lt;/parse&gt;
+    &lt;/token&gt;
+    &lt;token spell=&quot;paparazzi&quot;&gt;
+        &lt;parse&gt;
+            &lt;morph spell=&quot;paparazzo&quot; cat=&quot;noun&quot; type=&quot;stem&quot; /&gt;
+            &lt;morph spell=&quot;s&quot; cat=&quot;noun&quot; type=&quot;feature&quot; /&gt;
+        &lt;/parse&gt;
+    &lt;/token&gt;
+&lt;/IrregularForms&gt;
+</pre>
+
+ <hr>
+ <p>If you have any comments, suggestions, or potential improvements, don't hesitate to drop me a line at <strong>codemanb&#64;uga.edu</strong>.</p>
+
+</body>
+</html>

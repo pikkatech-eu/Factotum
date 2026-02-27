@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>NLPUtils Morphological Parser</title>
+<style>
+body {
+	font-family: Georgia, 'DejaVu Serif', 'Bitstream Vera Serif', "Times New Roman", Times, serif;
+	color: #000000;
+	background-color: #FFFFFF;
+}
+h1 {
+	font-family: 'Trebuchet MS', Verdana, 'DejaVu Sans', 'Bitstream Vera Sans', Arial, Helvetica, sans-serif;
+}
+code, tt {
+	font-family: Consolas, 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Lucida Console', 'Monaco', "Courier New", Courier, mono;
+}
+</style>
+</head>
+
+<body>
+ <h1>NLPUtils Morphological Parser</h1>
+ <p>Cody Boisclair, November&ndash;December 2007</p>
+ <hr>
+ <p>The Morphological Parser is designed to parse common inflectionary forms in English into their component stems and features.  Currently it handles the <b>-s</b> form of verbs and nouns, the <b>-ed</b>, <b>-en</b>, and <b>-ing</b> forms of verbs, and the <b>-er</b> and <b>-est</b> forms of adjectives and adverbs, including some common irregular spellings of all these forms.</p>
+ 
+ <p>The algorithm for the handling of regular morphological forms is based on the Prolog code provided in figure 9.5 of <cite>Natural Language Processing for Prolog Programmers</cite> (Covington, 1994).</p>
+ 
+ <p>Also embedded in the class library is a lexicon of common irregular forms, as given in <cite>The Oxford English Grammar</cite> (Greenbaum, 1996) and <cite>A Practical English Grammar</cite> (second edition, Thomson and Martinet, 1980), which is consulted during the parse and which overrides any analysis of the form as regular if a match is found.  Both these and all regular forms may be overridden further by the user, as explained in the description of the <code>IrregularsFilePath</code> property below.</p>
+ 
+ <p>The morphological parser exists in the form of a class library (DLL) known as <code>MorphParser.dll</code>, which consists of the following classes and enumerations, all in the <code>NLPUtils</code> namespace:</p>
+ <ul>
+   <li><p><strong><code>MorphParser</code></strong>: The static class which performs the actual morphological analysis.</p>
+   <p>The following public methods are provided:</p>
+   <ul>
+   <li><strong><code>ParseWord(string)</code></strong>:  Parses the morphology of the single word specified in the parameter, returning a <code>List&lt;List&lt;Morph&gt;&gt;</code>, in which each component <code>List&lt;Morph&gt;</code> represents one possible parse.</li>
+   <li><strong><code>TokenizeAndParse(string)</code></strong>:  Uses the <code>Tokenizer</code> class library to tokenize the given string, then calls <code>ParseWord</code> on each token that is identifiable as a word (i.e., neither numeric nor punctuation).  Returns a <code>List&lt;List&lt;List&lt;Morph&gt;&gt;&gt;</code>, where each top-level element represents the result of running <code>ParseWord</code> on a single token from the input string.</code></li>
+   </ul>
+   <p>The following properties control certain aspects of the morphological analysis:</p>
+   <ul>
+   <li><strong><code>IrregularsFilePath</code></strong>: Optionally specifies the path of an XML file in which additional irregular forms are defined.  Irregular forms defined in this external file override both regular forms processed by the parser and irregular forms defined in the built-in lexicon. The format of this file is described in <a href="morph-xml.html">this document</a>; a further example, containing the embedded lexicon of irregular forms, can be found in <code>NLPUtils\MorphParser\IrregularForms.xml</code>.</li>
+   <li><strong><code>IrregularsCaseSensitive</code></strong>: If true, irregular forms are matched from both the embedded list and the optional external list only when the capitalization matches exactly; if false, case is ignored when matching irregular forms.  Default is false.</li>
+   <li><strong><code>PreserveCase</code></strong>: If true, the stem remains capitalized as it was in the original token; if false, the stem is always lowercased.  Default is true.</li>
+   </ul>
+   <p>An additional property named <strong><code>Version</code></strong> returns a <code>System.Reflection.Version</code> object identifying the version number of the class library.</p>
+   </li>
+   <li><p><strong>Token</strong>: Represents a single morph derived from the analysis.  Contains the following properties:</p>
+   <ul>
+     <li><strong><code>Spelling</code></strong>: The spelling/surface representation of the morph.  In the case of feature morphs, the most common English spelling of the feature is used, rather than the spelling originally found in the token (for instance, "feet" is represented by two <code>Morph</code> objects with <code>Spelling</code>s of "foot" and "s", respectively).</li>
+     <li><strong><code>Type</code></strong>: A <code>MorphType</code> identifying whether the morph is the stem, an added feature, or a non-word (e.g., number or punctuation).</li>
+     <li><strong><code>Category</code></strong>: A <code>SyntacticCat</code> identifying the syntactic category into which the morph falls, if known, or set to <code>SyntacticCat.Unknown</code> if unknown.</li>
+   </ul>
+   </li>
+   <li><p><strong><code>MorphType</code></strong>: An enumeration defining the types used in the <code>Type</code> property of the <code>Morph</code> class. Currently supported types are <code>Stem</code> (the stem of the word), <code>Feature</code> (an affix added on to the stem), and <code>NonWord</code> (a 'morph' that is not actually a word, e.g., numbers and punctuation).</p></li>
+   <li><p><strong><code>SyntacticCat</code></strong>: An enumeration defining the categories used in the <code>Category</code> property of the <code>Morph</code> class.  Essentially, these represent the part of speech of a stem, or the part of speech onto which a feature is attached.  Currently supported categories are <code>Noun</code>, <code>Verb</code>, <code>Adjective</code>, <code>Adverb</code>, and <code>Unknown</code>.
+ </ul>
+ 
+ <p>At this time, there is no use of a lexicon to narrow down possible spellings of the stem for <em>regular</em> forms; rather, <em>all</em> possible spellings are generated and returned by the parser. (For instance, the word "quickest" may be analyzed as "quick"+"est", "quicke"+"est", "quic"+"est", or an uninflected "quickest".) The results are returned in the form of a <code>List&lt;List&lt;Morph&gt;&gt;</code> object, however, which means that each parse may easily be iterated through and eliminated as necessary in the program using the results provided by the parser.  I am considering eventually adding routines for optionally rejecting parses during the parsing process based on a provided lexicon, but these have not been added yet.</p>
+ <hr>
+ <p>I have also included a basic command-line tool, known as <code>MorphParserTest</code>, which uses the MorphParser library to tokenize either a token or a string specified as arguments to the command and displays the results with one token's analysis per line. A compiled version of the program may be found in <code>NLPUtils\TokenizerTest\bin\Release</code>.</p>
+ <p>Examples of how to use the program:</p>
+ <dl>
+   <dt><code>MorphParserTest babies</code></dt>
+   <dd>Performs a morphological analysis of the word "babies" and displays the result:<br /><tt>{ (Unknown) baby +s | (Unknown) babie +s | (Unknown) babies }</tt><br />(Note that the "Unknown" represents that the parser does not recognize whether the stem is a noun or a verb.)</dd>
+   <dt><code>MorphParserTest -s "The quick brown fox jumps over the lazy dog."</code></dt>
+   <dd>Tokenizes the specified sentence, performs a morphological analysis of each token, and displays the analysis of each token on a separate line.</dd>
+ </dl>
+ <p>Like the Tokenizer, as the bulk of the work has been done on the actual class library itself, I'll admit that this interface is quite primitive; it was mainly designed for my own testing of the class library.</p>
+ <hr>
+ <p>This is a 1.0 beta release; as far as I can tell, it appears to work acceptably, but there may be bugs I have not yet encountered in my own testing.  Use at your own discretion.  The build number for the compiled assembly included in this package is  1.0.3002.644.</p>
+ <p>If you have any comments, suggestions, or potential improvements, don't hesitate to drop me a line at <strong>codemanb&#64;uga.edu</strong>.</p>
+</body>
+</html>
