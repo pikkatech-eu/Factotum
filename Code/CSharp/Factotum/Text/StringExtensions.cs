@@ -228,6 +228,24 @@ namespace Factotum.Text
 
 			return new string(result);
 		}
+
+		/// <summary>
+		/// Truncates a word up to a defined length.
+		/// </summary>
+		/// <param name="word">The word to truncate.</param>
+		/// <param name="length">The length to truncate to.</param>
+		/// <returns>The word itself, if it is not longer than length, otherwise the initial substring of length.</returns>
+		public static string Truncate(this string word, int length)
+		{
+			if (word.Length <= length)
+			{
+				return word;
+			}
+			else
+			{
+				return word.Substring(0, length);
+			}
+		}
 		#endregion
 	}
 }
