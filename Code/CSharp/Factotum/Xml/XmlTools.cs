@@ -161,7 +161,7 @@ namespace Factotum.Xml
 		/// <typeparam name="T">The type of the element to get.</typeparam>
 		/// <param name="x">The host XElement.</param>
 		/// <param name="elementName">Name of the element to get the value from.</param>
-		/// <param name="defaultValue">The default value to return when the value could not be retrieved..</param>
+		/// <param name="defaultValue">The default value to return when the value could not be retrieved.</param>
 		/// <returns>The typed value of the element, if could be retrieved, otherwise the default value.</returns>
 		public static T ElementValue<T>(this XElement x, string elementName, T defaultValue = default(T))
 		{
