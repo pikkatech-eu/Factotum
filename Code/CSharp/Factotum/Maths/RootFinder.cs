@@ -38,7 +38,10 @@ namespace Factotum.Maths
 
 			if (Math.Sign(fLeft) == Math.Sign(fRight))
 			{
-				throw new ArgumentException("Wrong initial interval: the values of the function are of the same sign");
+				ArgumentException ae = new ArgumentException("Wrong initial interval: the values of the function are of the same sign");
+				ae.Data.Add("Sign", Math.Sign(fLeft));
+
+				throw ae;
 			}
 
 			double middle = 0.5 * (left + right);
