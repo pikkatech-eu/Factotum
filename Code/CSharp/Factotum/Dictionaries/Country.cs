@@ -376,5 +376,29 @@ namespace Factotum.Dictionaries
 			return Countries.Where(c => c.Name.ToLower().Contains(nameToken.ToLower())).ToArray();
 		}
 		#endregion
+
+		#region Codes
+		/// <summary>
+		/// Gets all country Alpha2 codes.
+		/// </summary>
+		public static string[] AllCodes2
+		{
+			get
+			{
+				return Countries.Select(c=>c.Alpha2).ToArray();
+			}
+		}
+
+		/// <summary>
+		/// Gets all country Alpha3 codes.
+		/// </summary>
+		public static string[] AllCodes3
+		{
+			get
+			{
+				return Countries.Select(c=>c.Alpha3).ToArray();
+			}
+		}
+		#endregion
 	}
 }

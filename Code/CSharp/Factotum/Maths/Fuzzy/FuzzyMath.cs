@@ -40,12 +40,12 @@ namespace Factotum.Maths.Fuzzy
 
 		public static Fouble Abs(Fouble x)
 		{
-			return new Fouble(Math.Abs(x.Value), x.IsExact);
+			return new Fouble(System.Math.Abs(x.Value), x.IsExact);
 		}
 
 		public static Fouble Sqrt(Fouble x)
 		{
-			return new Fouble(Math.Sqrt(x.Value), x.IsExact);
+			return new Fouble(System.Math.Sqrt(x.Value), x.IsExact);
 		}
 
 		public static Fouble Floor(Fouble x)

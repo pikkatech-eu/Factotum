@@ -36,23 +36,23 @@ namespace Factotum.Maths
 			double fLeft = f(left);
 			double fRight = f(right);
 
-			if (Math.Sign(fLeft) == Math.Sign(fRight))
+			if (System.Math.Sign(fLeft) == System.Math.Sign(fRight))
 			{
 				ArgumentException ae = new ArgumentException("Wrong initial interval: the values of the function are of the same sign");
-				ae.Data.Add("Sign", Math.Sign(fLeft));
+				ae.Data.Add("Sign", System.Math.Sign(fLeft));
 
 				throw ae;
 			}
 
 			double middle = 0.5 * (left + right);
 			int iterations = 0;
-			double accuracy = Math.Abs(right - left);
+			double accuracy = System.Math.Abs(right - left);
 
 			while (accuracy > precision && iterations < maxIterations)
 			{
 				double fMiddle = f(middle);
 
-				if (Math.Sign(fMiddle) == Math.Sign(fLeft))
+				if (System.Math.Sign(fMiddle) == System.Math.Sign(fLeft))
 				{
 					left = middle;
 				}
@@ -62,7 +62,7 @@ namespace Factotum.Maths
 				}
 
 				middle = 0.5 * (left + right);
-				accuracy = Math.Abs(right - left);
+				accuracy = System.Math.Abs(right - left);
 				iterations++;
 
 				if (iterations > maxIterations)
@@ -93,7 +93,7 @@ namespace Factotum.Maths
 			double fLeft = f(left);
 			double fRight = f(right);
 
-			if (Math.Sign(fLeft) == Math.Sign(fRight))
+			if (System.Math.Sign(fLeft) == System.Math.Sign(fRight))
 			{
 				throw new ArgumentException("Wrong initial interval: the values of the function are of the same sign");
 			}

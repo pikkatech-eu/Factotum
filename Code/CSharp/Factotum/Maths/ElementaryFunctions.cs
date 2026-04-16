@@ -78,7 +78,7 @@ namespace Factotum.Maths
 		/// <returns>sin(x°)</returns>
 		public static double Sind(double x)
 		{
-			return Math.Sin(Constants.DEGREE * x);
+			return System.Math.Sin(Constants.DEGREE * x);
 		}
 
 		/// <summary>
@@ -98,7 +98,7 @@ namespace Factotum.Maths
 		/// <returns>tan(x°)</returns>
 		public static double Tand(double x)
 		{
-			return Math.Tan(Constants.DEGREE * x);
+			return System.Math.Tan(Constants.DEGREE * x);
 		}
 
 		/// <summary>

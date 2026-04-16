@@ -53,9 +53,9 @@ namespace Factotum.Maths
 
 		#region Astronomical constants
 		/// <summary>
-		/// Earth Radius (m), Abramowitz & Stegun, Table 2.6, p.8 (middle value of the half-axes).
+		/// Earth Radius (km), Abramowitz & Stegun, Table 2.6, p.8 (middle value of the half-axes).
 		/// </summary>
-		public const double EARTH_RADIUS		= 6367650.0;
+		public const double EARTH_RADIUS		= 6367.650;
 
 		/// <summary>
 		/// Tropical year is 365.2422 days (365d, 5h, 48min, 46s)
