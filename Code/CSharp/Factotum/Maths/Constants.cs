@@ -49,6 +49,7 @@ namespace Factotum.Maths
 
 		public const double E					= 2.718281828459045235360287;
 		public const double GAMMA				= 0.577215664901532860606512;
+		public const double GOLDEN_RATIO		= 1.6180339887498948482045868343656;
 		#endregion
 
 		#region Astronomical constants

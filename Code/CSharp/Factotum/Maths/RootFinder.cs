@@ -33,8 +33,8 @@ namespace Factotum.Maths
 		/// <exception cref="StopIterationException">Thrown if the number of iterations exceeds a defined maximum.</exception>
 		public static double Bisection(Func<double, double> f, double left, double right, double precision, int maxIterations = Constants.DEFAULT_MAX_ITERATIONS)
 		{
-			double fLeft = f(left);
-			double fRight = f(right);
+			double fLeft	= f(left);
+			double fRight	= f(right);
 
 			if (System.Math.Sign(fLeft) == System.Math.Sign(fRight))
 			{
@@ -98,10 +98,10 @@ namespace Factotum.Maths
 				throw new ArgumentException("Wrong initial interval: the values of the function are of the same sign");
 			}
 
-			int iterations = 0;
-			double middle = left;
-			double fMiddle = f(middle);
-			double accuracy = Math.Abs(fMiddle);
+			int iterations	= 0;
+			double middle	= left;
+			double fMiddle	= f(middle);
+			double accuracy	= System.Math.Abs(right - left);
 
 			Iterations = 0;
 
