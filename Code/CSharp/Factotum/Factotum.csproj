@@ -1,29 +1,29 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFramework>net9.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<BaseOutputPath>..\Binary</BaseOutputPath>
-		<SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<NoWarn>CS8625, CS8714, CS8601, CS8600, CS8602, CS8603, CS8618, CS8604</NoWarn>
-	</PropertyGroup>
-
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-		<NoWarn>CS8625, CS8714, CS8601, CS8600, CS8602, CS8603, CS8618, CS8604</NoWarn>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<Compile Remove="Chrono\**" />
-		<EmbeddedResource Remove="Chrono\**" />
-		<None Remove="Chrono\**" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<Compile Remove="Dictionaries\Stopwords.cs" />
-	</ItemGroup>
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <BaseOutputPath>..\Binary</BaseOutputPath>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <Version>1.0.0.12-build.20260608.12+net9.0</Version>
+    <IsReleaseProject />
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <NoWarn>CS8625, CS8714, CS8601, CS8600, CS8602, CS8603, CS8618, CS8604</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <NoWarn>CS8625, CS8714, CS8601, CS8600, CS8602, CS8603, CS8618, CS8604</NoWarn>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Chrono\**" />
+    <EmbeddedResource Remove="Chrono\**" />
+    <None Remove="Chrono\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Dictionaries\Stopwords.cs" />
+  </ItemGroup>
+  <Target Name="AutoIncrementVersion" AfterTargets="Build">
+    <Exec Command="&quot;C:\MyPrograms\Pikkatech\Versja\Versja.exe&quot; &quot;$(MSBuildProjectFullPath)&quot; increment" />
+  </Target>
 </Project>

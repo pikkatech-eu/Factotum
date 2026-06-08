@@ -9,6 +9,7 @@
 
 using System;
 using System.Collections.Generic;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Factotum.Text
 {
@@ -245,6 +246,125 @@ namespace Factotum.Text
 			{
 				return word.Substring(0, length);
 			}
+		}
+
+		/// <summary>
+		/// Defines scripts used in a probe string.
+		/// </summary>
+		/// <param name="source">The source probe string.</param>
+		/// <param name="ignoreUnsupported">If set to true (default), all unsupported characters are ignored.</param>
+		/// <returns>
+		///		Dictionary of frequencies, where the key is the ISO 15294 code of the script, 
+		///		value its relative frequency in the probe string.
+		///	</returns>
+		/// <exception cref="ArgumentException">Thrown if the argument string is null.</exception>
+		public static Dictionary<string, double> GetWritingScripts(this string source, bool ignoreUnsupported = true)
+		{
+			if (source == null)
+			{
+				throw new ArgumentException("Argument string is null");
+			}
+
+			Dictionary<string, double>	occurrences = new Dictionary<string, double>();
+
+			int length = 0;
+
+			foreach (var rune in source.EnumerateRunes())
+			{
+				string script = GetCharScript(rune.Value);
+
+				if (script == "Zzzz" && ignoreUnsupported)
+				{
+					continue;
+				}
+
+				if (!occurrences.ContainsKey(script))
+				{
+					occurrences.Add(script, 0);
+				}
+
+				occurrences[script]++;
+				length ++;
+			}
+
+			foreach (string code in occurrences.Keys)
+			{
+				occurrences[code] /= length;
+			}
+
+			return occurrences;
+		}
+
+		/// <summary>
+		/// Tries to define the presumably only script of a probe string.
+		/// </summary>
+		/// <param name="source">The probe string.</param>
+		/// <param name="ignoreUnsupported">If set to true (default), all unsupported characters are ignored.</param>
+		/// <returns>The ISO 15294 code of the script, if it is the only one used, otherwise "Zzzz" (undetermined script).</returns>
+		public static string GetWritingScript(this string source, bool ignoreUnsupported = true)
+		{
+			Dictionary<string, double> frequencies = GetWritingScripts(source, ignoreUnsupported);
+
+			if (frequencies.Count == 1)
+			{
+				return frequencies.Keys.ToArray()[0];
+			}
+			else
+			{
+				return "Zyyy";
+			}
+		}
+
+		/// <summary>
+		/// Attempt to infer language from script.
+		/// </summary>
+		/// <param name="iso15924">ISO 15924 code of the script.</param>
+		/// <returns>Attemptive ISO 639 code of the language, if supported, otherwise null.</returns>
+		public static string? InferLikelyLanguage(this string iso15924)
+		{
+			return iso15924 switch
+			{
+				"Grek" => "ell",
+				"Armn" => "hye",
+				"Geor" => "kat",
+				"Hang" => "kor",
+				"Hebr" => "heb",
+				"Copt" => "cop",
+				"Thai" => "tha",
+				"Hira" => "ja",
+				"Kana" => "ja",
+				_ => null
+			};
+		}
+
+		/// <summary>
+		/// Defines the Unicode range of a character.
+		/// </summary>
+		/// <param name="codePoint">Integer value of the charecter.</param>
+		/// <returns>
+		///		ISO 15294 code of the character, if the Unicode range is presently supported, otherwise "Zzzz".
+		///	</returns>
+		private static string GetCharScript(int codePoint)
+		{
+			return codePoint switch
+			{
+				>= 0x0041 and <= 0x024F => "Latn",
+				>= 0x0370 and <= 0x03FF => "Grek",
+				>= 0x0400 and <= 0x052F => "Cyrl",
+				>= 0x0590 and <= 0x05FF => "Hebr",
+				>= 0x0600 and <= 0x06FF => "Arab",
+				>= 0x0900 and <= 0x097F => "Deva",
+				>= 0x0E00 and <= 0x0E7F => "Thai",
+				>= 0x3040 and <= 0x309F => "Hira",
+				>= 0x30A0 and <= 0x30FF => "Kana",
+				>= 0x4E00 and <= 0x9FFF => "Hani",
+				>= 0x0530 and <= 0x058F => "Armn",
+				>= 0x10A0 and <= 0x10FF => "Geor",
+				>= 0x1200 and <= 0x137F => "Ethi",
+				>= 0x2C80 and <= 0x2CFF => "Copt",
+				>= 0xAC00 and <= 0xD7AF => "Hang",
+				_ => "Zzzz"
+			};
 		}
 		#endregion
 	}
