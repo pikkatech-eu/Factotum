@@ -2,9 +2,9 @@
   "Major": 1,
   "Minor": 0,
   "Build": 0,
-  "Revision": 12,
+  "Revision": 67,
   "PrereleaseId": "build",
-  "Date": "2026-06-08T00:00:00",
-  "Cadence": 12,
+  "Date": "2026-06-10T00:00:00",
+  "Cadence": 3,
   "RuntimeTarget": "net9.0"
 }

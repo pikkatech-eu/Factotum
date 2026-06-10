@@ -319,7 +319,10 @@ namespace Factotum.Text
 		/// Attempt to infer language from script.
 		/// </summary>
 		/// <param name="iso15924">ISO 15924 code of the script.</param>
-		/// <returns>Attemptive ISO 639 code of the language, if supported, otherwise null.</returns>
+		/// <returns>
+		///		Attemptive ISO 639 code of the language, if supported, 
+		///		otherwise "und" (ISO 639 'undefined').
+		///	</returns>
 		public static string? InferLikelyLanguage(this string iso15924)
 		{
 			return iso15924 switch
@@ -333,7 +336,7 @@ namespace Factotum.Text
 				"Thai" => "tha",
 				"Hira" => "ja",
 				"Kana" => "ja",
-				_ => null
+				_	   => "und"
 			};
 		}
 
@@ -365,6 +368,16 @@ namespace Factotum.Text
 				>= 0xAC00 and <= 0xD7AF => "Hang",
 				_ => "Zzzz"
 			};
+		}
+
+		/// <summary>
+		/// The first character of a string.
+		/// </summary>
+		/// <param name="input">Tghe argument string.</param>
+		/// <returns>The 1st character of the string, if it is not null or empty, an empty string instead.</returns>
+		public static string FirstCharacterOrEmpty(this string input)
+		{
+			return string.IsNullOrEmpty(input) ? string.Empty : input.Substring(0, 1);
 		}
 		#endregion
 	}
