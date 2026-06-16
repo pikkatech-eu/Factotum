@@ -407,6 +407,16 @@ namespace Factotum.Dictionaries
 		}
 
 		/// <summary>
+		/// Find the writing script by its exact name.
+		/// </summary>
+		/// <param name="name">The name of the writing script to find by (case-insensitive).</param>
+		/// <returns>The writing script foung, if successful, otherwise null.</returns>
+		public static WritingScript ByName(string name)
+		{
+			return WritingScripts.Values.FirstOrDefault(script => script.Name.ToLower() == name.ToLower());
+		}
+
+		/// <summary>
 		/// Selects writing scripts by a name token.
 		/// </summary>
 		/// <param name="nameToken">
