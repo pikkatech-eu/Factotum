@@ -385,7 +385,7 @@ namespace Factotum.Dictionaries
 			new Language{Alpha3="niu",	Alpha2="",		Name="Niuean"},
 			new Language{Alpha3="nld",	Alpha2="nl",	Name="Dutch; Flemish"},
 			new Language{Alpha3="nno",	Alpha2="nn",	Name="Norwegian Nynorsk; Nynorsk, Norwegian"},
-			new Language{Alpha3="nob",	Alpha2="nb",	Name="Bokmål, Norwegian; Norwrgian Bokmål"},
+			new Language{Alpha3="nob",	Alpha2="nb",	Name="Bokmål, Norwegian; Norwegian Bokmål"},
 			new Language{Alpha3="nog",	Alpha2="",		Name="Nogai"},
 			new Language{Alpha3="non",	Alpha2="",		Name="Norse, Old"},
 			new Language{Alpha3="nor",	Alpha2="no",	Name="Norwegian"},

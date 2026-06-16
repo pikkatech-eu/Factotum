@@ -8,6 +8,7 @@
 ***********************************************************************************/
 
 using System.ComponentModel;
+using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 using EF = Factotum.Maths.ElementaryFunctions;
 using MC = Factotum.Maths.Constants;
@@ -33,11 +34,13 @@ namespace Factotum.Maths.Geospatial
 		/// <summary>
 		/// In degrees, from -90.0 to 90.0 .
 		/// </summary>
+		[JsonPropertyName("lat")]
 		public double Latitude	{get;set;} = 0;
 
 		/// <summary>
 		/// In degrees, from -180.0 to 180.0 .
 		/// </summary>
+		[JsonPropertyName("lon")]
 		public double Longitude	{get;set;} = 0;
 		#endregion
 
