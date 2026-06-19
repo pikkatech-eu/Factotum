@@ -11,7 +11,7 @@
 
 /// <summary>
 /// Class Address.
-/// Added to satgisfy JsonSerializer.
+/// Added to satisfy JsonSerializer.
 /// Not used directly.
 /// </summary>
 public class Address
