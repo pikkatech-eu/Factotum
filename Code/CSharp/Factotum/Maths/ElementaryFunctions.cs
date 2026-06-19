@@ -220,5 +220,31 @@ namespace Factotum.Maths
 			return (hm.Hours + (double)hm.Minutes / 60 + hm.Seconds / 3600) / 24;
 		}
 		#endregion
+
+		#region Nice numbers
+
+		/// <summary>
+		/// Returns the smallest "nice" number of the same decimal order and sign as the argument.
+		/// E.g. nice(1.23)	= 1.0; nice (0.00234) = 0.002, nice(-989.9999)= -900.
+		/// </summary>
+		/// <param name="x">The argument number.</param>
+		/// <returns>The 'nice' number.</returns>
+		public static double NiceNumber(double x)
+		{
+			double dArgumentAbs	= Math.Abs(x);
+			double dLog			= Math.Log10(dArgumentAbs);
+			int nOrder			= (int)dLog;
+
+			if (dLog < 0)
+			{
+				nOrder--;
+			}
+
+			double dTemp		= dArgumentAbs * Math.Pow(10, -nOrder);
+			int nEntier			= (int)dTemp;
+
+			return nEntier * Math.Pow(10, nOrder) * Math.Sign(x);
+		}
+		#endregion
 	}
 }
