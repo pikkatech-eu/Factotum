@@ -7,6 +7,7 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
+using System.Linq;
 using System.Text.Json.Serialization;
 
 namespace Factotum.Structures
@@ -59,7 +60,7 @@ namespace Factotum.Structures
 		[JsonIgnore()]
 		public K[] Keys
 		{
-			get	{return this._supportedKeys.ToArray();}
+			get	{return this._values.Keys.ToArray();}
 		}
 		#endregion
 
@@ -76,7 +77,7 @@ namespace Factotum.Structures
 		{
 			get
 			{
-				if (this._supportedKeys.Contains(key))
+				if (this._values.ContainsKey(key))
 				{
 					return this._values[key];
 				}
@@ -88,7 +89,7 @@ namespace Factotum.Structures
 
 			set
 			{
-				if (this._supportedKeys.Contains(key))
+				if (this._values.ContainsKey(key))
 				{
 					this._values[key]	= value;
 				}
