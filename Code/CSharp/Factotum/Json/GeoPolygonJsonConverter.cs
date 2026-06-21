@@ -20,7 +20,8 @@ namespace Factotum.Json
 		#region Public features
 		/// <summary>
 		/// Converts a JSON string to a GeoPolygon.
-		/// Handles the OSM-geometry JSON format ("format=geojson" in the query).
+		/// Handles the OSM-geometry JSON format ("format=geojson" in the query), 
+		/// the format corresponds to GeoJson standard definition (https://en.wikipedia.org/wiki/GeoJSON).
 		/// </summary>
 		/// <param name="json">The JSON string.</param>
 		/// <returns>Geopolygon converted, if successful, otherwise null.</returns>
