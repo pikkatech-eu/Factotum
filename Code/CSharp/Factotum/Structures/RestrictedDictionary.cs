@@ -89,7 +89,7 @@ namespace Factotum.Structures
 
 			set
 			{
-				if (this._values.ContainsKey(key))
+				if (this._supportedKeys.Contains(key))
 				{
 					this._values[key]	= value;
 				}

@@ -40,6 +40,15 @@ namespace Factotum.Maths.Geospatial
 				return this._vertices.ToArray();
 			}
 		}
+
+		/// <summary>
+		/// Adds a point to _vertices.
+		/// </summary>
+		/// <param name="point"></param>
+		public void AddPoint(GeoPoint point)
+		{
+			this._vertices.Add(point);
+		}
 		#endregion
 
 		#region Indexers
@@ -93,7 +102,7 @@ namespace Factotum.Maths.Geospatial
 		/// Creates a polygon from a number of double values that are supposed to follow in pairs (lat_1, lon_1), (lat_2, lon_2), ... .
 		/// If the number of values is odd, the last value is ignored.
 		/// </summary>
-		/// <param name="coordinates">An array of double values representing the coordinates of the vertices, arranged in pairs.</param>
+		/// <param name="coordinates">An array of double values representing the json of the vertices, arranged in pairs.</param>
 		public GeoPolygon(params double[] coordinates)
 		{
 			for (int i = 0; i < coordinates.Length; i+=2)
@@ -103,6 +112,75 @@ namespace Factotum.Maths.Geospatial
 
 				this._vertices.Add(new GeoPoint(latitude, longitude));
 			}
+		}
+
+		/// <summary>
+		/// Creates a GeoPolygon from a coordinate string (fragment of a geojson element):
+		/// 
+		/// </summary>
+		/// <param name="json"></param>
+		/// <returns></returns>
+		public static GeoPolygon[] FromCoordinateString(string json, string flair)
+		{
+			JsonDocument doc	= JsonDocument.Parse(json);
+			JsonElement root	= doc.RootElement;
+
+			string type			= root.GetProperty("type").GetString();
+
+			switch (type)
+			{
+				case "Polygon":
+					// extract "coordinates":[[[12.8867757,52.4633388], ...
+					return ExtractPolygons(root);
+
+				case "Feature":
+					// extract "geometry, 
+					JsonElement geometry = root.GetProperty("geometry");
+					return ExtractFromGeometry(geometry);
+
+				case "FeatureCollection":
+					// extract "features"
+					return ExtractFromFeatureCollection(json);
+				default:
+					throw new FormatException("Unsupported GeoJson polygon format");
+			}
+		}
+
+		public static GeoPolygon FromCoordinateString(string json, string flair)
+		{
+			throw new FormatException("Unsupported GeoJson polygon format");
+		}
+
+		private static GeoPolygon[] ExtractPolygons(JsonElement root)
+		{
+			GeoPolygon polygon	= new GeoPolygon();
+
+			JsonElement coordinates = root.GetProperty("coordinates");
+
+			var points	= coordinates[0];
+
+			for (int i = 0; i < points.GetArrayLength(); i++)
+			{
+				var point = points[i];
+				double lat = point[0].GetDouble();
+				double lon = point[1].GetDouble();
+
+				GeoPoint geoPoint	= new GeoPoint(lat, lon);
+
+				polygon.AddPoint(geoPoint);
+			}
+
+			return polygon;
+		}
+
+		private static GeoPolygon[] ExtractFromGeometry(JsonElement geometry)
+		{
+			throw new NotImplementedException();
+		}
+
+		private static GeoPolygon[] ExtractFromFeatureCollection(string json)
+		{
+			throw new NotImplementedException();
 		}
 		#endregion
 
