@@ -213,27 +213,53 @@ namespace Factotum.Maths.Geospatial
 			}
 		}
 
-		//private static GeoPolygon[] ExtractPolygons(JsonElement root)
-		//{
-		//	GeoPolygon polygon	= new GeoPolygon();
+		/// <summary>
+		/// Supports creation of GeoPolygon array from a complete or incomplete geojson string:
+		/// (1) complete string - as defined by https://en.wikipedia.org/wiki/GeoJSON - format
+		/// {
+		///    "type": "FeatureCollection",
+		///    "features": [ {
+		/// 	   "type": "Feature",
+		/// 	   "geometry": {
+		/// 		   "type": "Polygon",
+		/// 		   "coordinates": [...
+		/// 		   
+		/// (2) incomplete string, with the format of 
+		/// {
+		///    "type": "Feature",
+		///    "geometry": {
+		/// 	   "type": "Polygon",
+		/// 	   "coordinates": [...
+		/// </summary>
+		/// <param name="geojson"></param>
+		/// <returns></returns>
+		public static GeoPolygon[] FromGeoJson(string geojson)
+		{
+			JsonDocument doc			= JsonDocument.Parse(geojson);
+			JsonElement root			= doc.RootElement;
+			string type					= root.GetProperty("type").GetString();
 
-		//	JsonElement coordinates = root.GetProperty("coordinates");
+			if (type == "FeatureCollection")
+			{
+				JsonElement features	= root.GetProperty("features");
 
-		//	var points	= coordinates[0];
+				return FromGeoJson(features[0].GetRawText());
+			}
+			else if (type == "Feature")
+			{
+				JsonElement geometry	= root.GetProperty("geometry");
 
-		//	for (int i = 0; i < points.GetArrayLength(); i++)
-		//	{
-		//		var point = points[i];
-		//		double lat = point[0].GetDouble();
-		//		double lon = point[1].GetDouble();
-
-		//		GeoPoint geoPoint	= new GeoPoint(lat, lon);
-
-		//		polygon.AddPoint(geoPoint);
-		//	}
-
-		//	return polygon;
-		//}
+				return FromGeometryGeoJson(geometry.GetRawText());
+			}
+			else if (type == "Polygon" || type == "MultiPolygon")
+			{
+				return FromGeometryGeoJson(geojson);
+			}
+			else
+			{
+				throw new FormatException("Unsupported GeoJson polygon format");
+			}
+		}
 		#endregion
 
 		#region Calculations
