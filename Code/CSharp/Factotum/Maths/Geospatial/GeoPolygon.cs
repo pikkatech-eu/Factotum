@@ -115,7 +115,7 @@ namespace Factotum.Maths.Geospatial
 		}
 
 		/// <summary>
-		/// Tries to create an instance of GeoPolygon from a geojson coordinate string.
+		/// Tries to create an instance of GeoPolygon from a raw geojson coordinate string.
 		/// </summary>
 		/// <param name="geojson">
 		/// Geojson coordinate string to create from.
@@ -175,7 +175,7 @@ namespace Factotum.Maths.Geospatial
 		/// An array with the only polygon if the type is "Polygon";
 		/// An array with multiple polygons if the type is "MultiPolygon".
 		/// </returns>
-		public static GeoPolygon[] FromGeometryGeoJson(string geojson)
+		private static GeoPolygon[] FromGeometryGeoJson(string geojson)
 		{
 			JsonDocument doc			= JsonDocument.Parse(geojson);
 			JsonElement root			= doc.RootElement;

@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <BaseOutputPath>..\Binary</BaseOutputPath>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-    <Version>1.0.0.472-build.20260624.26+net9.0</Version>
+    <Version>1.0.0.483-build.20260624.37+net9.0</Version>
     <IsReleaseProject />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,6 +22,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Dictionaries\Stopwords.cs" />
+    <Compile Remove="Json\GeoPolygonJsonConverter.cs" />
+    <Compile Remove="Json\JsonGeoPolygonAuxiliary.cs" />
   </ItemGroup>
   <Target Name="AutoIncrementVersion" AfterTargets="Build">
     <Exec Command="&quot;C:\MyPrograms\Pikkatech\Versja\Versja.exe&quot; &quot;$(MSBuildProjectFullPath)&quot; increment" />
