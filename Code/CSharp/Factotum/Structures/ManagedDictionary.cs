@@ -7,12 +7,6 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Factotum.Structures
 {
 	public class ManagedDictionary<K>
@@ -62,34 +56,6 @@ namespace Factotum.Structures
 			{
 				return defaultValue;
 			}
-
-			//Type type = typeof(T);
-
-			//switch (type)
-			//{
-			//	case Type _ when type == typeof(int):
-			//		try
-			//		{
-			//			return (T)Convert.ChangeType(this[key], typeof(T));
-			//		}
-			//		catch
-			//		{
-			//			return defaultValue;
-			//		}
-
-			//	case Type _ when type == typeof(double):
-			//		try
-			//		{
-			//			return (T)Convert.ChangeType(this[key], typeof(T));
-			//		}
-			//		catch
-			//		{
-			//			return defaultValue;
-			//		}
-
-			//	default:
-			//		return defaultValue;
-			//}
 		}
 	}
 }
