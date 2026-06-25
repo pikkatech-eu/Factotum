@@ -42,7 +42,7 @@ namespace Factotum.Xml
 
 		#region Private Typed Element Value Getters
 		#region Integer Types
-		private static int? GetElementIntNullable(this XElement x, string elementName)
+		private static int? GetElementIntNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -63,7 +63,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static int GetElementInt(this XElement x, string elementName, int defaultValue = default(int))
+		private static int GetElementInt(this XElement x, XName elementName, int defaultValue = default(int))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -84,7 +84,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static short? GetElementShortNullable(this XElement x, string elementName)
+		private static short? GetElementShortNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -105,7 +105,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static short GetElementShort(this XElement x, string elementName, short defaultValue = default(short))
+		private static short GetElementShort(this XElement x, XName elementName, short defaultValue = default(short))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -126,7 +126,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static long? GetElementLongNullable(this XElement x, string elementName)
+		private static long? GetElementLongNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -147,7 +147,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static long GetElementLong(this XElement x, string elementName, long defaultValue = default(long))
+		private static long GetElementLong(this XElement x, XName elementName, long defaultValue = default(long))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -168,7 +168,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static uint? GetElementUintNullable(this XElement x, string elementName)
+		private static uint? GetElementUintNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -189,7 +189,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static uint GetElementUint(this XElement x, string elementName, uint defaultValue = default(uint))
+		private static uint GetElementUint(this XElement x, XName elementName, uint defaultValue = default(uint))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -210,7 +210,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static ushort? GetElementUshortNullable(this XElement x, string elementName)
+		private static ushort? GetElementUshortNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -231,7 +231,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static ushort GetElementUshort(this XElement x, string elementName, ushort defaultValue = default(ushort))
+		private static ushort GetElementUshort(this XElement x, XName elementName, ushort defaultValue = default(ushort))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -252,7 +252,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static ulong? GetElementUlongNullable(this XElement x, string elementName)
+		private static ulong? GetElementUlongNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -273,7 +273,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static ulong GetElementUlong(this XElement x, string elementName, ulong defaultValue = default(ulong))
+		private static ulong GetElementUlong(this XElement x, XName elementName, ulong defaultValue = default(ulong))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -294,7 +294,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static byte? GetElementByteNullable(this XElement x, string elementName)
+		private static byte? GetElementByteNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -315,7 +315,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static byte GetElementByte(this XElement x, string elementName, byte defaultValue = default(byte))
+		private static byte GetElementByte(this XElement x, XName elementName, byte defaultValue = default(byte))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -336,7 +336,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static bool? GetElementBooleanNullable(this XElement x, string elementName)
+		private static bool? GetElementBooleanNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -357,7 +357,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static bool GetElementBoolean(this XElement x, string elementName, bool defaultValue = default(bool))
+		private static bool GetElementBoolean(this XElement x, XName elementName, bool defaultValue = default(bool))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -378,7 +378,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static DateTime? GetElementDateTimeNullable(this XElement x, string elementName)
+		private static DateTime? GetElementDateTimeNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -399,7 +399,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static DateTime GetElementDateTime(this XElement x, string elementName, DateTime defaultValue = default(DateTime))
+		private static DateTime GetElementDateTime(this XElement x, XName elementName, DateTime defaultValue = default(DateTime))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -420,7 +420,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static Guid? GetElementGuidNullable(this XElement x, string elementName)
+		private static Guid? GetElementGuidNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -441,7 +441,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static Guid GetElementGuid(this XElement x, string elementName, Guid defaultValue = default(Guid))
+		private static Guid GetElementGuid(this XElement x, XName elementName, Guid defaultValue = default(Guid))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -462,7 +462,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		public static object ElementEnum(this XElement x, Type enumType, string tag, object defaultValue)
+		public static object ElementEnum(this XElement x, Type enumType, XName tag, object defaultValue)
 		{
 			if (x.Element(tag) == null)
 			{
@@ -481,7 +481,7 @@ namespace Factotum.Xml
 		#endregion
 
 		#region Float Types
-		private static double? GetElementDoubleNullable(this XElement x, string elementName)
+		private static double? GetElementDoubleNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -502,7 +502,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static double GetElementDouble(this XElement x, string elementName, double defaultValue = default(double))
+		private static double GetElementDouble(this XElement x, XName elementName, double defaultValue = default(double))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -523,7 +523,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static float? GetElementFloatNullable(this XElement x, string elementName)
+		private static float? GetElementFloatNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -545,7 +545,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static float GetElementFloat(this XElement x, string elementName, float defaultValue = default(float))
+		private static float GetElementFloat(this XElement x, XName elementName, float defaultValue = default(float))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -568,7 +568,7 @@ namespace Factotum.Xml
 		#endregion
 
 		#region Text Types
-		private static string GetElementString(this XElement x, string elementName, string defaultValue = default(string))
+		private static string GetElementString(this XElement x, XName elementName, string defaultValue = default(string))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -582,7 +582,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static char GetElementChar(this XElement x, string elementName, char defaultValue = default(char))
+		private static char GetElementChar(this XElement x, XName elementName, char defaultValue = default(char))
 		{
 			XElement xElement = x.Element(elementName);
 
@@ -603,7 +603,7 @@ namespace Factotum.Xml
 			}
 		}
 
-		private static char? GetElementCharNullable(this XElement x, string elementName)
+		private static char? GetElementCharNullable(this XElement x, XName elementName)
 		{
 			XElement xElement = x.Element(elementName);
 

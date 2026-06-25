@@ -7,17 +7,16 @@
 * Copyright:    pikkatech.eu (www.pikkatech.eu)                                    *
 ***********************************************************************************/
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Factotum.Maths.Geospatial
 {
 	public static class GeospatialExtensions
 	{
-		public static GeoPolygon MainPolygon(this IEnumerable<GeoPolygon> polygons)
+		/// <summary>
+		/// Selects the biggest polygon out of a collection.
+		/// </summary>
+		/// <param name="polygons">Collection of polygons.</param>
+		/// <returns>The biggest by surface.</returns>
+		public static GeoPolygon Biggest(this IEnumerable<GeoPolygon> polygons)
 		{
 			return polygons.MaxBy(p => p.Surface);
 		}

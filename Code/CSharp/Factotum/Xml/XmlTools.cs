@@ -163,7 +163,7 @@ namespace Factotum.Xml
 		/// <param name="elementName">Name of the element to get the value from.</param>
 		/// <param name="defaultValue">The default value to return when the value could not be retrieved.</param>
 		/// <returns>The typed value of the element, if could be retrieved, otherwise the default value.</returns>
-		public static T ElementValue<T>(this XElement x, string elementName, T defaultValue = default(T))
+		public static T ElementValue<T>(this XElement x, XName elementName, T defaultValue = default(T))
 		{
 			Type type = typeof(T);
 			object result;
@@ -241,7 +241,7 @@ namespace Factotum.Xml
 		/// <param name="x">The host XElement.</param>
 		/// <param name="elementName">Name of the element to get the value from.</param>
 		/// <returns>The typed value of the element, if could be retrieved, otherwise null.</returns>
-		public static T? ElementValueNullable<T>(this XElement x, string elementName)  where T : struct
+		public static T? ElementValueNullable<T>(this XElement x, XName elementName)  where T : struct
 		{
 			Type type = typeof(T);
 
