@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <BaseOutputPath>..\Binary</BaseOutputPath>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
-    <Version>1.0.0.594-build.20260625.69+net9.0</Version>
+    <Version>1.0.0.618-build.20260626.24+net9.0</Version>
     <IsReleaseProject />
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
