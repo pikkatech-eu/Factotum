@@ -9,7 +9,8 @@
 namespace Factotum.Maths
 {
 	/// <summary>
-	/// Randomizer to generate random objmembers of collections.ects 
+	/// Randomizer to generate random members of object collections.
+	/// TODO: Add predefined distribution types: Zipf, geometric.
 	/// </summary>
 	public class DiscreteRandomizer
 	{
@@ -64,6 +65,78 @@ namespace Factotum.Maths
 			{
 				this._distribution[i] = this._distribution[i - 1] + frequencies[i];
 			}
+		}
+
+		/// <summary>
+		/// Creates an instance of DiscreteRandomizer with Zipf's finite distribution
+		/// (https://en.wikipedia.org/wiki/Zipf's_law):
+		/// \$p(k) = \frac{k^{-s}}{H_N} \$
+		/// where k >= 1 is the index of the element,
+		/// s > 1 the distribution parameter,
+		/// \$ N_N = \sum_{k=1}^N k^{-s} \$ the sum of the discrete probabilities for the finite case, 
+		/// aka generalized harmonic number playing the role of normalization constant.
+		/// </summary>
+		/// <param name="N">Length of the elements' list.</param>
+		/// <param name="s">Distribution parameter.</param>
+		/// <returns>An instance of DiscreteRandomizer for (finite) Zipf distribution.</returns>
+		/// <exception cref="ArgumentException">
+		/// Thrown if s < 1.
+		/// </exception>
+		public static DiscreteRandomizer Zipf(int N, double s)
+		{
+			if (s < 1)
+			{
+				throw new ArgumentException("Zipf's distribution parameter must be >= 1");
+			}
+
+			double[] occurrences = new double[N];
+			occurrences[0] = 1;
+
+			for (int i = 1; i < N; i++)
+			{
+				occurrences[i] = occurrences[i - 1] / s;
+			}
+
+			return new DiscreteRandomizer(occurrences);
+		}
+
+
+
+
+		/// <summary>
+		/// \$ p(k) = \frac{q^k + f}{H_N}, 1 <= k <= N, \$
+		/// where \$ H_N = \sum_{k=1}^N q^k + f. \$
+		/// </summary>
+		/// <param name="N">Length of the elements' list.</param>
+		/// <param name="q">
+		///		Decay factor. Must be > 1. 
+		///		(With q=1 we have uniform distribution that is treated as a different case.)
+		///	</param>
+		/// <param name="f">Floor value. Default value = 0.</param>
+		/// <returns></returns>
+		/// <exception cref="NotImplementedException"></exception>
+		public static DiscreteRandomizer GeometricDecay(int N, double q, double f = 0)
+		{
+			if (q <= 1)
+			{
+				throw new ArgumentException("Geometric distribution power must be > 1.");
+			}
+
+			if (f < 0)
+			{
+				throw new ArgumentException("Geometric distribution floor must be non-negative.");
+			}
+
+			double[] occurrences = new double[N];
+			double factor = 1;
+
+			for (int i = 0; i < N; i++)
+			{
+				occurrences[i] = factor + f;
+				factor /= q;
+			}
+
+			return new DiscreteRandomizer(occurrences);
 		}
 		#endregion
 
