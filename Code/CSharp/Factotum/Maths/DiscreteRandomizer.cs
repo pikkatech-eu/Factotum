@@ -10,8 +10,8 @@ namespace Factotum.Maths
 {
 	/// <summary>
 	/// Randomizer to generate random members of object collections.
-	/// TODO: Add predefined distribution types: Zipf, geometric.
 	/// </summary>
+	[Obsolete("Use class Randomizer instead")]
 	public class DiscreteRandomizer
 	{
 		#region Private members
